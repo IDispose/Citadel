@@ -139,7 +139,7 @@ Context usage: {estimate}
 After every queue update, run:
 
 ```bash
-node scripts/fleet-steward.js --session .planning/fleet/session-{slug}.md
+bun scripts/fleet-steward.js --session .planning/fleet/session-{slug}.md
 ```
 
 Treat `READY TO RUN` as the next spawn set, `BLOCKED` as parked work, `MERGE NEXT`

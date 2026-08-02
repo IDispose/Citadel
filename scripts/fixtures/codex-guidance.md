@@ -15,7 +15,7 @@ This file is the Codex-facing projection of the canonical Citadel project spec. 
 
 ## Workflows
 
-- Run `node scripts/test-all.js` after modifying hooks, skills, or shared architecture code.
+- Run `bun scripts/test-all.js` after modifying hooks, skills, or shared architecture code.
 - Prefer compatibility-first changes that preserve existing Claude Code behavior while improving runtime separation.
 - Keep new architecture work reviewable, reversible, and staged through PR-sized increments.
 - When changing generated outputs, add or update explicit tests and fixtures in the same PR.
@@ -30,7 +30,7 @@ This file is the Codex-facing projection of the canonical Citadel project spec. 
 ## Verification
 
 - Use the narrowest command that proves the changed behavior.
-- Run `node scripts/test-all.js` after modifying hooks, skills, runtime adapters, or shared architecture code.
+- Run `bun scripts/test-all.js` after modifying hooks, skills, runtime adapters, or shared architecture code.
 - Run targeted tests first when the change is scoped to one script, hook, or generator.
 
 ## Review Guidelines

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -25,7 +25,7 @@ function readStdin() {
 }
 
 if (process.argv.includes('--help')) {
-  console.log('Usage: node scripts/codex-app-server-dashboard.js --file app-server.jsonl [--project-root PATH] [--out-dir PATH]');
+  console.log('Usage: bun scripts/codex-app-server-dashboard.js --file app-server.jsonl [--project-root PATH] [--out-dir PATH]');
   process.exit(0);
 }
 

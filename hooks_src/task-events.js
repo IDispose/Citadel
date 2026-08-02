@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * task-events.js — TaskCreated and TaskCompleted hooks

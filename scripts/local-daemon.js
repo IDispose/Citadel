@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * local-daemon.js -- Quota-free replacement for /daemon start.
@@ -14,10 +14,10 @@
  * RemoteTrigger, so it consumes zero Anthropic routine quota.
  *
  * Usage:
- *   node scripts/local-daemon.js                   # Default 60s cooldown
- *   node scripts/local-daemon.js --cooldown 30     # 30s between sessions
- *   node scripts/local-daemon.js --max-sessions 10 # Safety cap
- *   node scripts/local-daemon.js --dry-run         # Print what it would do
+ *   bun scripts/local-daemon.js                   # Default 60s cooldown
+ *   bun scripts/local-daemon.js --cooldown 30     # 30s between sessions
+ *   bun scripts/local-daemon.js --max-sessions 10 # Safety cap
+ *   bun scripts/local-daemon.js --dry-run         # Print what it would do
  *
  * Start with `/daemon start` first (or manually populate daemon.json) to
  * establish the campaign and budget. This runner only drives the tick loop.

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -53,7 +53,7 @@ function campaignMarkdown() {
     '| Target | ID | Type | Required | Evidence | Status | Retries Remaining | Next Action |',
     '|---|---|---|---|---|---|---|---|',
     '| phase:2 | implementation-diff | file_diff | yes | src/result.js | resolved | 2 | implement requested change |',
-    '| phase:3 | verification-command | test_result | yes | npm run test | pass | 2 | fix verification failures |',
+    '| phase:3 | verification-command | test_result | yes | bun run test | pass | 2 | fix verification failures |',
     '| phase:4 | review-package | pr_link | yes | PR URL or local handoff path | pending | 2 | package delivery for review |',
   ].join('\n');
 }

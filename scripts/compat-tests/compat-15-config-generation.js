@@ -20,7 +20,7 @@ async function run() {
 
     // Run codex-compat.js
     const script = path.join(__dirname, '..', 'codex-compat.js');
-    execSync(`node "${script}" "${tmpDir}"`, {
+    execSync(`"${process.execPath}" "${script}" "${tmpDir}"`, {
       encoding: 'utf8',
       timeout: 15000,
       stdio: ['pipe', 'pipe', 'pipe'],

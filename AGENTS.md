@@ -31,20 +31,20 @@ Always run tests after modifying hooks or skills. Five levels:
 
 | Command | What it checks | When to run |
 |---|---|---|
-| `node scripts/test-all.js` | Hooks + skill structure (fast, no LLM) | After any change |
-| `node hooks_src/smoke-test.js` | Hooks only | After hook changes |
-| `node scripts/verify-hooks.js` | Hook install + runtime (synthetic payloads, no LLM) | After hook changes |
-| `node scripts/integration-test.js` | Full Pre→tool→Post pipeline sequences (no LLM) | After hook changes |
-| `node scripts/skill-lint.js` | All SKILL.md structure | After skill changes |
-| `node scripts/skill-bench.js` | Scenario file validity | After adding benchmarks |
-| `node scripts/skill-bench.js --execute` | Live scenario execution | Before shipping |
-| `node scripts/skill-bench.js --execute --verify-hooks` | Live execution + confirms hooks fired | Before shipping |
+| `bun scripts/test-all.js` | Hooks + skill structure (fast, no LLM) | After any change |
+| `bun hooks_src/smoke-test.js` | Hooks only | After hook changes |
+| `bun scripts/verify-hooks.js` | Hook install + runtime (synthetic payloads, no LLM) | After hook changes |
+| `bun scripts/integration-test.js` | Full Pre→tool→Post pipeline sequences (no LLM) | After hook changes |
+| `bun scripts/skill-lint.js` | All SKILL.md structure | After skill changes |
+| `bun scripts/skill-bench.js` | Scenario file validity | After adding benchmarks |
+| `bun scripts/skill-bench.js --execute` | Live scenario execution | Before shipping |
+| `bun scripts/skill-bench.js --execute --verify-hooks` | Live execution + confirms hooks fired | Before shipping |
 
-**Adding a new skill:** create `skills/{name}/SKILL.md`, then run `node scripts/skill-lint.js {name}` to verify structure.
+**Adding a new skill:** create `skills/{name}/SKILL.md`, then run `bun scripts/skill-lint.js {name}` to verify structure.
 
-**Adding a benchmark scenario:** create `skills/{name}/__benchmarks__/{scenario}.md`, then run `node scripts/skill-bench.js --skill {name}` to validate.
+**Adding a benchmark scenario:** create `skills/{name}/__benchmarks__/{scenario}.md`, then run `bun scripts/skill-bench.js --skill {name}` to validate.
 
-**CI:** `node scripts/test-all.js` exits non-zero on any failure. Use `--strict` to treat WARNs as failures.
+**CI:** `bun scripts/test-all.js` exits non-zero on any failure. Use `--strict` to treat WARNs as failures.
 
 ## Review Guidelines
 

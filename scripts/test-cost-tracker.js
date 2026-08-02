@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * test-cost-tracker.js — Unit tests for cost-tracker.js
@@ -7,7 +7,7 @@
  * by writing fake session JSONL into a controlled HOME directory so the
  * real session-tokens adapter reads it.
  *
- * Run: node scripts/test-cost-tracker.js
+ * Run: bun scripts/test-cost-tracker.js
  */
 
 'use strict';
@@ -99,7 +99,7 @@ function runCostTracker(sandbox, sessionId, stateOverride) {
   // On Windows, HOME may not be set; use USERPROFILE
   const homeKey = process.platform === 'win32' ? 'USERPROFILE' : 'HOME';
 
-  const result = spawnSync('node', [path.join(CITADEL_ROOT, 'hooks_src', 'cost-tracker.js')], {
+  const result = spawnSync(process.execPath, [path.join(CITADEL_ROOT, 'hooks_src', 'cost-tracker.js')], {
     input: JSON.stringify({ tool_name: 'Edit', tool_input: {} }),
     cwd: path.join(sandbox, 'project'),
     env: {

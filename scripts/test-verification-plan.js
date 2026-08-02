@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -20,18 +20,18 @@ function withTempProject(run) {
 }
 
 assert.equal(profileForFiles(['hooks_src/protect-files.js'], { test: 'node test.js' }).id, 'hook-runtime');
-assert(profileForFiles(['hooks_src/protect-files.js'], { test: 'node test.js' }).commands.includes('node scripts/verify-hooks.js'));
+assert(profileForFiles(['hooks_src/protect-files.js'], { test: 'node test.js' }).commands.includes('bun scripts/verify-hooks.js'));
 assert.equal(profileForFiles(['skills/do/SKILL.md'], { test: 'node test.js' }).id, 'skill-surface');
 assert.equal(profileForFiles(['docs/index.html'], { test: 'node test.js' }).id, 'demo-experience');
 assert.equal(profileForFiles(['scripts/dashboard.js'], { test: 'node test.js' }).id, 'operator-loop');
 assert.equal(profileForFiles(['scripts/operator-console.js'], { test: 'node test.js' }).id, 'operator-loop');
-assert(profileForFiles(['scripts/operator-console.js'], { test: 'node test.js' }).commands.includes('node scripts/test-operator-console.js'));
+assert(profileForFiles(['scripts/operator-console.js'], { test: 'node test.js' }).commands.includes('bun scripts/test-operator-console.js'));
 assert.equal(profileForFiles(['skills/do/SKILL.md', 'scripts/operator-console.js'], { test: 'node test.js' }).id, 'skill-surface');
-assert(profileForFiles(['skills/do/SKILL.md', 'scripts/operator-console.js'], { test: 'node test.js' }).commands.includes('node scripts/test-operator-journey.js'));
+assert(profileForFiles(['skills/do/SKILL.md', 'scripts/operator-console.js'], { test: 'node test.js' }).commands.includes('bun scripts/test-operator-journey.js'));
 assert.equal(profileForFiles(['scripts/pr-ready.js'], { test: 'node test.js' }).id, 'review-readiness');
-assert(profileForFiles(['core/verification/profiles.js'], { test: 'node test.js' }).commands.includes('node scripts/test-verification-plan.js'));
+assert(profileForFiles(['core/verification/profiles.js'], { test: 'node test.js' }).commands.includes('bun scripts/test-verification-plan.js'));
 assert.equal(profileForFiles(['scripts/deploy-steward.js'], { test: 'node test.js' }).id, 'deploy-steward');
-assert(profileForFiles(['scripts/deploy-steward.js'], { test: 'node test.js' }).commands.includes('node scripts/test-deploy-steward.js'));
+assert(profileForFiles(['scripts/deploy-steward.js'], { test: 'node test.js' }).commands.includes('bun scripts/test-deploy-steward.js'));
 assert.equal(profileForFiles(['core/campaigns/update-campaign.js'], { test: 'node test.js' }).id, 'campaign-delivery');
 assert.equal(profileForFiles(['docs/CAMPAIGNS.md'], { test: 'node test.js' }).id, 'documentation');
 
@@ -44,8 +44,8 @@ withTempProject((projectRoot) => {
     changedFiles: ['scripts/next-action.js'],
   });
   assert.equal(plan.id, 'operator-loop');
-  assert.equal(plan.primaryCommand, 'npm run test');
-  assert(plan.commands.includes('node scripts/test-next-action.js'));
+  assert.equal(plan.primaryCommand, 'bun run test');
+  assert(plan.commands.includes('bun scripts/test-next-action.js'));
 
   const output = render(plan);
   assert(output.includes('Citadel Verification Plan'));

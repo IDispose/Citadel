@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const path = require('path');
@@ -27,7 +27,7 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/continue-action.js [--json] [--run] [--project-root <path>]',
+    '  bun scripts/continue-action.js [--json] [--run] [--project-root <path>]',
     '',
     'Resolves the deterministic action for /do continue.',
     '--run executes local repair commands such as package-delivery; skill routes are printed for the agent to invoke.',
@@ -40,7 +40,7 @@ function routeAction(snapshot) {
     return {
       kind: 'local-command',
       label: `Package ${needsReviewPackage.slug} for review`,
-      command: `node scripts/package-delivery.js ${needsReviewPackage.slug}`,
+      command: `bun scripts/package-delivery.js ${needsReviewPackage.slug}`,
       args: [path.join(__dirname, 'package-delivery.js'), needsReviewPackage.slug],
       why: 'The campaign is ready for review packaging, but review-package evidence is not resolved yet.',
       runbook: 'docs/CAMPAIGNS.md#repair-states',

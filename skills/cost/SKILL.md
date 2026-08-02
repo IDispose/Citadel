@@ -45,9 +45,9 @@ Optional arguments parsed from user message:
 Run the session-tokens.js script to get real token data:
 
 ```bash
-node scripts/session-tokens.js              # current/latest session
-node scripts/session-tokens.js --today      # today's sessions
-node scripts/session-tokens.js --all        # all sessions (use for week/all/campaign)
+bun scripts/session-tokens.js              # current/latest session
+bun scripts/session-tokens.js --today      # today's sessions
+bun scripts/session-tokens.js --all        # all sessions (use for week/all/campaign)
 ```
 
 Also read:

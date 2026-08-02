@@ -38,7 +38,7 @@ Category: instruction-fidelity
 - **10**: Every decision point is explicitly specified. An agent can execute the protocol mechanically without inferring intent. No branch (error, missing state, ambiguous input) is left to improvisation. Scenario pass rate ≥ 90% on execute mode.
 
 #### Verification
-- **programmatic**: `node scripts/skill-bench.js --execute --tag happy-path` — count pass rate per skill. Skills with 0 passing happy-path scenarios score 0 regardless of evaluator opinion.
+- **programmatic**: `bun scripts/skill-bench.js --execute --tag happy-path` — count pass rate per skill. Skills with 0 passing happy-path scenarios score 0 regardless of evaluator opinion.
 - **structural**: Every conditional in the protocol (if X / else Y) has an explicit handler for both branches. No step says only "proceed" without specifying what proceeding looks like.
 - **perceptual**: Evaluator mentally executes the skill on three inputs: clean happy path, missing state, and ambiguous input. Scores whether the protocol would produce correct behavior on all three without the agent needing to invent steps.
 
@@ -54,7 +54,7 @@ Category: instruction-fidelity
 - **10**: Fringe cases map to observed failure modes from real sessions, not theorized ones. Every case the agent can realistically encounter produces a user-facing message with an actionable fix. No failure mode produces a raw stack trace or silent exit.
 
 #### Verification
-- **programmatic**: `node scripts/skill-bench.js --execute --tag fringe` — pass rate on fringe scenarios. Skills with no fringe scenarios score 5 (unknown, not bad).
+- **programmatic**: `bun scripts/skill-bench.js --execute --tag fringe` — pass rate on fringe scenarios. Skills with no fringe scenarios score 5 (unknown, not bad).
 - **structural**: Fringe cases section covers: (1) missing `.planning/` directory, (2) missing required tool, (3) corrupted or missing state file. Each case specifies the exact user-facing message to emit.
 - **perceptual**: Evaluator lists the five most likely real failure modes for this skill from memory. Checks how many are explicitly handled.
 
@@ -138,7 +138,7 @@ Run before scoring. Failures cap the relevant axis at 5.
 
 ```bash
 # Structural validity
-node scripts/skill-lint.js          # All skills must pass (0 FAILs)
+bun scripts/skill-lint.js          # All skills must pass (0 FAILs)
 
 # Word count thresholds
 node -e "
@@ -156,11 +156,11 @@ if (ok) console.log('All skills within word count thresholds.');
 "
 
 # Scenario file validity
-node scripts/skill-bench.js         # All scenario files must validate (static mode, no LLM)
+bun scripts/skill-bench.js         # All scenario files must validate (static mode, no LLM)
 
 # Execute mode (run periodically, costs tokens)
-# node scripts/skill-bench.js --execute --tag happy-path
-# node scripts/skill-bench.js --execute --tag fringe
+# bun scripts/skill-bench.js --execute --tag happy-path
+# bun scripts/skill-bench.js --execute --tag fringe
 ```
 
 ---

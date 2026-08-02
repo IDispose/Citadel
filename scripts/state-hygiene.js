@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * state-hygiene.js -- Cleanup sweep for harness state that expires but is
@@ -24,7 +24,7 @@
  *     aborts the sweep
  *
  * Usage:
- *   node scripts/state-hygiene.js [--dry-run] [--json]
+ *   bun scripts/state-hygiene.js [--dry-run] [--json]
  *
  * Module:
  *   const { cleanState } = require('./scripts/state-hygiene');

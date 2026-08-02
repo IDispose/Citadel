@@ -140,7 +140,7 @@ Category: technical
 - **10**: Every hook has smoke tests AND integration tests covering normal, error, and edge-case paths. Every skill has at least one benchmark scenario. The test suite runs in under 60 seconds with no network or LLM dependency. Adding a new hook or skill without tests causes CI to warn. Test coverage is tracked numerically and visible.
 
 #### Verification
-- **programmatic**: Run `node scripts/test-all.js`, count pass/fail/skip. Calculate ratio of hooks with dedicated test cases to total hooks. Calculate ratio of skills with benchmark scenarios to total skills. Measure test suite wall time.
+- **programmatic**: Run `bun scripts/test-all.js`, count pass/fail/skip. Calculate ratio of hooks with dedicated test cases to total hooks. Calculate ratio of skills with benchmark scenarios to total skills. Measure test suite wall time.
 - **structural**: Every hook in hooks_src/ has a corresponding test sequence in integration-test.js or smoke-test.js. Every skill in skills/ has a `__benchmarks__/` directory (may be empty but must exist). test-all.js exits non-zero on any failure.
 - **perceptual**: Panel scores "would you trust this test suite to catch a regression you introduced?"
 

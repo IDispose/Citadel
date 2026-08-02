@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const path = require('path');
@@ -33,10 +33,10 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/deliver.js --intake .planning/intake/item.md [--verification "npm run test"]',
-    '  node scripts/deliver.js --next',
-    '  node scripts/deliver.js .planning/intake/item.md',
-    '  node scripts/deliver.js intake',
+    '  bun scripts/deliver.js --intake .planning/intake/item.md [--verification "npm run test"]',
+    '  bun scripts/deliver.js --next',
+    '  bun scripts/deliver.js .planning/intake/item.md',
+    '  bun scripts/deliver.js intake',
     '',
     'Creates an active delivery campaign from a real intake item and marks the intake item in-progress.',
     '--next selects the highest-priority pending item in .planning/intake/.',

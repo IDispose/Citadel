@@ -71,7 +71,7 @@ Accept examples like:
 ```text
 --verify "npm run lint"
 --verify "npm run test"
---verify "node scripts/operating-proof.js --write"
+--verify "bun scripts/operating-proof.js --write"
 ```
 
 If missing, respond in this shape:
@@ -104,7 +104,7 @@ node .citadel/scripts/loop-runner.js --action "<action>" --verify "<verifier>" -
 ```
 
 If `.citadel/scripts/` is not present and this is the Citadel harness repo
-itself, use `node scripts/loops.js` or `node scripts/loop-runner.js` instead.
+itself, use `bun scripts/loops.js` or `bun scripts/loop-runner.js` instead.
 
 The runner writes a contract under `.planning/loops/{id}.json`, appends each
 attempt, and stops with a shared stop status.
@@ -142,7 +142,7 @@ setup is needed.
 **No verifier:** ask for one. Do not infer a destructive or expensive verifier.
 
 **Action is an agent command, not a shell command:** run the action manually as
-the agent for each attempt, then record the loop with `node scripts/loops.js
+the agent for each attempt, then record the loop with `bun scripts/loops.js
 register` or use the loop contract as the state artifact. Do not pass slash
 commands to the shell runner.
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -15,7 +15,7 @@ for (const gate of ['scrollY', 'active', 'scrollWidth', 'canonical', 'ogImage', 
 assert(workflow.includes('workflow_run:'));
 assert(workflow.includes('schedule:'));
 assert(workflow.includes('playwright@1.55.0'));
-assert(workflow.includes('node scripts/hosted-site-smoke.js'));
+assert(workflow.includes('bun scripts/hosted-site-smoke.js'));
 assert(workflow.includes('ref: refs/heads/main'));
 assert(workflow.includes('persist-credentials: false'));
 assert(!workflow.includes('workflow_run.head_sha'));

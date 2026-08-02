@@ -8,7 +8,7 @@ Status: **engineering foundation accepted; release milestone blocked**
 - Last fully hosted-verified candidate: `0329d86` (12/12 checks)
 - Hosted proof: 12/12 checks pass on Node 18/20, Linux/macOS/Windows, the complete
   30/30 Claude/Codex golden-path matrix, and HOL/plugin scanning.
-- Local proof: `node scripts/test-all.js --strict` passes in 301.2 seconds;
+- Local proof: `bun scripts/test-all.js --strict` passes in 301.2 seconds;
   reproducible `1.1.0` dry packaging passes.
 
 ## What is ready for review

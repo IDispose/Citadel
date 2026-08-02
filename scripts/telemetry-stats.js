@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * telemetry-stats.js — Shared telemetry data readers used by health.js and telemetry-report.cjs.

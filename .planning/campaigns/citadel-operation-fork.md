@@ -44,7 +44,7 @@ Direction: Ship one objective through comparable isolated Claude Code and Codex 
 | 4 | command_passes | Packaged CLI and Mission Control interaction tests pass | passed |
 | 4 | visual_verify | Real browser verifies desktop, mobile, keyboard, reduced-motion, confirmation, and unknown states | passed |
 | 5 | command_passes | Security, privacy, path containment, tamper, race, and full Operation Fork suites pass | passed |
-| 5 | command_passes | `node scripts/test-all.js --strict` passes | passed |
+| 5 | command_passes | `bun scripts/test-all.js --strict` passes | passed |
 | 6 | command_passes | Documentation, release integrity, package boundary, and site checks pass | passed |
 | 6 | manual | Public claims and delivery scope are reviewed against real evidence | passed |
 
@@ -71,10 +71,10 @@ Direction: Ship one objective through comparable isolated Claude Code and Codex 
 | Target | ID | Type | Required | Evidence | Status | Retries Remaining | Next Action |
 |---|---|---|---|---|---|---:|---|
 | phase:1 | contract | doc_update | yes | `docs/OPERATION_FORK.md` | passed | 3 | complete |
-| phase:2 | execution | test_result | yes | `node scripts/test-operation-fork.js` | passed | 3 | complete |
-| phase:3 | decision | test_result | yes | `node scripts/test-operation-fork-decision.js` | passed | 3 | complete |
+| phase:2 | execution | test_result | yes | `bun scripts/test-operation-fork.js` | passed | 3 | complete |
+| phase:3 | decision | test_result | yes | `bun scripts/test-operation-fork-decision.js` | passed | 3 | complete |
 | phase:4 | experience | screenshot | yes | `output/playwright/operation-fork-comparison.png`; `output/playwright/operation-fork-mission-control.png` | passed | 3 | complete |
-| phase:5 | strict | command_result | yes | `node scripts/test-all.js --strict` | passed | 3 | complete |
+| phase:5 | strict | command_result | yes | `bun scripts/test-all.js --strict` | passed | 3 | complete |
 | phase:6 | delivery | pr | yes | [PR #200](https://github.com/SethGammon/Citadel/pull/200); 13 hosted checks passed on repaired implementation head `7af0989`; final campaign-only head revalidated before merge | passed | 3 | complete |
 
 ## Active Context

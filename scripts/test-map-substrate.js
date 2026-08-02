@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -63,15 +63,15 @@ function main() {
   assert.ok(index.sourceSignature, 'expected source signature');
   assert.ok(index.files['src/fleet/steward.ts'].hash, 'expected per-file hash');
   assert.ok(index.routes.some((route) => route.path === '/dashboard'), 'expected extracted route');
-  assert.ok(index.verificationCommands.includes('npm run test'), 'expected test script command');
-  assert.ok(index.verificationCommands.includes('npm run typecheck'), 'expected typecheck command');
+  assert.ok(index.verificationCommands.includes('bun run test'), 'expected test script command');
+  assert.ok(index.verificationCommands.includes('bun run typecheck'), 'expected typecheck command');
 
   const results = queryMapIndex(index, 'fleet steward', 5);
   assert.strictEqual(results[0].relPath, 'src/fleet/steward.ts');
 
   const slice = createMapSlice(index, 'campaign route', { maxFiles: 5 });
   assert.ok(slice.includes('=== MAP SLICE: campaign route ==='));
-  assert.ok(slice.includes('Verification: npm run test | npm run typecheck'));
+  assert.ok(slice.includes('Verification: bun run test | bun run typecheck'));
   assert.ok(slice.includes('src/routes.tsx'));
 
   const stats = mapStats(index);

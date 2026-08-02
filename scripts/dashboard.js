@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -47,7 +47,7 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node scripts/dashboard.js [--json] [--project-root <path>] [--recent <n>]',
+    'Usage: bun scripts/dashboard.js [--json] [--project-root <path>] [--recent <n>]',
     '',
     'Renders a read-only Citadel control-plane snapshot from .planning/, telemetry, git, and hooks.',
   ].join('\n');
@@ -1088,7 +1088,7 @@ function buildRepairItems(snapshot) {
     const issues = needsReviewPackage.reviewPackageEvidence.issues || [];
     repairs.push(action({
       label: `Package ${needsReviewPackage.slug} for review`,
-      command: `node scripts/package-delivery.js ${needsReviewPackage.slug}`,
+      command: `bun scripts/package-delivery.js ${needsReviewPackage.slug}`,
       why: issues.length > 0
         ? `The campaign review-package evidence is not ready: ${issues.join('; ')}.`
         : 'The campaign is ready for review packaging, but review-package evidence is still pending.',
@@ -1101,7 +1101,7 @@ function buildRepairItems(snapshot) {
   if (needsCompletion) {
     repairs.push(action({
       label: `Complete ${needsCompletion.slug}`,
-      command: `node scripts/campaign.js complete ${needsCompletion.slug} --archive`,
+      command: `bun scripts/campaign.js complete ${needsCompletion.slug} --archive`,
       why: 'Every campaign phase is complete, but the campaign status still says active.',
       confidence: 'high',
       repairAvailable: true,
@@ -1113,7 +1113,7 @@ function buildRepairItems(snapshot) {
   if (needsArchive) {
     repairs.push(action({
       label: `Archive completed campaign ${needsArchive.slug}`,
-      command: `node scripts/campaign.js complete ${needsArchive.slug} --archive`,
+      command: `bun scripts/campaign.js complete ${needsArchive.slug} --archive`,
       why: 'The campaign is completed but still lives in the active campaign directory.',
       confidence: 'high',
       repairAvailable: true,

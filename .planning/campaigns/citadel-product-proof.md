@@ -55,31 +55,31 @@ Direction: Convert the seven approved phases into an Archon campaign and execute
 |---:|---|---|
 | 1 | file_exists | .planning/product-proof/baseline.md |
 | 1 | command_passes | node -e "const fs=require('fs');const s=fs.readFileSync('.planning/product-proof/baseline.md','utf8');for(const k of ['Git state','Strict suite','Installer','Codex runtime','Native integration','Dashboard','Release','Activation','Benchmark','Known managed-checkout failure'])if(!s.includes(k))process.exit(1)" |
-| 1 | command_passes | node scripts/test-installers.js |
-| 1 | command_passes | node scripts/test-codex-runtime.js |
-| 1 | command_passes | node scripts/test-codex-native-integrations.js |
-| 2 | command_passes | node scripts/test-all.js --strict |
-| 2 | command_passes | node scripts/test-release-integrity.js |
-| 2 | command_passes | node scripts/test-installers.js |
-| 2 | command_passes | node scripts/release-package.js --dry-run --verify-reproducible |
+| 1 | command_passes | bun scripts/test-installers.js |
+| 1 | command_passes | bun scripts/test-codex-runtime.js |
+| 1 | command_passes | bun scripts/test-codex-native-integrations.js |
+| 2 | command_passes | bun scripts/test-all.js --strict |
+| 2 | command_passes | bun scripts/test-release-integrity.js |
+| 2 | command_passes | bun scripts/test-installers.js |
+| 2 | command_passes | bun scripts/release-package.js --dry-run --verify-reproducible |
 | 2 | file_exists | CHANGELOG.md |
 | 2 | file_exists | docs/RELEASES.md |
-| 3 | command_passes | node scripts/test-activation-telemetry.js |
-| 3 | command_passes | node scripts/test-github-traffic-snapshot.js |
+| 3 | command_passes | bun scripts/test-activation-telemetry.js |
+| 3 | command_passes | bun scripts/test-github-traffic-snapshot.js |
 | 3 | file_exists | docs/ACTIVATION_METRICS.md |
-| 4 | command_passes | node scripts/test-golden-path.js |
+| 4 | command_passes | bun scripts/test-golden-path.js |
 | 4 | metric_threshold | golden-path matrix reports install/setup success >95%, median first route <10 minutes, p90 verified handoff <15 minutes |
-| 4 | command_passes | node scripts/test-usefulness-trial.js |
-| 5 | command_passes | node scripts/test-dashboard-web.js |
-| 5 | command_passes | node scripts/test-dashboard-perf.js |
-| 5 | command_passes | node scripts/test-dashboard-visual.js |
-| 5 | command_passes | node scripts/test-product-benchmark.js |
+| 4 | command_passes | bun scripts/test-usefulness-trial.js |
+| 5 | command_passes | bun scripts/test-dashboard-web.js |
+| 5 | command_passes | bun scripts/test-dashboard-perf.js |
+| 5 | command_passes | bun scripts/test-dashboard-visual.js |
+| 5 | command_passes | bun scripts/test-product-benchmark.js |
 | 5 | metric_threshold | published benchmark is no worse on verified completion and clears the declared intervention or recovery improvement gate with <=15% median overhead |
-| 6 | command_passes | node scripts/test-ecosystem-compat.js |
-| 6 | command_passes | node scripts/generate-distribution-metadata.js --check |
+| 6 | command_passes | bun scripts/test-ecosystem-compat.js |
+| 6 | command_passes | bun scripts/generate-distribution-metadata.js --check |
 | 6 | manual | ClaudePluginHub and HOL publisher profiles show verified identity and current release metadata |
-| 7 | command_passes | node scripts/test-all.js --strict |
-| 7 | command_passes | node scripts/release-verify.js |
+| 7 | command_passes | bun scripts/test-all.js --strict |
+| 7 | command_passes | bun scripts/release-verify.js |
 | 7 | file_exists | docs/PRODUCT_PROOF_REPORT.md |
 | 7 | metric_threshold | 8/10 first-time users reach a verified handoff within 15 minutes and five independent users complete a second real task within 14 days |
 | 7 | manual | User approves the truthful 90-second demo and product-proof positioning |
@@ -89,37 +89,37 @@ Direction: Convert the seven approved phases into an Archon campaign and execute
 | Target | ID | Type | Required | Evidence | Status | Retries Remaining | Next Action |
 |---|---|---|---|---|---|---:|---|
 | phase:1 | baseline | doc_update | yes | .planning/product-proof/baseline.md | pass | 3 | baseline captured 2026-07-10T14:41:20.623Z |
-| phase:1 | installers | test_result | yes | node scripts/test-installers.js | pass | 3 | exit 0: installer tests passed |
-| phase:1 | codex-runtime | test_result | yes | node scripts/test-codex-runtime.js | pass | 3 | exit 0: codex runtime tests passed |
-| phase:1 | native-integration | test_result | yes | node scripts/test-codex-native-integrations.js | pass | 3 | exit 0: codex native integration tests passed |
-| phase:2 | strict-suite | test_result | yes | node scripts/test-all.js --strict | pass | 3 | exit 0 in 230.5s; all strict tests pass |
-| phase:2 | release-integrity | test_result | yes | node scripts/test-release-integrity.js | pass | 3 | exit 0; integrity and planning-state exclusion pass; reproducible SHA-256 c0570b739aea78b92506254b38e9b52c4848d09c4f0720f57a7147e51b79e246 |
+| phase:1 | installers | test_result | yes | bun scripts/test-installers.js | pass | 3 | exit 0: installer tests passed |
+| phase:1 | codex-runtime | test_result | yes | bun scripts/test-codex-runtime.js | pass | 3 | exit 0: codex runtime tests passed |
+| phase:1 | native-integration | test_result | yes | bun scripts/test-codex-native-integrations.js | pass | 3 | exit 0: codex native integration tests passed |
+| phase:2 | strict-suite | test_result | yes | bun scripts/test-all.js --strict | pass | 3 | exit 0 in 230.5s; all strict tests pass |
+| phase:2 | release-integrity | test_result | yes | bun scripts/test-release-integrity.js | pass | 3 | exit 0; integrity and planning-state exclusion pass; reproducible SHA-256 c0570b739aea78b92506254b38e9b52c4848d09c4f0720f57a7147e51b79e246 |
 | phase:2 | release-docs | doc_update | yes | CHANGELOG.md; docs/RELEASES.md | pass | 3 | version, package, verification, plan-first update, rollback, compatibility, and release invariants documented |
-| phase:3 | activation-tests | test_result | yes | node scripts/test-activation-telemetry.js | pass | 3 | 17/17: schema, privacy rejection, opt-out, migration, full journey, redaction, and zero-network pass |
-| phase:3 | acquisition-tests | test_result | yes | node scripts/test-github-traffic-snapshot.js | pass | 3 | endpoint, API version, watcher semantics, token redaction, authenticated gh fallback, fixture, and append-only history tests pass |
+| phase:3 | activation-tests | test_result | yes | bun scripts/test-activation-telemetry.js | pass | 3 | 17/17: schema, privacy rejection, opt-out, migration, full journey, redaction, and zero-network pass |
+| phase:3 | acquisition-tests | test_result | yes | bun scripts/test-github-traffic-snapshot.js | pass | 3 | endpoint, API version, watcher semantics, token redaction, authenticated gh fallback, fixture, and append-only history tests pass |
 | phase:3 | acquisition-live | file_diff | yes | .planning/acquisition/2026-07-11.json | pass | 3 | authenticated snapshot: 656 stars, 490 unique viewers, 506 unique cloners; leading unique referrers GitHub 126, X 104, Google 79, Reddit 51 |
 | phase:3 | measurement-docs | doc_update | yes | docs/ACTIVATION_METRICS.md | pass | 3 | privacy contract, stages, acquisition limits, commands, and honest interpretation documented |
 | phase:3 | activation-baseline | file_diff | yes | .planning/product-proof/activation-report.json | pass | 3 | truthful local baseline: zero historical events; no activation history was invented |
-| phase:3 | strict-regression | test_result | yes | node scripts/test-all.js --strict | pass | 3 | exit 0 in 234.1s; activation and acquisition suites included in aggregate gate |
-| phase:4 | golden-path | test_result | yes | node scripts/test-golden-path.js | pass | 3 | Claude and Codex fixture paths, failures, resume, and exact rollback pass |
-| phase:4 | matrix-contract | test_result | yes | node scripts/test-golden-path-matrix.js | pass | 3 | strict grid, merge, percentile, threshold, duplicate, and failed-run retention tests pass |
+| phase:3 | strict-regression | test_result | yes | bun scripts/test-all.js --strict | pass | 3 | exit 0 in 234.1s; activation and acquisition suites included in aggregate gate |
+| phase:4 | golden-path | test_result | yes | bun scripts/test-golden-path.js | pass | 3 | Claude and Codex fixture paths, failures, resume, and exact rollback pass |
+| phase:4 | matrix-contract | test_result | yes | bun scripts/test-golden-path-matrix.js | pass | 3 | strict grid, merge, percentile, threshold, duplicate, and failed-run retention tests pass |
 | phase:4 | windows-matrix | test_result | yes | .planning/product-proof/golden-path-matrix-windows.json | pass | 3 | hardened rerun: 10/10 Windows fixture runs pass; median route 3124.5ms, p90 handoff 23715ms, resume and rollback 100% |
-| phase:4 | strict-regression | test_result | yes | node scripts/test-all.js --strict | pass | 3 | final post-review exit 0 in 363.5s with fixture and matrix suites integrated |
+| phase:4 | strict-regression | test_result | yes | bun scripts/test-all.js --strict | pass | 3 | final post-review exit 0 in 363.5s with fixture and matrix suites integrated |
 | phase:4 | cross-os-grid | test_result | yes | PR #181 Tests run 37 complete golden-path matrix artifact | pass | 3 | 30/30 hosted fixture runs pass across Claude/Codex, win32/linux/darwin; no platforms synthesized |
 | phase:4 | stranger-timing | test_result | yes | recorded first-time-user trial cohort | pending | 3 | fixture milliseconds are not human install-to-value evidence |
 | phase:5 | dashboard-proof | test_result | yes | dashboard web/perf/visual tests | pending | 3 | complete R1 |
 | phase:5 | benchmark-proof | test_result | yes | product benchmark report and raw runs | pending | 3 | complete R2 |
-| phase:5 | dashboard-contract | test_result | yes | node scripts/test-dashboard-web.js; node scripts/test-dashboard-perf.js; node scripts/test-dashboard-visual.js | pass | 3 | source-health, containment, timing, <64 MB absolute RSS, <10 MB overhead, responsive, keyboard, and reduced-motion contracts pass; pixel and human gates remain |
-| phase:5 | benchmark-contract | test_result | yes | node scripts/test-product-benchmark.js; docs/benchmarks/product-proof-fixture-report.json | pass | 3 | ten frozen symmetric scenarios and 60 reproducible fixture runs pass; utility result is honestly open and negative |
-| phase:5 | cohort-contract | test_result | yes | node scripts/test-product-proof-cohort.js; docs/PRODUCT_PROOF_TRIAL.md | pass | 3 | privacy-minimal GitHub-comment evidence, external selection ordering, timing, comprehension, and 14-day retention gates fail closed |
+| phase:5 | dashboard-contract | test_result | yes | bun scripts/test-dashboard-web.js; bun scripts/test-dashboard-perf.js; bun scripts/test-dashboard-visual.js | pass | 3 | source-health, containment, timing, <64 MB absolute RSS, <10 MB overhead, responsive, keyboard, and reduced-motion contracts pass; pixel and human gates remain |
+| phase:5 | benchmark-contract | test_result | yes | bun scripts/test-product-benchmark.js; docs/benchmarks/product-proof-fixture-report.json | pass | 3 | ten frozen symmetric scenarios and 60 reproducible fixture runs pass; utility result is honestly open and negative |
+| phase:5 | cohort-contract | test_result | yes | bun scripts/test-product-proof-cohort.js; docs/PRODUCT_PROOF_TRIAL.md | pass | 3 | privacy-minimal GitHub-comment evidence, external selection ordering, timing, comprehension, and 14-day retention gates fail closed |
 | phase:4 | cohort-recruitment | external_action | yes | https://github.com/SethGammon/Citadel/discussions/182 | pass | 3 | public call recruits one external benchmark selector, ten first-time users, and at least five return users; failures are retained and sensitive task data is prohibited |
 | phase:4 | recruitment-mainline | external_action | yes | PR #183; main c45a309 | pass | 3 | default README links Discussion #182 from the top navigation and Community; the PR also repaired the Windows CRLF steward-test failure it exposed, with 6/6 hosted checks green |
-| phase:6 | interoperability | test_result | yes | node scripts/test-ecosystem-compat.js | pending | 3 | run external skill fixture |
+| phase:6 | interoperability | test_result | yes | bun scripts/test-ecosystem-compat.js | pending | 3 | run external skill fixture |
 | phase:7 | milestone-report | doc_update | yes | docs/PRODUCT_PROOF_REPORT.md | pass | 3 | tested scorecard records CI-proven foundations and blocks release claims while external gates remain |
-| phase:6 | ecosystem-contract | test_result | yes | node scripts/test-ecosystem-compat.js; node scripts/generate-distribution-metadata.js --check | pass | 3 | 7/7 local compatibility checks and canonical metadata pass; immutable Anthropic commit and byte digest verified; remote scanners and publisher profiles remain |
+| phase:6 | ecosystem-contract | test_result | yes | bun scripts/test-ecosystem-compat.js; bun scripts/generate-distribution-metadata.js --check | pass | 3 | 7/7 local compatibility checks and canonical metadata pass; immutable Anthropic commit and byte digest verified; remote scanners and publisher profiles remain |
 | phase:6 | hol-scanner | test_result | yes | PR #181 HOL Plugin Scanner run 57 | pass | 3 | repository passes pinned HOL scanner action; Claude scanner and publisher profiles remain |
 | phase:6 | registry-audit | test_result | yes | ClaudePluginHub sethgammon-citadel; HOL scanner on PR #181 | pass | 2 | SethGammon claimed the current 1.1.0 listing; HOL removed its legacy plugin-profile route, while the current hosted scanner passes |
-| phase:7 | scorecard-contract | test_result | yes | docs/PRODUCT_PROOF_REPORT.md; node scripts/test-product-proof-report.js | pass | 3 | answer-first blocked scorecard covers all ten axes and forbids completion claims while evidence is missing |
+| phase:7 | scorecard-contract | test_result | yes | docs/PRODUCT_PROOF_REPORT.md; bun scripts/test-product-proof-report.js | pass | 3 | answer-first blocked scorecard covers all ten axes and forbids completion claims while evidence is missing |
 | campaign | review-package | file_diff | yes | .planning/review-packages/citadel-product-proof.md | pass | 3 | review head, proven surfaces, release blockers, and no-merge decision packaged at commit 2c6725f |
 
 ## Feature Ledger

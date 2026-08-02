@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * init-project.js — SessionStart hook
@@ -165,7 +165,7 @@ function main() {
       const sweepScript = path.join(PLUGIN_ROOT, 'scripts', 'coordination.js');
       const script = fs.existsSync(coordScript) ? coordScript : sweepScript;
       if (fs.existsSync(script)) {
-        require('child_process').spawnSync('node', [script, 'sweep'], {
+        require('child_process').spawnSync(process.execPath, [script, 'sweep'], {
           cwd: PROJECT_ROOT,
           env: { ...process.env, CLAUDE_PROJECT_DIR: PROJECT_ROOT },
           timeout: 5000,

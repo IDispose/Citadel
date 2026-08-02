@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -218,7 +218,7 @@ function printHuman(report) {
 }
 
 if (has('--help') || has('-h')) {
-  console.log(`Usage: node scripts/claude-install.js [options]
+  console.log(`Usage: bun scripts/claude-install.js [options]
 
 Prepares and optionally installs Citadel for Claude Code.
 

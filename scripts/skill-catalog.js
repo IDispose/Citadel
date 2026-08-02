@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -21,7 +21,7 @@ function parseArgs(argv) {
 }
 
 function usage() {
-  return 'Usage: node scripts/skill-catalog.js [--task-class quality] [--risk-level medium] [--json]';
+  return 'Usage: bun scripts/skill-catalog.js [--task-class quality] [--risk-level medium] [--json]';
 }
 
 function filterCatalog(catalog, args) {

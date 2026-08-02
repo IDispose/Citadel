@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -35,8 +35,8 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node scripts/evidence-validate.js --file .planning/campaigns/example.md [--target phase:1]',
-    '       node scripts/evidence-validate.js --file .planning/fleet/session.md --write-repair',
+    'Usage: bun scripts/evidence-validate.js --file .planning/campaigns/example.md [--target phase:1]',
+    '       bun scripts/evidence-validate.js --file .planning/fleet/session.md --write-repair',
     '',
     'Validates Exit Evidence markdown tables and optionally appends repair tasks.',
   ].join('\n');

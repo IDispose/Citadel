@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -200,7 +200,7 @@ withTempProject((projectRoot) => {
     '- Outcome: shipped-pr',
     '- PR: https://github.com/acme/repo/pull/7',
     '- Merge SHA: abc123',
-    '- Verification: npm run test',
+    '- Verification: bun run test',
   ].join('\n'));
 
   const snapshot = collectDashboard({ projectRoot, now: '2026-06-04T12:00:00.000Z' });
@@ -211,7 +211,7 @@ withTempProject((projectRoot) => {
   assert.equal(snapshot.outcomeLedger[0].pr, 'https://github.com/acme/repo/pull/7');
   assert(output.includes('OUTCOMES'));
   assert(output.includes('shipped: shipped-pr - https://github.com/acme/repo/pull/7'));
-  assert(output.includes('verification: npm run test'));
+  assert(output.includes('verification: bun run test'));
 });
 
 withTempProject((projectRoot) => {
@@ -283,7 +283,7 @@ withTempProject((projectRoot) => {
 
   assert.equal(snapshot.campaigns[0].status, 'needs-completion');
   assert.equal(snapshot.nextAction.label, 'Complete done-but-active');
-  assert.equal(snapshot.nextAction.command, 'node scripts/campaign.js complete done-but-active --archive');
+  assert.equal(snapshot.nextAction.command, 'bun scripts/campaign.js complete done-but-active --archive');
   assert.equal(snapshot.nextAction.confidence, 'high');
   assert(output.includes('repair | high | Complete done-but-active'));
   assert(output.includes('done-but-active: Phase 2/2 - needs-completion'));
@@ -313,7 +313,7 @@ withTempProject((projectRoot) => {
 
   assert.equal(snapshot.campaigns[0].status, 'needs-archive');
   assert.equal(snapshot.nextAction.label, 'Archive completed campaign done-in-active-dir');
-  assert.equal(snapshot.nextAction.command, 'node scripts/campaign.js complete done-in-active-dir --archive');
+  assert.equal(snapshot.nextAction.command, 'bun scripts/campaign.js complete done-in-active-dir --archive');
   assert(output.includes('repair | high | Archive completed campaign done-in-active-dir'));
   assert(output.includes('done-in-active-dir: Phase 1/1 - needs-archive'));
 });
@@ -344,7 +344,7 @@ withTempProject((projectRoot) => {
     '| Target | ID | Type | Required | Evidence | Status | Retries Remaining | Next Action |',
     '|---|---|---|---|---|---|---|---|',
     '| phase:2 | implementation-diff | file_diff | yes | git diff --stat | resolved | 2 | implement requested change |',
-    '| phase:3 | verification-command | test_result | yes | npm run test | pass | 2 | fix verification failures |',
+    '| phase:3 | verification-command | test_result | yes | bun run test | pass | 2 | fix verification failures |',
     '| phase:4 | review-package | review_package | yes | .planning/review-packages/ready-for-package.md | pending | 2 | package delivery for review |',
   ].join('\n'));
 
@@ -353,7 +353,7 @@ withTempProject((projectRoot) => {
 
   assert.equal(snapshot.campaigns[0].status, 'needs-review-package');
   assert.equal(snapshot.nextAction.label, 'Package ready-for-package for review');
-  assert.equal(snapshot.nextAction.command, 'node scripts/package-delivery.js ready-for-package');
+  assert.equal(snapshot.nextAction.command, 'bun scripts/package-delivery.js ready-for-package');
   assert.equal(snapshot.nextAction.confidence, 'high');
   assert(output.includes('repair | high | Package ready-for-package for review'));
   assert(output.includes('campaign review-package evidence is not ready'));
@@ -391,7 +391,7 @@ withTempProject((projectRoot) => {
 
   assert.equal(snapshot.nextAction.label, 'Resume not-ready-for-package');
   assert.equal(snapshot.nextAction.command, '/do continue');
-  assert(!snapshot.repairs.some((repair) => repair.command === 'node scripts/package-delivery.js not-ready-for-package'));
+  assert(!snapshot.repairs.some((repair) => repair.command === 'bun scripts/package-delivery.js not-ready-for-package'));
 });
 
 withTempProject((projectRoot) => {

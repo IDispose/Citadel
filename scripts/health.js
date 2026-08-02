@@ -1,10 +1,10 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * health.js — Output a single JSON health blob to stdout.
  *
  * Usage:
- *   node scripts/health.js
+ *   bun scripts/health.js
  *
  * Reads from .planning/ and .claude/ to produce a snapshot of harness state.
  * Designed as a heartbeat endpoint for the UI or monitoring scripts.

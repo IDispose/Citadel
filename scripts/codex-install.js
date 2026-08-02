@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -103,7 +103,7 @@ function printHuman(report) {
 }
 
 if (has('--help') || has('-h')) {
-  console.log(`Usage: node scripts/codex-install.js [options]
+  console.log(`Usage: bun scripts/codex-install.js [options]
 
 Prepares Citadel for Codex and verifies the target project.
 

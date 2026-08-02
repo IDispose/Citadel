@@ -94,8 +94,8 @@ function createActivationPlan(receipt, bundleId) {
     autoSafeEligible,
     requiresExplicitApply: true,
     mutatesConfig: false,
-    previewCommand: `node scripts/citadel-config.js enable ${bundleId} --json`,
-    applyCommand: `node scripts/citadel-config.js enable ${bundleId} --apply --json`,
+    previewCommand: `bun scripts/citadel-config.js enable ${bundleId} --json`,
+    applyCommand: `bun scripts/citadel-config.js enable ${bundleId} --apply --json`,
     prospective,
   });
 }

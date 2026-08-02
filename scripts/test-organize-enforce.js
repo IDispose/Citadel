@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * test-organize-enforce.js -- Unit tests for hooks_src/organize-enforce.js
@@ -9,8 +9,8 @@
  * No LLM or Claude Code runtime needed -- hooks are scripts that read JSON from stdin.
  *
  * Usage:
- *   node scripts/test-organize-enforce.js
- *   node scripts/test-organize-enforce.js --verbose
+ *   bun scripts/test-organize-enforce.js
+ *   bun scripts/test-organize-enforce.js --verbose
  *
  * Exit codes:
  *   0 = all tests pass
@@ -56,7 +56,7 @@ function writeFile(sandboxDir, relPath, content) {
 
 function fireHook(payload, sandboxDir) {
   const input = JSON.stringify(payload);
-  const result = spawnSync('node', [HOOK_SCRIPT], {
+  const result = spawnSync(process.execPath, [HOOK_SCRIPT], {
     input,
     cwd: sandboxDir,
     env: {

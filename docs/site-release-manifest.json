@@ -134,8 +134,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 201636,
-      "digest": "sha256:7342976062c565e01cafdec13b5ca1d1f160c485ce66a7e2eceecb3c7f049e82"
+      "bytes": 201628,
+      "digest": "sha256:4c7db4320c1796c95f522226d103d698cbbddd31feade2ee1231f87cab1bf8bb"
     },
     {
       "path": "operation-control.html",
@@ -183,5 +183,5 @@
       "digest": "sha256:72ee2abbae6b4a1f500abeebf803e149640fa9f53da04343606c648766065121"
     }
   ],
-  "source_digest": "sha256:337e6fa544ef832efe639763acf11a8279f88d9f5cd7e18de49c9c98e33e6194"
+  "source_digest": "sha256:9abaecda51770eb71220f2fffb854a212dda5c12322340b4d2b6f0112475e409"
 }

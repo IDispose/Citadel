@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -114,7 +114,7 @@ withTempProject((projectRoot) => {
     archive: true,
     pr: 'https://github.com/example/repo/pull/1',
     mergeSha: 'abc123',
-    verification: 'npm run test',
+    verification: 'bun run test',
   });
   assert.equal(result.frontmatter.status, 'completed');
   assert.equal(result.bodyStatus, 'completed');

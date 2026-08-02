@@ -63,12 +63,12 @@ Routed here by `/do` for: "telemetry", "what did this cost", "session stats",
 Read the following in parallel. All are optional — treat missing files as zero/empty.
 
 **Live session cost:**
-- Run `node scripts/session-tokens.js --today 2>/dev/null` — captures real token data
+- Run `bun scripts/session-tokens.js --today 2>/dev/null` — captures real token data
 - If unavailable, read `.planning/telemetry/cost-tracker-state.json` for burn rate
 - Real cost is always preferred over estimated. Mark clearly: `$X.XX` vs `$X.XX (est)`
 
 **Historical costs:**
-- Run `node scripts/session-tokens.js --all 2>/dev/null` for all-time real totals
+- Run `bun scripts/session-tokens.js --all 2>/dev/null` for all-time real totals
 - Read last 20 lines of `.planning/telemetry/session-costs.jsonl` for recent sessions
 - For each entry: prefer `real_cost` > `override_cost` > `estimated_cost`
 
@@ -142,8 +142,8 @@ COMMAND DIRECTORY
   /cost                                 Deep cost exploration by session/campaign/week
   /dashboard                            Full harness state (campaigns, fleet, all costs)
 
-  node scripts/session-tokens.js --today   Today's sessions with exact token counts
-  node scripts/session-tokens.js --all     All-time totals (real data, not estimates)
+  bun scripts/session-tokens.js --today   Today's sessions with exact token counts
+  bun scripts/session-tokens.js --all     All-time totals (real data, not estimates)
 
   cat .planning/telemetry/session-costs.jsonl   Raw session cost log
   cat .planning/telemetry/hook-timing.jsonl     Raw hook execution log
@@ -167,7 +167,7 @@ CONTROLS
 **`/telemetry --verify`:** Run the project verifier:
 
 ```
-node scripts/verify-telemetry-integrity.js
+bun scripts/verify-telemetry-integrity.js
 ```
 
 The verifier scans `.planning/telemetry/*.jsonl` and `.planning/artifacts/*.jsonl`. Display verified, signed, legacy, tampered, invalid, and signature-warning counts. Use `--strict-legacy` only when old unsigned records should fail the check.
@@ -220,10 +220,10 @@ metrics and POSTs them to a collector. Byte offsets per source file live in
 
 ```bash
 # Preview the OTLP payload without sending or advancing state
-node scripts/telemetry-otlp-export.js --dry-run
+bun scripts/telemetry-otlp-export.js --dry-run
 
 # Export new records to a local collector (/v1/metrics appended when the url has no path)
-node scripts/telemetry-otlp-export.js --endpoint http://localhost:4318
+bun scripts/telemetry-otlp-export.js --endpoint http://localhost:4318
 ```
 
 | Metric | Type | Source file |
@@ -236,12 +236,12 @@ node scripts/telemetry-otlp-export.js --endpoint http://localhost:4318
 `--reset` clears the offsets for a full re-export. On a non-2xx response or network
 error the exporter exits 1 without advancing state, so the next run retries the same
 records. Data point timestamps come from the JSONL records, never the current clock.
-Test with `node scripts/test-telemetry-otlp.js`.
+Test with `bun scripts/test-telemetry-otlp.js`.
 
 **Local collector demo:** `examples/otel-collector/` contains a ready-made collector
 config (OTLP HTTP receiver on 4318, debug exporter to stdout) and a README with the
 two-command flow: `docker run` with the config mounted, then
-`node scripts/telemetry-otlp-export.js --endpoint http://localhost:4318`. Without
+`bun scripts/telemetry-otlp-export.js --endpoint http://localhost:4318`. Without
 Docker, `--dry-run` prints the exact OTLP payload instead.
 
 ## Quality Gates

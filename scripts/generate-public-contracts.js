@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -77,7 +77,7 @@ for (const copy of copies) {
 if (CHECK && drift.length) {
   process.stderr.write(
     `public contract package is out of sync:\n${drift.map((file) => `  ${file}`).join('\n')}\n`
-      + 'Run: node scripts/generate-public-contracts.js\n',
+      + 'Run: bun scripts/generate-public-contracts.js\n',
   );
   process.exit(1);
 }

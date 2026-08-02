@@ -35,7 +35,7 @@ Direction: Implement, test, and verify every locally achievable part of the eigh
 | Phase | Condition type | Condition | Evidence |
 |---|---|---|---|
 | 1 | file_exists | `.planning/research/twelve-month-unlocks/COMPLETION-AUDIT.md` exists with all eighteen rows | passed |
-| 1 | command_passes | `node scripts/test-all.js` establishes a passing or explicitly recorded baseline | passed with environment note; isolated Codex runtime rerun passed |
+| 1 | command_passes | `bun scripts/test-all.js` establishes a passing or explicitly recorded baseline | passed with environment note; isolated Codex runtime rerun passed |
 | 2 | command_passes | Packaging, install, starter journey, activation, and outcome Pack tests pass | passed |
 | 2 | file_exists | Three outcome Pack manifests and proof-producing starter journeys exist | passed |
 | 3 | command_passes | Protocol schema, projection, compiler, receipt, and signature-verification tests pass | passed |
@@ -44,7 +44,7 @@ Direction: Implement, test, and verify every locally achievable part of the eigh
 | 4 | metric_threshold | Chaos recovery matrix reports at least 99 percent deterministic recovery with zero duplicated external effects | passed at 100 percent across six injected fault boundaries |
 | 5 | command_passes | Pack registry, provenance, permissions, team-policy, Relay-interface, export, and reliability-analysis tests pass | passed |
 | 5 | file_exists | External evidence gates are encoded as machine-readable cohort, registry, team-pilot, Relay-demand, and reliability thresholds | passed |
-| 6 | command_passes | `node scripts/test-all.js --strict` passes | passed in 199.8 seconds |
+| 6 | command_passes | `bun scripts/test-all.js --strict` passes | passed in 199.8 seconds |
 | 6 | command_passes | Release, documentation, distribution, ecosystem, dashboard, and conformance checks pass | passed; reproducible 1.2.0 archive verified locally and registry checks pass |
 | 6 | manual | Review public wording, rendered Mission Control, and release scope | passed; browser capture repaired and recaptured |
 
@@ -100,10 +100,10 @@ Direction: Implement, test, and verify every locally achievable part of the eigh
 |---|---|---|---|---|---|---:|---|
 | phase:1 | audit | doc_update | yes | `.planning/research/twelve-month-unlocks/COMPLETION-AUDIT.md` | passed | 2 | none |
 | phase:2 | product | test_result | yes | `npm run test:unlocks` | passed | 3 | none |
-| phase:3 | protocol | test_result | yes | `node scripts/test-workflow-compiler.js` | passed | 3 | none |
+| phase:3 | protocol | test_result | yes | `bun scripts/test-workflow-compiler.js` | passed | 3 | none |
 | phase:4 | control | screenshot | yes | `output/playwright/mission-control-confirmation-fixed.png` | passed | 3 | none |
-| phase:5 | ecosystem | test_result | yes | `node scripts/test-pack-registry.js` | passed | 3 | none |
-| phase:6 | release | command_result | yes | `node scripts/test-all.js --strict` and verified local 1.2.0 archive | passed | 3 | push reviewed branch, open PR, wait for unchanged-head CI, merge through protection |
+| phase:5 | ecosystem | test_result | yes | `bun scripts/test-pack-registry.js` | passed | 3 | none |
+| phase:6 | release | command_result | yes | `bun scripts/test-all.js --strict` and verified local 1.2.0 archive | passed | 3 | push reviewed branch, open PR, wait for unchanged-head CI, merge through protection |
 
 ## Active Context
 

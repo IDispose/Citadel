@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -32,12 +32,12 @@ function projectRoot() {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/loops.js list [--active] [--json]',
-    '  node scripts/loops.js inspect <id> [--json]',
-    '  node scripts/loops.js templates [--json]',
-    '  node scripts/loops.js plan --template <name> [--write] [--json]',
-    '  node scripts/loops.js register --type <type> --title <title> --command <cmd> [--verify <cmd>] [--write] [--json]',
-    '  node scripts/loops.js stop <id> [--status <status>] [--reason <text>] [--json]',
+    '  bun scripts/loops.js list [--active] [--json]',
+    '  bun scripts/loops.js inspect <id> [--json]',
+    '  bun scripts/loops.js templates [--json]',
+    '  bun scripts/loops.js plan --template <name> [--write] [--json]',
+    '  bun scripts/loops.js register --type <type> --title <title> --command <cmd> [--verify <cmd>] [--write] [--json]',
+    '  bun scripts/loops.js stop <id> [--status <status>] [--reason <text>] [--json]',
   ].join('\n');
 }
 

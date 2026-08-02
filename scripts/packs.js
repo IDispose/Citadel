@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -31,15 +31,15 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node scripts/packs.js list [--root path] [--json]',
-    '       node scripts/packs.js inspect <id|name|path> [--root path] [--json]',
-    '       node scripts/packs.js verify <id|name|path> [--runtime codex] [--digest sha256] [--json]',
-    '       node scripts/packs.js certify <id|name|path> [--runtime codex] [--json]',
-    '       node scripts/packs.js install <id|name|path> --project path --runtime codex [--json]',
-    '       node scripts/packs.js uninstall <publisher/name> --project path [--version x.y.z] [--force] [--json]',
-    '       node scripts/packs.js installed --project path [--json]',
-    '       node scripts/packs.js registry verify --registry file --trust-roots file [--json]',
-    '       node scripts/packs.js registry inspect --registry file --trust-roots file [--json]',
+    'Usage: bun scripts/packs.js list [--root path] [--json]',
+    '       bun scripts/packs.js inspect <id|name|path> [--root path] [--json]',
+    '       bun scripts/packs.js verify <id|name|path> [--runtime codex] [--digest sha256] [--json]',
+    '       bun scripts/packs.js certify <id|name|path> [--runtime codex] [--json]',
+    '       bun scripts/packs.js install <id|name|path> --project path --runtime codex [--json]',
+    '       bun scripts/packs.js uninstall <publisher/name> --project path [--version x.y.z] [--force] [--json]',
+    '       bun scripts/packs.js installed --project path [--json]',
+    '       bun scripts/packs.js registry verify --registry file --trust-roots file [--json]',
+    '       bun scripts/packs.js registry inspect --registry file --trust-roots file [--json]',
   ].join('\n');
 }
 

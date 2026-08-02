@@ -11,7 +11,7 @@
 - Worktree: dirty with pre-existing security-assurance, documentation,
   metadata, evidence, CLI, skill, and test-aggregator work. Those changes are
   preserved and treated as constraints.
-- `node scripts/test-all.js`: no failure output before the 180-second baseline
+- `bun scripts/test-all.js`: no failure output before the 180-second baseline
   observation limit, but the aggregate run did not terminate inside that limit.
   Focused suites and a longer final aggregate run are required before completion.
 
@@ -338,7 +338,7 @@ existing diff. If a lower-risk adapter can avoid a shared file, prefer it.
   - [ ] Archon/Fleet/Quick Fleet use identical fail-honest semantics.
   - [ ] Semantic lint rejects timeout/missing/partial-to-pass language.
   - [ ] Existing focused suites and every new suite pass.
-  - [ ] `node scripts/test-all.js` terminates and passes with a sufficient limit.
+  - [ ] `bun scripts/test-all.js` terminates and passes with a sufficient limit.
   - [ ] `git diff --check` passes.
 
 ### Phase 7: Real-Use Proof Preparation

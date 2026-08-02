@@ -75,8 +75,8 @@ function changedFilesFromGit(projectRoot) {
 }
 
 function defaultCommand(scripts) {
-  if (scripts.test) return 'npm run test';
-  return 'node scripts/test-all.js';
+  if (scripts.test) return 'bun run test';
+  return 'bun scripts/test-all.js';
 }
 
 function hasAny(files, predicate) {
@@ -98,9 +98,9 @@ function profileForFiles(changedFiles, scripts = {}) {
     label = 'Hook runtime verification';
     reason = 'Hook changes affect command safety, generated state, and lifecycle behavior.';
     commands.unshift(
-      'node hooks_src/smoke-test.js',
-      'node scripts/verify-hooks.js',
-      'node scripts/integration-test.js'
+      'bun hooks_src/smoke-test.js',
+      'bun scripts/verify-hooks.js',
+      'bun scripts/integration-test.js'
     );
     notes.push('Run hook smoke, synthetic hook verification, and integration sequences before relying on broad tests.');
   } else if (hasAny(files, (file) => file === 'scripts/deploy-steward.js' || file === 'scripts/test-deploy-steward.js' || file.startsWith('core/deploy-steward/') || file.startsWith('skills/deploy-steward/'))) {
@@ -108,36 +108,36 @@ function profileForFiles(changedFiles, scripts = {}) {
     label = 'Deploy steward verification';
     reason = 'Deploy steward changes affect mainline serialization, CI gates, merge behavior, deploy handoff, and repair task generation.';
     commands.unshift(
-      'node scripts/test-deploy-steward.js',
-      'node scripts/test-pr-ready.js',
-      'node scripts/test-stack-plan.js'
+      'bun scripts/test-deploy-steward.js',
+      'bun scripts/test-pr-ready.js',
+      'bun scripts/test-stack-plan.js'
     );
     if (hasAny(files, (file) => file.startsWith('skills/deploy-steward/'))) {
-      commands.unshift('node scripts/skill-lint.js deploy-steward');
+      commands.unshift('bun scripts/skill-lint.js deploy-steward');
     }
     notes.push('Steward changes must prove queue/lease behavior plus the PR readiness and stack-plan inputs that feed it.');
   } else if (hasAny(files, (file) => file.startsWith('skills/') || file === 'scripts/skill-lint.js')) {
     id = 'skill-surface';
     label = 'Skill surface verification';
     reason = 'Skill changes affect routing, operator instructions, and user-facing agent behavior.';
-    commands.unshift('node scripts/skill-lint.js');
+    commands.unshift('bun scripts/skill-lint.js');
     notes.push('Skill lint proves structure; broad tests catch routing and packaging regressions.');
   } else if (hasAny(files, (file) => file === 'docs/index.html' || file === 'scripts/test-demo.js')) {
     id = 'demo-experience';
     label = 'Demo experience verification';
     reason = 'Demo page changes affect the first-run public experience.';
-    commands.unshift('node scripts/test-demo.js');
+    commands.unshift('bun scripts/test-demo.js');
     notes.push('Demo routing checks are required because broad tests alone do not inspect the page copy and links deeply.');
   } else if (touchesOperatorLoop) {
     id = 'operator-loop';
     label = 'Operator loop verification';
     reason = 'Operator changes affect the next-action, dashboard, and continuation path.';
     commands.unshift(
-      'node scripts/test-dashboard.js',
-      'node scripts/test-next-action.js',
-      'node scripts/test-continue-action.js',
-      'node scripts/test-operator-console.js',
-      'node scripts/test-operator-journey.js'
+      'bun scripts/test-dashboard.js',
+      'bun scripts/test-next-action.js',
+      'bun scripts/test-continue-action.js',
+      'bun scripts/test-operator-console.js',
+      'bun scripts/test-operator-journey.js'
     );
     notes.push('Verify both focused operator behavior and the full intake-to-package journey.');
   } else if (hasAny(files, (file) => file === 'scripts/pr-ready.js' || file === 'scripts/verification-plan.js' || file === 'core/verification/profiles.js')) {
@@ -145,8 +145,8 @@ function profileForFiles(changedFiles, scripts = {}) {
     label = 'Review readiness verification';
     reason = 'Readiness finalizer changes affect PR approval handoffs and verification evidence.';
     commands.unshift(
-      'node scripts/test-verification-plan.js',
-      'node scripts/test-pr-ready.js'
+      'bun scripts/test-verification-plan.js',
+      'bun scripts/test-pr-ready.js'
     );
     notes.push('Finalizer changes must prove both profile selection and PR readiness report generation.');
   } else if (hasAny(files, (file) => file.startsWith('core/campaigns/') || file === 'scripts/campaign.js' || file === 'scripts/package-delivery.js' || file === 'scripts/deliver.js')) {
@@ -154,27 +154,27 @@ function profileForFiles(changedFiles, scripts = {}) {
     label = 'Campaign delivery verification';
     reason = 'Campaign lifecycle changes affect delivery state, evidence, review packages, and outcomes.';
     commands.unshift(
-      'node scripts/test-campaign-core.js',
-      'node scripts/test-deliver.js',
-      'node scripts/test-package-delivery.js',
-      'node scripts/test-operator-journey.js'
+      'bun scripts/test-campaign-core.js',
+      'bun scripts/test-deliver.js',
+      'bun scripts/test-package-delivery.js',
+      'bun scripts/test-operator-journey.js'
     );
     notes.push('Campaign lifecycle checks need focused delivery evidence tests before broad regression tests.');
   } else if (hasAny(files, (file) => file.endsWith('.md') || file.startsWith('docs/'))) {
     id = 'documentation';
     label = 'Documentation verification';
     reason = 'Documentation changes should still preserve demo routes, skill docs, and broad harness contracts.';
-    commands.unshift('node scripts/test-demo.js', 'node scripts/skill-lint.js');
+    commands.unshift('bun scripts/test-demo.js', 'bun scripts/skill-lint.js');
     notes.push('Docs can affect the public demo and skill instructions; keep those checks visible.');
   }
 
   if (id !== 'operator-loop' && touchesOperatorLoop) {
     commands.unshift(
-      'node scripts/test-dashboard.js',
-      'node scripts/test-next-action.js',
-      'node scripts/test-continue-action.js',
-      'node scripts/test-operator-console.js',
-      'node scripts/test-operator-journey.js'
+      'bun scripts/test-dashboard.js',
+      'bun scripts/test-next-action.js',
+      'bun scripts/test-continue-action.js',
+      'bun scripts/test-operator-console.js',
+      'bun scripts/test-operator-journey.js'
     );
     notes.push('Operator files also changed; keep the decision-console and end-to-end operator journey checks visible.');
   }

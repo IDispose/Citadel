@@ -87,7 +87,7 @@ real-path containment checks, and contained state directories block traversal an
 ## Verification
 
 ```bash
-node scripts/test-citadel-state-mcp.js
+bun scripts/test-citadel-state-mcp.js
 ```
 
 The test drives the JSON-RPC stdio server and covers malformed arguments, unknown fields,

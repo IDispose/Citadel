@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * organize-enforce.js -- PostToolUse hook (runs on Edit/Write)

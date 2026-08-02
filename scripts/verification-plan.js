@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const path = require('path');
@@ -24,7 +24,7 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/verification-plan.js [--json] [--project-root <path>]',
+    '  bun scripts/verification-plan.js [--json] [--project-root <path>]',
     '',
     'Selects the verification profile for the current changed paths.',
   ].join('\n');

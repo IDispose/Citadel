@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * momentum-read.cjs — Read momentum.json and print the formatted context block.

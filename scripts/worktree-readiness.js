@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -35,8 +35,8 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node scripts/worktree-readiness.js [--worktree path] [--branch name] [--write] [--json]',
-    '       node scripts/worktree-readiness.js --list [--json]',
+    'Usage: bun scripts/worktree-readiness.js [--worktree path] [--branch name] [--write] [--json]',
+    '       bun scripts/worktree-readiness.js --list [--json]',
     '',
     'Runs read-only dependency, env-file, port, and health-command readiness checks.',
     'Reports are written to .planning/verification/worktree-readiness/ only with --write.',

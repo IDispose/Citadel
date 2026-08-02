@@ -33,10 +33,10 @@ Include what you expected, what actually happened, the full error text (not a sc
 | Command | What it checks | When to run |
 |---|---|---|
 | `npm test` | The full fast suite (hooks, skills, runtimes, docs, dashboard) | Before every PR |
-| `node hooks_src/smoke-test.js` | Hooks only | After hook changes |
-| `node scripts/verify-hooks.js` | Hook install plus runtime with synthetic payloads | After hook changes |
-| `node scripts/skill-lint.js {name}` | One skill's structure | After skill changes |
-| `node scripts/skill-bench.js --skill {name}` | Benchmark scenario validity | After adding benchmarks |
+| `bun hooks_src/smoke-test.js` | Hooks only | After hook changes |
+| `bun scripts/verify-hooks.js` | Hook install plus runtime with synthetic payloads | After hook changes |
+| `bun scripts/skill-lint.js {name}` | One skill's structure | After skill changes |
+| `bun scripts/skill-bench.js --skill {name}` | Benchmark scenario validity | After adding benchmarks |
 
 ### Cross-platform rules
 
@@ -64,7 +64,7 @@ auto-trigger: false
 Read a few existing skills before writing your own; the patterns are deliberate. Keep SKILL.md terse and accurate: stale or vague guidance actively degrades agent accuracy, and lint enforces a 300-line budget. Then:
 
 ```bash
-node scripts/skill-lint.js {name}
+bun scripts/skill-lint.js {name}
 ```
 
 Users can also create project-level skills in their own `.claude/skills/` via `/create-skill`; built-in skills are for workflows broadly useful across projects.
@@ -76,7 +76,7 @@ Hooks live in `hooks_src/`. Before adding one:
 1. Read `harness-health-util.js` for shared utilities (telemetry, config, validation, project root).
 2. Add the hook to `hooks/hooks-template.json`; the installer resolves `${CLAUDE_PLUGIN_ROOT}` at install time.
 3. If it needs a newer Claude Code event, update the compatibility gating in `runtimes/claude-code/generators/hook-support.js`.
-4. Run `node hooks_src/smoke-test.js` to confirm the smoke test picks it up.
+4. Run `bun hooks_src/smoke-test.js` to confirm the smoke test picks it up.
 
 Style contract for hooks: CommonJS, Node built-ins only (no dependencies), fast (under 5s for PreToolUse, under 30s for PostToolUse), fail-closed for security hooks (exit 2 on error) and fail-open for non-critical ones (exit 0).
 Do not create `hooks/hooks.json`. Claude Code auto-discovers that path for enabled plugins, while Citadel installs resolved Claude hooks into project settings. A file at the conventional path would register a second hook set. Codex plugin hooks live at `runtimes/codex/hooks.json` and are referenced explicitly by `.codex-plugin/plugin.json`.

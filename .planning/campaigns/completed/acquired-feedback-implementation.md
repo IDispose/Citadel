@@ -18,7 +18,7 @@ Status: completed
 
 | # | Status | Type | Phase | Done When |
 |---|--------|------|-------|-----------|
-| 1 | complete | build | Infrastructure (path-helpers, CITADEL_DEBUG, issue-monitor fix) | `node scripts/test-all.js` passes |
+| 1 | complete | build | Infrastructure (path-helpers, CITADEL_DEBUG, issue-monitor fix) | `bun scripts/test-all.js` passes |
 | 2 | complete | build | Campaign phase status parsing | parse-campaign + update-campaign unit tested |
 | 3 | complete | build | Fleet UX + persistent confirm settings | skill-lint fleet + do pass |
 | 4 | complete | build | Dashboard hook activity view | skill-lint dashboard passes |
@@ -28,14 +28,14 @@ Status: completed
 
 | Phase | Condition Type | Condition |
 |-------|---------------|-----------|
-| 1 | command_passes | node scripts/test-all.js |
+| 1 | command_passes | bun scripts/test-all.js |
 | 1 | file_exists | core/utils/path-helpers.js |
 | 2 | command_passes | node -e "require('./core/campaigns/parse-campaign')" |
 | 2 | command_passes | node -e "require('./core/campaigns/update-campaign')" |
-| 3 | command_passes | node scripts/skill-lint.js fleet |
-| 3 | command_passes | node scripts/skill-lint.js do |
-| 4 | command_passes | node scripts/skill-lint.js dashboard |
-| 5 | command_passes | node scripts/test-all.js |
+| 3 | command_passes | bun scripts/skill-lint.js fleet |
+| 3 | command_passes | bun scripts/skill-lint.js do |
+| 4 | command_passes | bun scripts/skill-lint.js dashboard |
+| 5 | command_passes | bun scripts/test-all.js |
 | 5 | manual | PR shown to user for approval |
 
 ## Feature Ledger

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -11,7 +11,7 @@
  * second source of truth. Design contract lives in docs/DASHBOARD_SPEC.md.
  *
  * Usage:
- *   node scripts/dashboard-server.js [--port 4180] [--project-root <path>] [--open]
+ *   bun scripts/dashboard-server.js [--port 4180] [--project-root <path>] [--open]
  */
 
 const http = require('http');
@@ -87,7 +87,7 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node scripts/dashboard-server.js [--port 4180] [--project-root <path>] [--open]',
+    'Usage: bun scripts/dashboard-server.js [--port 4180] [--project-root <path>] [--open]',
     '',
     'Serves local Mission Control over canonical .planning/ state.',
     'Binds to 127.0.0.1 only. See docs/DASHBOARD_SPEC.md.',
@@ -951,7 +951,7 @@ function main() {
   const server = createServer(options);
   server.on('error', (error) => {
     if (error.code === 'EADDRINUSE') {
-      console.error(`Port ${options.port} is in use. Try: node scripts/dashboard-server.js --port ${options.port + 1}`);
+      console.error(`Port ${options.port} is in use. Try: bun scripts/dashboard-server.js --port ${options.port + 1}`);
       process.exit(1);
     }
     throw error;

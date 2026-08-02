@@ -125,7 +125,7 @@ function renderCampaign(projectRoot, intake, options = {}) {
   const id = crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString('hex');
   const target = intake.target || '(unscoped)';
   const mapSlice = readMapSlice(projectRoot, intake);
-  const verification = options.verification || 'npm run test';
+  const verification = options.verification || 'bun run test';
 
   return [
     '---',
@@ -166,7 +166,7 @@ function renderCampaign(projectRoot, intake, options = {}) {
     '',
     '## Map Context',
     '',
-    mapSlice ? ['```', mapSlice, '```'].join('\n') : 'No map index available. Run `node scripts/map-index.js --generate --root .` before delegation.',
+    mapSlice ? ['```', mapSlice, '```'].join('\n') : 'No map index available. Run `bun scripts/map-index.js --generate --root .` before delegation.',
     '',
     '## Phases',
     '',

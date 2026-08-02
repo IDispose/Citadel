@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -50,7 +50,7 @@ function reviewPackageCampaign(title, slug) {
     '| Target | ID | Type | Required | Evidence | Status | Retries Remaining | Next Action |',
     '|---|---|---|---|---|---|---|---|',
     '| phase:2 | implementation-diff | file_diff | yes | git diff --stat | resolved | 2 | implement requested change |',
-    '| phase:3 | verification-command | test_result | yes | npm run test | pass | 2 | fix verification failures |',
+    '| phase:3 | verification-command | test_result | yes | bun run test | pass | 2 | fix verification failures |',
     `| phase:4 | review-package | review_package | yes | .planning/review-packages/${slug}.md | pending | 2 | package delivery for review |`,
   ].join('\n');
 }
@@ -63,7 +63,7 @@ withTempProject((projectRoot) => {
   const action = routeAction(snapshot);
 
   assert.equal(action.kind, 'local-command');
-  assert.equal(action.command, 'node scripts/package-delivery.js ready-for-package');
+  assert.equal(action.command, 'bun scripts/package-delivery.js ready-for-package');
   assert.equal(action.args[0], path.join(__dirname, 'package-delivery.js'));
   assert.equal(action.args[1], 'ready-for-package');
 

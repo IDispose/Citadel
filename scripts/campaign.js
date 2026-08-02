@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const fs = require('fs');
@@ -39,7 +39,7 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/campaign.js complete <slug-or-path> [--archive] [--pr <url>] [--merge-sha <sha>] [--verification <text>] [--note <text>] [--outcome <type>]',
+    '  bun scripts/campaign.js complete <slug-or-path> [--archive] [--pr <url>] [--merge-sha <sha>] [--verification <text>] [--note <text>] [--outcome <type>]',
     '',
     'Completes a campaign only when every phase is complete, completed, done, or skipped.',
     'Outcome types: shipped-pr, review-package, implementation-plan, blocked-decision, archived-completion.',

@@ -15,7 +15,7 @@ Citadel is an agent orchestration system that coordinates skills, hooks, campaig
 
 ## Workflows
 
-- Run `node scripts/test-all.js` after modifying hooks, skills, or shared architecture code.
+- Run `bun scripts/test-all.js` after modifying hooks, skills, or shared architecture code.
 - Prefer compatibility-first changes that preserve existing Claude Code behavior while improving runtime separation.
 - Keep new architecture work reviewable, reversible, and staged through PR-sized increments.
 - When changing generated outputs, add or update explicit tests and fixtures in the same PR.

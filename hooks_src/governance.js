@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * governance.js — PreToolUse hook (Edit|Write|Bash|Agent)

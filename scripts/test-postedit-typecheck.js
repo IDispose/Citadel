@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * test-postedit-typecheck.js -- Regression tests for the post-edit TypeScript typecheck.
@@ -15,7 +15,7 @@
  * via CLAUDE_PROJECT_DIR (harness-health-util derives PROJECT_ROOT from that env
  * var, falling back to cwd). Fake tsc binaries are local node scripts.
  *
- * Run manually: node scripts/test-postedit-typecheck.js
+ * Run manually: bun scripts/test-postedit-typecheck.js
  *
  * Exit codes:
  *   0 = all tests pass

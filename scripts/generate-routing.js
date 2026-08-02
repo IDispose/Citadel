@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 /**
@@ -11,8 +11,8 @@
  *   3. docs/index.html                          (demo TIER2 routing data, between markers)
  *
  * Usage:
- *   node scripts/generate-routing.js            # regenerate all surfaces in place
- *   node scripts/generate-routing.js --check    # exit 1 with a diff summary if any surface is stale
+ *   bun scripts/generate-routing.js            # regenerate all surfaces in place
+ *   bun scripts/generate-routing.js --check    # exit 1 with a diff summary if any surface is stale
  */
 
 const fs = require('fs');
@@ -49,7 +49,7 @@ const DEMO_ICONS = {
 const DEMO_DEFAULT_ICON = '◇';
 
 const GENERATED_NOTE =
-  'Derived from trigger_keywords frontmatter in skills/*/SKILL.md. Do not edit by hand; run node scripts/generate-routing.js.';
+  'Derived from trigger_keywords frontmatter in skills/*/SKILL.md. Do not edit by hand; run bun scripts/generate-routing.js.';
 
 const MARKERS = {
   skillTable: {
@@ -253,7 +253,7 @@ function main() {
         console.error(`    actual:   ${String(item.actualLine).slice(0, 120)}`);
       }
     }
-    console.error('Run: node scripts/generate-routing.js');
+    console.error('Run: bun scripts/generate-routing.js');
     process.exit(1);
   }
 

@@ -163,10 +163,10 @@ function buildBlocks(projectRoot, options = {}) {
         source(projectRoot, 'scripts/verify-telemetry-integrity.js', 'telemetry integrity verifier'),
       ]),
       [
-        '- After hook or skill changes, run the narrow check first, then `npm run test` before shipping.',
-        '- Use `node scripts/skill-lint.js <skill>` after skill edits and `node scripts/test-all.js` for the full harness gate.',
-        '- Use `npm run telemetry:verify` or `node scripts/verify-telemetry-integrity.js` to confirm hashed logs are clean and legacy records are only legacy.',
-        packageJson.includes('"test"') ? '- `npm run test` is the canonical full regression command for this repository.' : '- Full regression command should be confirmed from package.json before use.',
+        '- After hook or skill changes, run the narrow check first, then `bun run test` before shipping.',
+        '- Use `bun scripts/skill-lint.js <skill>` after skill edits and `bun scripts/test-all.js` for the full harness gate.',
+        '- Use `npm run telemetry:verify` or `bun scripts/verify-telemetry-integrity.js` to confirm hashed logs are clean and legacy records are only legacy.',
+        packageJson.includes('"test"') ? '- `bun run test` is the canonical full regression command for this repository.' : '- Full regression command should be confirmed from package.json before use.',
       ].join('\n'),
       'high',
       options

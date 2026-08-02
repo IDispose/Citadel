@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * test-noop-detect.js - Calibration + regression test for the no-op detector.
@@ -17,8 +17,8 @@
  * Exit codes: 0 = all bars met; 1 = a bar failed (detector regressed).
  *
  * Usage:
- *   node scripts/test-noop-detect.js          # run, print confusion
- *   node scripts/test-noop-detect.js --json    # machine-readable
+ *   bun scripts/test-noop-detect.js          # run, print confusion
+ *   bun scripts/test-noop-detect.js --json    # machine-readable
  */
 
 'use strict';

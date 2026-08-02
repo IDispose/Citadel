@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * generate-fixtures.js - Generate snapshot fixtures for compatibility testing.
@@ -7,8 +7,8 @@
  * Run with --write to update checked-in fixtures.
  *
  * Usage:
- *   node scripts/generate-fixtures.js          # print to stdout
- *   node scripts/generate-fixtures.js --write  # update scripts/fixtures/
+ *   bun scripts/generate-fixtures.js          # print to stdout
+ *   bun scripts/generate-fixtures.js --write  # update scripts/fixtures/
  */
 
 'use strict';

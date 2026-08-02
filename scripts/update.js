@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -96,7 +96,7 @@ function updatePlan({ target, archivePath, rollbackPath }) {
     archive: verified.archivePath,
     archiveSha256: verified.sha256,
     backupPath,
-    rollbackCommand: `node scripts/update.js --rollback "${backupPath}" --target "${target}" --apply`,
+    rollbackCommand: `bun scripts/update.js --rollback "${backupPath}" --target "${target}" --apply`,
     applyRequired: true,
   };
 }
@@ -129,8 +129,8 @@ function applyPlan(plan) {
 function main() {
   if (process.argv.includes('--help') || process.argv.includes('-h')) {
     console.log(`Usage:
-  node scripts/update.js --archive <release.tar.gz> [--target PATH] [--apply]
-  node scripts/update.js --rollback <backup-path> --target PATH [--apply]
+  bun scripts/update.js --archive <release.tar.gz> [--target PATH] [--apply]
+  bun scripts/update.js --rollback <backup-path> --target PATH [--apply]
 
 The default is a read-only plan. Nothing changes unless --apply is present.`);
     return;

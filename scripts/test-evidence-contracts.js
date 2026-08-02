@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -30,7 +30,7 @@ const markdown = [
   '',
   '| Target | ID | Type | Required | Evidence | Status | Retries Remaining | Next Action |',
   '|---|---|---|---|---|---|---|---|',
-  '| phase:1 | tests | test_result | yes | npm run test | pass | 2 | none |',
+  '| phase:1 | tests | test_result | yes | bun run test | pass | 2 | none |',
   '| phase:1 | screenshot | screenshot | yes | .planning/screenshots/missing.png | pass | 1 | capture screenshot |',
   '| phase:2 | docs | doc_update | yes | docs/result.md | pass | 1 | update docs |',
   '| task:7 | pr | pr_link | yes | https://github.com/acme/repo/pull/12 | resolved | 0 | none |',

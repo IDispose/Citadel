@@ -97,11 +97,11 @@ Save verification artifacts:
    or `.planning/screenshots/` (if standalone)
 2. In Codex, also register screenshots for the app artifact/browser workflow:
    ```bash
-   node scripts/codex-app-artifacts.js record --workflow live-preview --kind screenshot --path ".planning/screenshots/{route-slug}.png" --status pass
+   bun scripts/codex-app-artifacts.js record --workflow live-preview --kind screenshot --path ".planning/screenshots/{route-slug}.png" --status pass
    ```
 3. Verify registered artifacts:
    ```bash
-   node scripts/codex-app-artifacts.js verify --require-artifacts
+   bun scripts/codex-app-artifacts.js verify --require-artifacts
    ```
 4. Write a verification summary:
    ```markdown

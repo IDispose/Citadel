@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * test-all.js - Full fast test suite for Citadel
@@ -7,11 +7,11 @@
  * Fast (no network, no LLM calls). Suitable for CI and pre-commit.
  *
  * For execution-based scenario testing (requires claude CLI):
- *   node scripts/skill-bench.js --execute
+ *   bun scripts/skill-bench.js --execute
  *
  * Usage:
- *   node scripts/test-all.js           # hooks + skills
- *   node scripts/test-all.js --strict  # treat skill WARNs as failures
+ *   bun scripts/test-all.js           # hooks + skills
+ *   bun scripts/test-all.js --strict  # treat skill WARNs as failures
  */
 
 'use strict';
@@ -363,10 +363,10 @@ console.log('');
 if (hooksPassed && securityPassed && contractsPassed && operationsProtocolPassed && appContractsPassed && supervisorClientPassed && runtimeRegistryPassed && runtimeMatrixPassed && hookEventsPassed && skillsPassed && demoPassed && telemetryPassed && telemetryIntegrityPassed && memoryBlockPassed && repositoryMemoryPassed && evidenceContractPassed && sandboxProviderPassed && skillPackagingPassed && mapSubstratePassed && deliveryPassed && deliveryPackagePassed && continueActionPassed && nextActionPassed && routePreviewPassed && loopsPassed && operatingProofPassed && usefulnessTrialPassed && operatorConsolePassed && operatorJourneyPassed && firstUseOperatorPassed && verificationPlanPassed && prReadyPassed && stackPlanPassed && deployStewardPassed && agentsMdOnlyStewardPassed && coordinationPassed && hookInstallerPassed && campaignPassed && discoveryPassed && discoveryWriterPassed && momentumPassed && momentumWatcherPassed && policyPassed && claudeRuntimePassed && codexRuntimePassed && codexNativeIntegrationPassed && codexOperationalImprovementPassed && installerPassed && cliPackagePassed && projectBootstrapPassed && compatFixturePassed && backwardCompatPassed && costTrackerPassed && dashboardPassed && docSyncPassed && fleetSessionPassed && worktreeReadinessPassed && postEditTypecheckPassed && routingSyncPassed && watchDedupPassed && teammateRebalancePassed && docSurfacesPassed && siteStoryPassed && telemetryOtlpPassed && stateHygienePassed && permissionAuditPassed && secretsLensPassed && dashboardWebPassed && dashboardPerfPassed && dashboardVisualPassed && noopDetectPassed && releaseIntegrityPassed && activationTelemetryPassed && activationCohortPassed && githubTrafficSnapshotPassed && goldenPathPassed && goldenPathMatrixPassed && productBenchmarkPassed && productProofCohortPassed && sarifCoordinatesPassed && ecosystemCompatPassed && productProofReportPassed && unlockSuitePassed) {
   console.log('All tests pass.\n');
   console.log('Next steps:');
-  console.log('  node scripts/skill-bench.js --list      see benchmark scenarios');
-  console.log('  node scripts/skill-bench.js             validate scenario files');
-  console.log('  node scripts/skill-bench.js --execute   run against Claude CLI');
-  console.log('  node scripts/skill-bench.js --execute --runtime codex-exec   run against Codex exec\n');
+  console.log('  bun scripts/skill-bench.js --list      see benchmark scenarios');
+  console.log('  bun scripts/skill-bench.js             validate scenario files');
+  console.log('  bun scripts/skill-bench.js --execute   run against Claude CLI');
+  console.log('  bun scripts/skill-bench.js --execute --runtime codex-exec   run against Codex exec\n');
   process.exit(0);
 }
 
@@ -495,7 +495,7 @@ if (!codexOperationalImprovementPassed) console.log('Codex operational improveme
 if (!installerPassed) console.log('Installer check failed. Fix Claude/Codex installer regressions before shipping.');
 if (!cliPackagePassed) console.log('CLI package check failed. Fix command routing, package contents, or executable packaging before shipping.');
 if (!projectBootstrapPassed) console.log('Project bootstrap check failed. Fix canonical guidance bootstrap before shipping.');
-if (!compatFixturePassed) console.log('Compatibility fixture check failed. Run: node scripts/generate-fixtures.js --write');
+if (!compatFixturePassed) console.log('Compatibility fixture check failed. Run: bun scripts/generate-fixtures.js --write');
 if (!backwardCompatPassed) console.log('Backward compatibility check failed. Legacy data formats may be broken.');
 if (!costTrackerPassed) console.log('Cost tracker tests failed. Fix cost-tracker.js behavior before shipping.');
 if (!dashboardPassed) console.log('Dashboard tests failed. Fix dashboard rendering before shipping.');
@@ -503,10 +503,10 @@ if (!docSyncPassed) console.log('Doc-sync tests failed. Fix queue processing or 
 if (!fleetSessionPassed) console.log('Fleet session tests failed. Fix Fleet work queue parsing or steward behavior before shipping.');
 if (!worktreeReadinessPassed) console.log('Worktree readiness tests failed. Fix readiness profile checks before shipping.');
 if (!postEditTypecheckPassed) console.log('Post-edit typecheck tests failed. Fix tsc resolution or outcome reporting in post-edit.js before shipping.');
-if (!routingSyncPassed) console.log('Routing sync check failed. Run: node scripts/generate-routing.js, then commit the regenerated surfaces.');
+if (!routingSyncPassed) console.log('Routing sync check failed. Run: bun scripts/generate-routing.js, then commit the regenerated surfaces.');
 if (!watchDedupPassed) console.log('Watch dedup tests failed. Fix marker hashing, intake dedup, or locking in scripts/watch.js before shipping.');
 if (!teammateRebalancePassed) console.log('Teammate rebalance tests failed. Fix the TeammateIdle rebalance append in teammate-idle.js before shipping.');
-if (!docSurfacesPassed) console.log('Doc surfaces check failed. Run: node scripts/generate-doc-surfaces.js, then commit the regenerated docs.');
+if (!docSurfacesPassed) console.log('Doc surfaces check failed. Run: bun scripts/generate-doc-surfaces.js, then commit the regenerated docs.');
 if (!siteStoryPassed) console.log('Citadel site story contract failed. Fix the public operating journey before shipping.');
 if (!telemetryOtlpPassed) console.log('Telemetry OTLP export tests failed. Fix mapping or state handling in telemetry-otlp-export.js before shipping.');
 if (!stateHygienePassed) console.log('State hygiene tests failed. Fix expired-state sweeping in state-hygiene.js before shipping.');

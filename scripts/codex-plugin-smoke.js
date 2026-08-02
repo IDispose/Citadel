@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -30,7 +30,7 @@ function run(command, args) {
 }
 
 if (process.argv.includes('--help')) {
-  console.log('Usage: node scripts/codex-plugin-smoke.js [--project-root PATH] [--write] [--live] [--add-marketplace]');
+  console.log('Usage: bun scripts/codex-plugin-smoke.js [--project-root PATH] [--write] [--live] [--add-marketplace]');
   process.exit(0);
 }
 

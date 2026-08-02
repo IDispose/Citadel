@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -59,7 +59,7 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node scripts/telemetry-otlp-export.js [--endpoint url] [--dry-run] [--reset] [--project-root path]',
+    'Usage: bun scripts/telemetry-otlp-export.js [--endpoint url] [--dry-run] [--reset] [--project-root path]',
     '',
     'Exports new Citadel telemetry JSONL records as OTLP/HTTP JSON metrics.',
     '',

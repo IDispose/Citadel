@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -180,7 +180,7 @@ function buildRelease(options = {}) {
     nodeRange: identity.nodeRange,
     runtimeMatrix: MATRIX,
     files: entries.map((entry) => ({ path: entry.name, bytes: entry.data.length, sha256: sha256(entry.data) })),
-    rollbackCommand: 'node scripts/update.js --rollback <backup-path> --target <citadel-install> --apply',
+    rollbackCommand: 'bun scripts/update.js --rollback <backup-path> --target <citadel-install> --apply',
   };
   const manifestData = Buffer.from(`${JSON.stringify(internalManifest, null, 2)}\n`);
   const archiveEntries = [...entries, { name: MANIFEST_NAME, data: manifestData, mode: 0o644 }]
@@ -206,7 +206,7 @@ function buildRelease(options = {}) {
 
 function main() {
   if (process.argv.includes('--help') || process.argv.includes('-h')) {
-    console.log('Usage: node scripts/release-package.js [--ref v1.1.0] [--output-dir PATH] [--dry-run] [--verify-reproducible]');
+    console.log('Usage: bun scripts/release-package.js [--ref v1.1.0] [--output-dir PATH] [--dry-run] [--verify-reproducible]');
     return;
   }
   const dryRun = process.argv.includes('--dry-run');

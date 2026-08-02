@@ -92,17 +92,17 @@ HOOK HEALTH: FAIL
 
 Failing checks:
 - hook-timing.jsonl did not grow: PostToolUse hooks may not be firing
-  → Verify hooks are installed: node scripts/verify-hooks.js
+  → Verify hooks are installed: bun scripts/verify-hooks.js
   → Check settings.json: cat .claude/settings.json | grep PostToolUse
 
 - audit.jsonl did not grow: governance hook may not be firing
-  → Check: node hooks_src/governance.js <<< '{}'
+  → Check: bun hooks_src/governance.js <<< '{}'
 ```
 
 ## Edge Cases
 
 **No .planning/telemetry/ directory**: Init-project may not have run.
-Output: "HOOK HEALTH: FAIL — .planning/telemetry/ not found. Run: node hooks_src/init-project.js"
+Output: "HOOK HEALTH: FAIL — .planning/telemetry/ not found. Run: bun hooks_src/init-project.js"
 
 **Hooks installed but telemetry still zero**: The project may have a harness.json
 that disables telemetry. Check `features.telemetry` in .claude/harness.json.
@@ -138,6 +138,6 @@ they should be created during the test. Treat "file created" as equivalent to "g
 - audit.jsonl: +N lines
 - hook-errors.log: N new errors (0 expected)
 - Reversibility: green — no persistent changes; verify-temp.ts cleaned up
-- Next: if FAIL, run node scripts/verify-hooks.js for deeper diagnostics
+- Next: if FAIL, run bun scripts/verify-hooks.js for deeper diagnostics
 ---
 ```

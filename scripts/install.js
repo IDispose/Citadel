@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -8,17 +8,17 @@ const { spawnSync } = require('child_process');
 const activation = require('../core/telemetry/activation');
 
 const CITADEL_VERSION = require('../package.json').version;
-const HELP = `Usage: node scripts/install.js --runtime <claude|codex> [runtime options]
+const HELP = `Usage: bun scripts/install.js --runtime <claude|codex> [runtime options]
 
 Unified Citadel installer dispatcher.
 
 Examples:
-  node scripts/install.js --runtime claude --install --scope local
-  node scripts/install.js --runtime codex --add-marketplace
+  bun scripts/install.js --runtime claude --install --scope local
+  bun scripts/install.js --runtime codex --add-marketplace
 
 Run the runtime-specific helper for all options:
-  node scripts/claude-install.js --help
-  node scripts/codex-install.js --help
+  bun scripts/claude-install.js --help
+  bun scripts/codex-install.js --help
 `;
 
 function arg(argv, name, fallback = null) {

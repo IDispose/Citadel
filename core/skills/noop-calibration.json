@@ -117,7 +117,7 @@
       "rationale": "'run the migration and verify row counts match' is checkable and load-bearing; leading 'Carefully' is trimmable filler."
     },
     {
-      "text": "Run `node scripts/test-all.js` before shipping.",
+      "text": "Run `bun scripts/test-all.js` before shipping.",
       "label": "load-bearing",
       "source": "CLAUDE.md (Testing)",
       "rationale": "Names an exact command and a gate. Deleting it removes a real step. Inline code anchor."
@@ -141,7 +141,7 @@
       "rationale": "Names concrete signals (typecheck, tests, build) and a hard requirement. No filler."
     },
     {
-      "text": "Run `node scripts/skill-lint.js {name}` to verify structure.",
+      "text": "Run `bun scripts/skill-lint.js {name}` to verify structure.",
       "label": "load-bearing",
       "source": "CLAUDE.md",
       "rationale": "Exact command, clear purpose. Inline code anchor."

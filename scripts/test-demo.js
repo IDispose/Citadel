@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 /**
  * test-demo.js — Demo page embarrassment check
  *
@@ -7,7 +7,7 @@
  *   2. All how-section examples route to the tier/color they advertise
  *   3. Spot-checks common "obviously wrong" inputs (regression guard)
  *
- * Run: node scripts/test-demo.js
+ * Run: bun scripts/test-demo.js
  * Exit 0 = clean, Exit 1 = embarrassing bugs found
  */
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -102,15 +102,15 @@ function fetchWithGh(commands, ghPath) {
 }
 
 if (process.argv.includes('--help')) {
-  console.log('Usage: node scripts/codex-review-fetch.js --repo owner/name --pr N [--write]');
-  console.log('       node scripts/codex-review-fetch.js --repo owner/name --pr N --file comments.json [--write]');
+  console.log('Usage: bun scripts/codex-review-fetch.js --repo owner/name --pr N [--write]');
+  console.log('       bun scripts/codex-review-fetch.js --repo owner/name --pr N --file comments.json [--write]');
   process.exit(0);
 }
 
 const repo = arg('--repo', null);
 const prNumber = arg('--pr', null);
 if (!repo || !prNumber) {
-  console.error('Usage: node scripts/codex-review-fetch.js --repo owner/name --pr N [--write]');
+  console.error('Usage: bun scripts/codex-review-fetch.js --repo owner/name --pr N [--write]');
   process.exit(1);
 }
 

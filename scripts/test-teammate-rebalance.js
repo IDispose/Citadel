@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * test-teammate-rebalance.js: verifies the TeammateIdle hook appends
@@ -10,7 +10,7 @@
  *   2. Repeated events append, never truncate
  *   3. Malformed stdin still exits 0 and never corrupts the JSONL file
  *
- * Stdlib only. Run: node scripts/test-teammate-rebalance.js
+ * Stdlib only. Run: bun scripts/test-teammate-rebalance.js
  */
 
 'use strict';
@@ -42,7 +42,7 @@ function test(name, fn) {
 }
 
 function fireHook(input, projectDir) {
-  return spawnSync('node', [HOOK], {
+  return spawnSync(process.execPath, [HOOK], {
     input,
     cwd: projectDir,
     env: { ...process.env, CLAUDE_PROJECT_DIR: projectDir },

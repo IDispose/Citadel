@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 /**
@@ -21,8 +21,8 @@
  *   INSTALL.md            skill-count
  *
  * Usage:
- *   node scripts/generate-doc-surfaces.js            # regenerate in place
- *   node scripts/generate-doc-surfaces.js --check    # exit 1 with a summary if any surface is stale
+ *   bun scripts/generate-doc-surfaces.js            # regenerate in place
+ *   bun scripts/generate-doc-surfaces.js --check    # exit 1 with a summary if any surface is stale
  */
 
 const fs = require('fs');
@@ -177,7 +177,7 @@ function main() {
         console.error(`    actual:   ${String(item.actualLine).slice(0, 120)}`);
       }
     }
-    console.error('Run: node scripts/generate-doc-surfaces.js');
+    console.error('Run: bun scripts/generate-doc-surfaces.js');
     process.exit(1);
   }
 

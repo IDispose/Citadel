@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * test-compat-fixtures.js - Compatibility fixture tests
@@ -8,9 +8,9 @@
  * generator changed behavior without updating the baseline.
  *
  * To update baselines after intentional changes:
- *   node scripts/generate-fixtures.js --write
+ *   bun scripts/generate-fixtures.js --write
  *
- * This test is included in `node scripts/test-all.js --strict`.
+ * This test is included in `bun scripts/test-all.js --strict`.
  */
 
 'use strict';
@@ -51,7 +51,7 @@ function normalizePaths(str) {
 function readFixture(name) {
   const p = path.join(FIXTURES_DIR, name);
   if (!fs.existsSync(p)) {
-    throw new Error(`Fixture not found: scripts/fixtures/${name}. Run: node scripts/generate-fixtures.js --write`);
+    throw new Error(`Fixture not found: scripts/fixtures/${name}. Run: bun scripts/generate-fixtures.js --write`);
   }
   return fs.readFileSync(p, 'utf8');
 }
@@ -78,7 +78,7 @@ function compareFixture(label, fixtureName, generated) {
         `${fixtureName} drift at line ${firstDiff}.\n` +
         `    Expected: ${(expLines[firstDiff - 1] || '(missing)').slice(0, 120)}\n` +
         `    Got:      ${(genLines[firstDiff - 1] || '(missing)').slice(0, 120)}\n` +
-        `    Run: node scripts/generate-fixtures.js --write`
+        `    Run: bun scripts/generate-fixtures.js --write`
       );
     }
   });

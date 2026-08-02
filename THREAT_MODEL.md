@@ -273,9 +273,9 @@ npm run test
 For hook-specific changes, also run:
 
 ```bash
-node hooks_src/smoke-test.js
-node scripts/verify-hooks.js
-node scripts/integration-test.js
+bun hooks_src/smoke-test.js
+bun scripts/verify-hooks.js
+bun scripts/integration-test.js
 ```
 
 ## Current Review Posture

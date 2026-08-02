@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * harness-health-util.js — Shared utilities for harness hooks.

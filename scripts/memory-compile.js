@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -27,9 +27,9 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node scripts/memory-compile.js compile [--project-root path] [--json]',
-    '       node scripts/memory-compile.js lint [--project-root path] [--json]',
-    '       node scripts/memory-compile.js list [--scope scope] [--type type] [--query text] [--json]',
+    'Usage: bun scripts/memory-compile.js compile [--project-root path] [--json]',
+    '       bun scripts/memory-compile.js lint [--project-root path] [--json]',
+    '       bun scripts/memory-compile.js list [--scope scope] [--type type] [--query text] [--json]',
     '',
     'Compiles compact semantic memory blocks from project planning artifacts.',
   ].join('\n');

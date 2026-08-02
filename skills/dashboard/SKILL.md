@@ -39,7 +39,7 @@ None required. Works with whatever state exists on disk.
 Run the local dashboard implementation from the project root:
 
 ```bash
-node scripts/dashboard.js
+bun scripts/dashboard.js
 ```
 
 If the package scripts are available, this equivalent command is also valid:
@@ -67,17 +67,17 @@ exist, treat it as empty. Never crash on missing state.
   - Most recent line starting with `- [` from the Decision Log
 - If all phases are complete but status is still active, report
   `needs-completion` and show:
-  `node scripts/campaign.js complete <slug> --archive`
+  `bun scripts/campaign.js complete <slug> --archive`
 - If a campaign is marked completed but still lives in `.planning/campaigns/`,
   report `needs-archive` and show the same archive command.
 - If prior build/verify phases are complete but the `review-package` Exit
   Evidence row is still pending, missing, or points at a missing local package,
   report a repair before campaign completion:
-  `node scripts/package-delivery.js <slug>`
+  `bun scripts/package-delivery.js <slug>`
 
 **Cost Data (two sources, prefer real):**
 
-- Primary: run `node scripts/session-tokens.js --today` and `--all` — reads Claude Code's native session JSONL for exact token counts
+- Primary: run `bun scripts/session-tokens.js --today` and `--all` — reads Claude Code's native session JSONL for exact token counts
 - Fallback: read `.planning/telemetry/session-costs.jsonl`; cost priority `real_cost` > `override_cost` > `estimated_cost`; group by `campaign_slug`, sum cost/agents/minutes, compute grand total
 - Live session: read `.planning/telemetry/cost-tracker-state.json` for burn rate
 - Label real data "(real)" and estimates "(est)"
@@ -273,8 +273,8 @@ QUICK COMMANDS
 **Large telemetry files:** Read last 50 lines only.
 **Missing timestamps:** Fall back to file modification time; display entry without timestamp if unavailable.
 **All campaigns completed:** Note "No active campaigns" at top of CAMPAIGNS section.
-**Completed campaign still active:** Show the exact `node scripts/campaign.js complete <slug> --archive` repair command; suggesting `/do continue` here is wrong because the campaign is already finished.
-**Campaign ready for review package:** Show the exact `node scripts/package-delivery.js <slug>` repair command before showing campaign completion.
+**Completed campaign still active:** Show the exact `bun scripts/campaign.js complete <slug> --archive` repair command; suggesting `/do continue` here is wrong because the campaign is already finished.
+**Campaign ready for review package:** Show the exact `bun scripts/package-delivery.js <slug>` repair command before showing campaign completion.
 **All fleet sessions idle:** Note "No active fleet sessions" under FLEET SESSIONS.
 **routine-runs.jsonl missing or no runs in window:** Show `Runs (last 24h): 0/15` plus the one-line population hint; only show the WARNING line when more than 12 runs are counted.
 **Mixed state:** Proceed with whatever state exists; note each missing directory inline.

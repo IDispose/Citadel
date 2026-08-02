@@ -60,7 +60,7 @@ Produce a ranked list of campaigns with columns: Campaign name, Scope (directori
 - Independent items go in Wave 1; items that depend on Wave 1 results go in Wave 2
 - Maximum 3 agents per wave (conservative default)
 - Scope must NOT overlap between agents in the same wave
-- After writing or changing a session queue, run `node scripts/fleet-steward.js --session .planning/fleet/session-{slug}.md` and use its `READY TO RUN`, `BLOCKED`, `MERGE NEXT`, `MERGE BLOCKED`, and `SCOPE CONFLICTS` sections as the operational DAG.
+- After writing or changing a session queue, run `bun scripts/fleet-steward.js --session .planning/fleet/session-{slug}.md` and use its `READY TO RUN`, `BLOCKED`, `MERGE NEXT`, `MERGE BLOCKED`, and `SCOPE CONFLICTS` sections as the operational DAG.
 - If the steward reports `READINESS BLOCKED`, do not spawn that task in a high-autonomy wave unless a human verified the worktree and you pass `--override-readiness` intentionally.
 
 ### Step 3: WAVE EXECUTION
@@ -69,10 +69,10 @@ For each wave:
 
 1. **Prepare context** for each agent:
    - CLAUDE.md content and `.claude/agent-context/rules-summary.md`
-   - **Map slice** (if `.planning/map/index.json` exists): run `node scripts/map-index.js --slice "<agent's scope keywords>" --max-files 15` and inject the `=== MAP SLICE ===` block; skip silently if no index
+   - **Map slice** (if `.planning/map/index.json` exists): run `bun scripts/map-index.js --slice "<agent's scope keywords>" --max-files 15` and inject the `=== MAP SLICE ===` block; skip silently if no index
    - **Prior session context** (all waves): re-read momentum fresh at each wave boundary via `node .citadel/scripts/momentum-read.cjs` and inject as a `=== PRIOR SESSION CONTEXT ===` block — a fresh read picks up discoveries from parallel Fleet sessions in other terminals; skip silently if empty
    - Campaign-specific direction and scope, plus discovery briefs from previous waves
-   - Sandbox provider status when an agent has a known worktree: `node scripts/sandbox-provider.js status --provider worktree --worktree {path}`
+   - Sandbox provider status when an agent has a known worktree: `bun scripts/sandbox-provider.js status --provider worktree --worktree {path}`
    - Which `.planning/` paths the agent may write and the merge strategy for each (see Shared State Merge Strategies)
 2. **Log wave start**: `node .citadel/scripts/telemetry-log.cjs --event wave-start --agent fleet --session {session-slug} --meta '{"wave":N,"agents":["name1","name2"]}'`
 3. **Spawn agents** with `isolation: "worktree"`, `mode: "bypassPermissions"`, prompt = full context + direction
@@ -84,7 +84,7 @@ For each wave:
      - **Retries exhausted**: preserve the result as `failed`, log `validator_halt: {agent-name} wave {N} — {conditions_failed}`, and invoke the strong acting Arbiter when a binding holistic decision remains relevant. Arbiter `block` holds the task; Arbiter unavailability is `unknown`.
    - **Validator timeout or unparseable output**: record `unknown/VALIDATOR_TIMEOUT` or `unknown/OUTPUT_UNPARSEABLE`. Retry within the durable budget; after exhaustion hold the task and its dependents.
    - A Phase Validator checks HANDOFF claims only. It cannot replace deterministic verification or required evidence.
-4.75. **Validate required task exit evidence**: every task must have subject-bound rows in the Fleet `## Exit Evidence` table. Run `node scripts/evidence-validate.js --file .planning/fleet/session-{slug}.md --target task:{id}`.
+4.75. **Validate required task exit evidence**: every task must have subject-bound rows in the Fleet `## Exit Evidence` table. Run `bun scripts/evidence-validate.js --file .planning/fleet/session-{slug}.md --target task:{id}`.
    - Only current, subject-bound `passed` evidence with complete required coverage unlocks dependencies or merge candidacy.
    - Failed evidence creates a repair attempt while budget remains. Missing, stale, malformed, incomplete, or exhausted evidence is `unknown`/held and joins the session's single deduplicated human escalation.
 5. **Log per-agent results**: `node .citadel/scripts/telemetry-log.cjs --event agent-complete --agent {agent-name} --session {session-slug} --status {success|partial|failed}`
@@ -101,7 +101,7 @@ For each wave:
 
 After all waves:
 
-1. Run typecheck on the full project via `node scripts/run-with-timeout.js 300 <typecheck-cmd>`
+1. Run typecheck on the full project via `bun scripts/run-with-timeout.js 300 <typecheck-cmd>`
 2. Run tests if configured (also use the timeout wrapper) on the temporary integration branch. Any non-passing required check holds target-branch merge and terminal success; repair within budget or add the subject to the single human escalation.
 3. Reconfirm every merge candidate is current for the tested integration subject, with complete required `passed` evidence, no unresolved dependency/checkpoint/human gate, and no binding Arbiter block.
 4. Merge only the governed integration result into the target branch. A clean diff, clean branch, status label, vote, or conflict-free merge cannot substitute for the passed decision.
@@ -209,7 +209,7 @@ For decisions that cannot easily be undone, spawn 3 Phase Validators in parallel
 - **Discovery compression script missing**: Write raw HANDOFF excerpts to the briefs directory instead.
 - **Phase validator times out or returns malformed output**: Record `unknown/VALIDATOR_TIMEOUT` or `unknown/OUTPUT_UNPARSEABLE`, retry within budget, then hold the task and its dependents. Continue only dependency-independent reversible tasks.
 - **All agents in a wave fail validation and exhaust retries**: Record incomplete coverage, log `wave_validator_halt`, hold dependent waves and target-branch merge, and add one consolidated entry to the session's human escalation.
-- **An agent fails validation or post-wave tests**: Run `node scripts/fleet-steward.js --session .planning/fleet/session-{slug}.md --mark-failed {id} --reason "{reason}" --write` to mark the row failed and add a repair task with inherited dependencies.
+- **An agent fails validation or post-wave tests**: Run `bun scripts/fleet-steward.js --session .planning/fleet/session-{slug}.md --mark-failed {id} --reason "{reason}" --write` to mark the row failed and add a repair task with inherited dependencies.
 
 ## Speculative Mode
 
@@ -217,7 +217,7 @@ For decisions that cannot easily be undone, spawn 3 Phase Validators in parallel
 
 1. **Decompose into N strategies.** Each must target the exact same files and end goal, use a meaningfully different strategy (not style variations), and be feasible in a single agent session.
 2. **Spawn N agents in parallel** with `isolation: "worktree"`. Each gets the common direction, its own strategy description, its branch name, and the instruction to set `branch` and `worktree_status: active` in its campaign frontmatter. Scope overlap rules do NOT apply between speculative agents — they intentionally touch the same files.
-3. **Collect and compare.** For each agent: read the HANDOFF, run typecheck on its branch via `node scripts/run-with-timeout.js 300 <typecheck-cmd>`, record built/typecheck/decisions in the session file. Present a comparison table (Strategy | Branch | Typecheck | Key Decision | Notable Tradeoffs). If ALL N fail typecheck: present the table with all entries marked `FAIL typecheck` and ask the user to pick the least-broken approach or abort. Do not proceed to step 4 without a user decision.
+3. **Collect and compare.** For each agent: read the HANDOFF, run typecheck on its branch via `bun scripts/run-with-timeout.js 300 <typecheck-cmd>`, record built/typecheck/decisions in the session file. Present a comparison table (Strategy | Branch | Typecheck | Key Decision | Notable Tradeoffs). If ALL N fail typecheck: present the table with all entries marked `FAIL typecheck` and ask the user to pick the least-broken approach or abort. Do not proceed to step 4 without a user decision.
 4. **Archive losers, merge winner.** Winner: set campaign frontmatter `worktree_status: merged`, proceed with normal merge. Losers: set `worktree_status: archived`; do NOT delete branches (optional tag: `git tag archive/{loser-branch} {loser-branch}`). Add `## Speculative Comparison` to the session file: direction, N strategies, comparison table, winner, merge timestamp.
 
 ## Quick Mode

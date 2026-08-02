@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -14,7 +14,7 @@ function value(args, flag, fallback = null) {
 }
 
 function usage() {
-  return 'Usage: node scripts/compile-workflow.js --input <workflow.json> --target <local|codex|github-actions> [--output PATH] [--json]\n';
+  return 'Usage: bun scripts/compile-workflow.js --input <workflow.json> --target <local|codex|github-actions> [--output PATH] [--json]\n';
 }
 
 function main(args = process.argv.slice(2)) {

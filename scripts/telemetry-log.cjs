@@ -1,10 +1,10 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * telemetry-log.cjs — Log agent run events to JSONL.
  *
  * Usage:
- *   node scripts/telemetry-log.cjs --event <type> --agent <name> [--session <id>] [--meta <json>]
+ *   bun scripts/telemetry-log.cjs --event <type> --agent <name> [--session <id>] [--meta <json>]
  *
  * Events: agent-start, agent-complete, agent-fail, campaign-start, campaign-complete,
  *         wave-start, wave-complete, agent-timeout
@@ -39,7 +39,7 @@ function main() {
   const args = parseArgs(process.argv);
 
   if (!args.event) {
-    console.error('Usage: node scripts/telemetry-log.cjs --event <type> --agent <name>');
+    console.error('Usage: bun scripts/telemetry-log.cjs --event <type> --agent <name>');
     process.exit(1);
   }
 

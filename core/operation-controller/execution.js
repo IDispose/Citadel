@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+const { resolveRuntimeExecutable } = require('../runtime/exec');
 const { COST_LENSES, digest, validateCatalog, validateCosts, validateHistory, validateRequest } = require('./contracts');
 const { nextAction, routeOperation } = require('./controller');
 
@@ -100,7 +101,7 @@ function executeAdapter({ adapter, plan, request, decision, workspaceRoot, retry
     retry_count: retryCount,
   };
   const started = Date.now();
-  const result = spawn(adapter.executable, adapter.args, {
+  const result = spawn(resolveRuntimeExecutable(adapter.executable), adapter.args, {
     cwd: workspaceRoot,
     env: safeEnvironment(adapter.environment_allowlist, env),
     input: `${JSON.stringify(input)}\n`,
@@ -170,7 +171,7 @@ function verifyAttempt({ request, adapterResult, workspaceRoot, spawn = spawnSyn
   }
   const cwd = resolveWorkspacePath(workspaceRoot, request.verifier.cwd, 'verifier cwd');
   const started = Date.now();
-  const result = spawn(request.verifier.executable, request.verifier.args, {
+  const result = spawn(resolveRuntimeExecutable(request.verifier.executable), request.verifier.args, {
     cwd,
     env: safeEnvironment([], env),
     encoding: 'utf8',

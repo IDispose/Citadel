@@ -65,7 +65,7 @@ For the detailed trust-boundary map, see [THREAT_MODEL.md](THREAT_MODEL.md).
 Run the security checks directly, or the full suite:
 
 ```bash
-node scripts/test-security.js
+bun scripts/test-security.js
 npm test
 ```
 

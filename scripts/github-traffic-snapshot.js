@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -30,7 +30,7 @@ function parseArgs(argv) {
 
 function help() {
   return [
-    'Usage: node scripts/github-traffic-snapshot.js --repo owner/repo [options]',
+    'Usage: bun scripts/github-traffic-snapshot.js --repo owner/repo [options]',
     '',
     'Options:',
     '  --fixture <file>       Read a combined GitHub response without network access',

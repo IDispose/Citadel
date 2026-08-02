@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * complexity-check.js — PostToolUse hook (Edit|Write on .js/.ts/.jsx/.tsx files)

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -48,8 +48,8 @@ assert.match(publishYaml, /environment: npm-publish/);
 assert.match(publishYaml, /permissions:\n      contents: read\n      id-token: write/);
 assert.equal((publishYaml.match(/id-token: write/g) || []).length, 1, 'OIDC permission must exist only on publish job');
 assert.match(publishYaml, /if: \$\{\{ inputs\.publish == true \}\}/);
-assert.match(publishYaml, /node scripts\/test-all\.js --strict/);
-assert.match(publishYaml, /node scripts\/test-cli-package\.js/);
+assert.match(publishYaml, /bun scripts\/test-all\.js --strict/);
+assert.match(publishYaml, /bun scripts\/test-cli-package\.js/);
 assert.equal((publishYaml.match(/npm install --global npm@11\.5\.1/g) || []).length, 2);
 assert.match(publishYaml, /run: mkdir -p dist\/npm/);
 assert.match(publishYaml, /npm publish dist\/npm\/\*\.tgz --access public --provenance/);

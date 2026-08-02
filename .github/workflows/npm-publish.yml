@@ -18,6 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: latest
+      # npm publishing (trusted publishing / provenance) is npm-specific, so the
+      # package build/publish steps still run on Node + npm while verification runs on Bun.
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 20
@@ -25,9 +30,9 @@ jobs:
       - name: Use trusted-publishing capable npm
         run: npm install --global npm@11.5.1
       - name: Run full strict verification
-        run: node scripts/test-all.js --strict
+        run: bun scripts/test-all.js --strict
       - name: Inspect npm package boundary
-        run: node scripts/test-cli-package.js
+        run: bun scripts/test-cli-package.js
       - name: Create package directory
         run: mkdir -p dist/npm
       - name: Build npm package

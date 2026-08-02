@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * restore-compact.js — SessionStart hook (compact matcher)

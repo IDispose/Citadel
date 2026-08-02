@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * test-security.js — Security regression tests for Citadel hooks
@@ -9,7 +9,7 @@
  *   3. Pip gate untracked file detection
  *
  * These tests validate that security fixes remain in place.
- * Run manually: node scripts/test-security.js
+ * Run manually: bun scripts/test-security.js
  * Run via CI: included in scripts/test-all.js
  *
  * Exit codes:

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * cost-tracker.js -- PostToolUse hook (all tools)

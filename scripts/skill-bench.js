@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * skill-bench.js — Scenario-based benchmark runner for Citadel skills
@@ -12,17 +12,17 @@
  *   Execute (--execute): runs scenarios against the real Claude CLI or Codex exec.
  *
  * Usage:
- *   node scripts/skill-bench.js                            # static validate all
- *   node scripts/skill-bench.js --execute                  # run against claude
- *   node scripts/skill-bench.js --execute --runtime codex-exec
- *   node scripts/skill-bench.js --execute --runtime codex-exec --codex-bin C:\path\to\codex.exe --codex-model gpt-5.5 --codex-service-tier fast
- *   node scripts/skill-bench.js --execute --verify-hooks   # also assert hooks fired
- *   node scripts/skill-bench.js --skill dashboard          # filter by skill name
- *   node scripts/skill-bench.js --scenario missing-state   # filter by scenario name
- *   node scripts/skill-bench.js --tag fringe               # filter by tag
- *   node scripts/skill-bench.js --invariant-only           # only invariant-behavior scenarios
- *   node scripts/skill-bench.js --list                     # list scenarios, no run
- *   node scripts/skill-bench.js --json                     # machine-readable output
+ *   bun scripts/skill-bench.js                            # static validate all
+ *   bun scripts/skill-bench.js --execute                  # run against claude
+ *   bun scripts/skill-bench.js --execute --runtime codex-exec
+ *   bun scripts/skill-bench.js --execute --runtime codex-exec --codex-bin C:\path\to\codex.exe --codex-model gpt-5.5 --codex-service-tier fast
+ *   bun scripts/skill-bench.js --execute --verify-hooks   # also assert hooks fired
+ *   bun scripts/skill-bench.js --skill dashboard          # filter by skill name
+ *   bun scripts/skill-bench.js --scenario missing-state   # filter by scenario name
+ *   bun scripts/skill-bench.js --tag fringe               # filter by tag
+ *   bun scripts/skill-bench.js --invariant-only           # only invariant-behavior scenarios
+ *   bun scripts/skill-bench.js --list                     # list scenarios, no run
+ *   bun scripts/skill-bench.js --json                     # machine-readable output
  *
  * Scenario files live at: skills/{skill}/__benchmarks__/{scenario}.md
  *
@@ -228,7 +228,7 @@ const STATES = {
     fs.mkdirSync(scriptsDir, { recursive: true });
     fs.writeFileSync(path.join(tmpDir, 'package.json'), JSON.stringify({
       scripts: {
-        lint: 'node scripts/lint.js',
+        lint: 'bun scripts/lint.js',
       },
     }, null, 2) + '\n');
     fs.writeFileSync(path.join(scriptsDir, 'lint.js'), "console.log('lint ok');\n");
@@ -550,11 +550,11 @@ function setupProjectState(state) {
 
   if (VERIFY_HOOKS) {
     try {
-      execFileSync('node', [path.join(PLUGIN_ROOT, 'scripts', 'install-hooks.js'), tmpDir], {
+      execFileSync(process.execPath, [path.join(PLUGIN_ROOT, 'scripts', 'install-hooks.js'), tmpDir], {
         encoding: 'utf8', timeout: 10000, stdio: 'pipe',
       });
       const { spawnSync } = require('child_process');
-      spawnSync('node', [path.join(PLUGIN_ROOT, 'hooks_src', 'init-project.js')], {
+      spawnSync(process.execPath, [path.join(PLUGIN_ROOT, 'hooks_src', 'init-project.js')], {
         cwd: tmpDir,
         env: { ...process.env, CLAUDE_PROJECT_DIR: tmpDir, CLAUDE_PLUGIN_DATA: path.join(tmpDir, '.claude') },
         encoding: 'utf8', timeout: 10000,
@@ -1030,8 +1030,8 @@ function main() {
     console.log(`All ${totalPass} scenario files are valid.\n`);
     if (!EXECUTE_MODE) {
       console.log('To run against a live runtime:');
-      console.log('  node scripts/skill-bench.js --execute');
-      console.log('  node scripts/skill-bench.js --execute --runtime codex-exec\n');
+      console.log('  bun scripts/skill-bench.js --execute');
+      console.log('  bun scripts/skill-bench.js --execute --runtime codex-exec\n');
     }
   } else {
     console.log(`All ${totalPass} scenarios passed.\n`);

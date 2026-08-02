@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js protect-files",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js protect-files",
             "statusMessage": "Citadel: protect-files",
             "timeout": 5
           }
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js protect-files",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js protect-files",
             "statusMessage": "Citadel: protect-files",
             "timeout": 5
           }
@@ -27,7 +27,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js protect-files",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js protect-files",
             "statusMessage": "Citadel: protect-files",
             "timeout": 5
           }
@@ -38,7 +38,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js external-action-gate",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js external-action-gate",
             "statusMessage": "Citadel: external-action-gate",
             "timeout": 5
           }
@@ -49,7 +49,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js governance",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js governance",
             "statusMessage": "Citadel: governance",
             "timeout": 3
           }
@@ -60,7 +60,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js governance",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js governance",
             "statusMessage": "Citadel: governance",
             "timeout": 3
           }
@@ -71,7 +71,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js governance",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js governance",
             "statusMessage": "Citadel: governance",
             "timeout": 3
           }
@@ -82,7 +82,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js governance",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js governance",
             "statusMessage": "Citadel: governance",
             "timeout": 3
           }
@@ -95,7 +95,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js post-edit",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js post-edit",
             "statusMessage": "Citadel: post-edit",
             "timeout": 30
           }
@@ -105,7 +105,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js organize-enforce",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js organize-enforce",
             "statusMessage": "Citadel: organize-enforce",
             "timeout": 5
           }
@@ -116,7 +116,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js organize-enforce",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js organize-enforce",
             "statusMessage": "Citadel: organize-enforce",
             "timeout": 5
           }
@@ -127,7 +127,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js complexity-check",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js complexity-check",
             "statusMessage": "Citadel: complexity-check",
             "timeout": 5
           }
@@ -138,7 +138,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js complexity-check",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js complexity-check",
             "statusMessage": "Citadel: complexity-check",
             "timeout": 5
           }
@@ -149,7 +149,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js circuit-breaker",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js circuit-breaker",
             "statusMessage": "Citadel: circuit-breaker",
             "timeout": 5
           }
@@ -160,7 +160,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js cost-tracker",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js cost-tracker",
             "statusMessage": "Citadel: cost-tracker",
             "timeout": 5
           }
@@ -172,7 +172,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js pre-compact",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js pre-compact",
             "statusMessage": "Citadel: pre-compact",
             "timeout": 15
           }
@@ -184,7 +184,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js post-compact",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js post-compact",
             "statusMessage": "Citadel: post-compact",
             "timeout": 10
           }
@@ -196,7 +196,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js quality-gate",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js quality-gate",
             "statusMessage": "Citadel: quality-gate",
             "timeout": 10
           }
@@ -206,7 +206,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js session-end",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js session-end",
             "statusMessage": "Citadel: session-end",
             "timeout": 10
           }
@@ -218,7 +218,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js init-project",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js init-project",
             "statusMessage": "Citadel: init-project",
             "timeout": 10
           }
@@ -228,7 +228,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js restore-compact",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js restore-compact",
             "statusMessage": "Citadel: restore-compact",
             "timeout": 5
           }
@@ -239,7 +239,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js intake-scanner",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js intake-scanner",
             "statusMessage": "Citadel: intake-scanner",
             "timeout": 5
           }
@@ -251,7 +251,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js subagent-start",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js subagent-start",
             "statusMessage": "Citadel: subagent-start",
             "timeout": 5
           }
@@ -263,7 +263,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js subagent-stop",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js subagent-stop",
             "statusMessage": "Citadel: subagent-stop",
             "timeout": 5
           }
@@ -275,7 +275,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CITADEL_ROOT}/codex-adapter.js permission-request",
+            "command": "bun ${CITADEL_ROOT}/codex-adapter.js permission-request",
             "statusMessage": "Citadel: permission-request",
             "timeout": 3
           }

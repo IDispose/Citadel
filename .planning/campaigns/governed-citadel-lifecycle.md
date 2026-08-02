@@ -18,13 +18,13 @@ complete
 | Phase | Title | Status | Validator retries remaining | Machine-verifiable end conditions |
 |---|---|---|---:|---|
 | 0 | Baseline and ownership | complete | 3 | Branch/status/shared diffs recorded; 180-second aggregate baseline recorded as inconclusive |
-| 1 | Contract kernels | complete | 3 | `node scripts/test-governance-contracts.js` and `node scripts/test-config-policy.js` pass |
-| 2 | Governed adoption | complete | 3 | `node scripts/test-adoption-lifecycle.js` passes |
+| 1 | Contract kernels | complete | 3 | `bun scripts/test-governance-contracts.js` and `bun scripts/test-config-policy.js` pass |
+| 2 | Governed adoption | complete | 3 | `bun scripts/test-adoption-lifecycle.js` passes |
 | 3 | Progressive activation | complete | 3 | disabled/degraded/legacy integration cases pass |
-| 4 | Governance Port alpha | complete | 3 | `node scripts/test-control-plane.js` passes |
-| 5 | Real User Proof v2 | complete | 3 | `node scripts/test-product-proof-v2.js` passes |
+| 4 | Governance Port alpha | complete | 3 | `bun scripts/test-control-plane.js` passes |
+| 5 | Real User Proof v2 | complete | 3 | `bun scripts/test-product-proof-v2.js` passes |
 | 6 | Product integration and consistency | complete | 3 | focused existing suites, skill lint, hook suites, full aggregate suite, and `git diff --check` pass |
-| 7 | Real-use proof preparation | complete | 3 | `node scripts/test-governed-lifecycle-usecases.js` passes and emits durable proof records |
+| 7 | Real-use proof preparation | complete | 3 | `bun scripts/test-governed-lifecycle-usecases.js` passes and emits durable proof records |
 
 ## Exit Evidence
 

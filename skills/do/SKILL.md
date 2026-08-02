@@ -62,15 +62,15 @@ Regex/keyword on raw input. Catches trivial commands:
 | "test" or "tests" | Run the project's test command |
 | "loop", "repeat until", "retry until", "until tests pass", "max attempts" | Run `/loop` for bounded foreground repetition |
 | "status", "dashboard", "what's happening", "what's going on", "show activity" | Show full harness dashboard (/dashboard) |
-| "next", "what should I do next", "fix harness state", "repair harness" | Run `node scripts/operator-console.js --run`; if it stops on a skill route or human-review action, report the boundary, risk, next command, and verification profile |
-| "operator", "operator console", "what's up", "what should happen next", "approval capsule" | Run `node scripts/operator-console.js`; report the decision, boundary, artifact freshness, and verification profile |
-| "preview route", "route preview", "dry run route", "what would /do do" | Run `node scripts/route-preview.js -- "<request>"`; report selected route, alternatives, boundary, and verification profile |
-| "continue" or "keep going" | Run `node scripts/continue-action.js --run`; invoke the returned skill route if it prints `/archon continue` or `/fleet continue` |
+| "next", "what should I do next", "fix harness state", "repair harness" | Run `bun scripts/operator-console.js --run`; if it stops on a skill route or human-review action, report the boundary, risk, next command, and verification profile |
+| "operator", "operator console", "what's up", "what should happen next", "approval capsule" | Run `bun scripts/operator-console.js`; report the decision, boundary, artifact freshness, and verification profile |
+| "preview route", "route preview", "dry run route", "what would /do do" | Run `bun scripts/route-preview.js -- "<request>"`; report selected route, alternatives, boundary, and verification profile |
+| "continue" or "keep going" | Run `bun scripts/continue-action.js --run`; invoke the returned skill route if it prints `/archon continue` or `/fleet continue` |
 | "setup" | Run `/do setup` first-run experience |
-| "deliver <intake-file>" | Run `node scripts/deliver.js --intake <file>` to create an evidence-backed delivery campaign |
-| "deliver intake" or "deliver next intake" | Run `node scripts/deliver.js --next` to create an evidence-backed delivery campaign from the highest-priority pending intake item |
-| "package delivery" or "review package" | Run `node scripts/package-delivery.js <campaign-slug>` to create a local review handoff and update campaign evidence |
-| "pr ready" or "ready for review" | Run `node scripts/pr-ready.js --pr <pull-request-url> --run-verification` to produce an approval-readiness handoff |
+| "deliver <intake-file>" | Run `bun scripts/deliver.js --intake <file>` to create an evidence-backed delivery campaign |
+| "deliver intake" or "deliver next intake" | Run `bun scripts/deliver.js --next` to create an evidence-backed delivery campaign from the highest-priority pending intake item |
+| "package delivery" or "review package" | Run `bun scripts/package-delivery.js <campaign-slug>` to create a local review handoff and update campaign evidence |
+| "pr ready" or "ready for review" | Run `bun scripts/pr-ready.js --pr <pull-request-url> --run-verification` to produce an approval-readiness handoff |
 | "--list" or "list" | Show all available skills |
 | "fix typo in X" or "rename X to Y" | Direct edit (no orchestrator needed) |
 | "commit" | Stage and commit changes |
@@ -84,9 +84,9 @@ Check for active campaigns or fleet sessions that match the input scope:
 
 0. For input exactly equivalent to `continue`, first run:
    ```bash
-   node scripts/continue-action.js --run
+   bun scripts/continue-action.js --run
    ```
-   - If it executes a local command such as `node scripts/package-delivery.js <slug>`, report the output and stop.
+   - If it executes a local command such as `bun scripts/package-delivery.js <slug>`, report the output and stop.
    - If it returns `/archon continue`, invoke `/archon continue`.
    - If it returns `/fleet continue`, invoke `/fleet continue`.
    - If it returns no command, output "No active campaign or fleet session found. Nothing to continue."
@@ -94,7 +94,7 @@ Check for active campaigns or fleet sessions that match the input scope:
 2. Read `.planning/fleet/` for session files with `status: active` or `needs-continue`
 3. **Review-package campaigns:** if the campaign status is `needs-review-package`
    or its `review-package` Exit Evidence row is pending while prior phases are
-   complete, route to `node scripts/package-delivery.js <slug>` before Archon.
+   complete, route to `bun scripts/package-delivery.js <slug>` before Archon.
 4. **Improve campaigns (type: improve):** if the active campaign has `type: improve` in
    frontmatter, route to `/improve {target} --continue` where `{target}` is the campaign's
    `target` field. Do NOT route improve campaigns to archon -- improve is its own orchestrator.
@@ -117,7 +117,7 @@ If matched → resume the active work. Done.
 Match input against installed skill keywords from Citadel's built-in skills
 and any project-level custom skills in `.claude/skills/`.
 
-**Built-in skill triggers** (generated from each skill's `trigger_keywords` frontmatter; edit the frontmatter, then run `node scripts/generate-routing.js` to refresh this table):
+**Built-in skill triggers** (generated from each skill's `trigger_keywords` frontmatter; edit the frontmatter, then run `bun scripts/generate-routing.js` to refresh this table):
 
 <!-- BEGIN GENERATED: routing-table -->
 | Input Contains | Route To | Product Bundle |
@@ -175,12 +175,12 @@ and any project-level custom skills in `.claude/skills/`.
 
 | Input Contains | Route To |
 |---|---|
-| "deliver", "deliver intake", "intake to pr", "intake to PR" | `node scripts/deliver.js --next` when no file is named, or `node scripts/deliver.js --intake <file>` when a file is named, then `/do continue` |
-| "package delivery", "review package", "local handoff" | `node scripts/package-delivery.js <campaign-slug>` after build and verification, or include `--pr <url>` when a PR exists |
-| "pr ready", "ready for review", "finalize pr", "approval ready" | `node scripts/pr-ready.js --pr <pull-request-url> --run-verification` after the branch is pushed |
-| "next", "what should I do next", "repair harness", "fix harness state" | `node scripts/operator-console.js --run`; auto-runs deterministic local repairs and stops at skill/human routes with a console report |
-| "operator", "operator console", "what's up", "what should happen next", "approval capsule" | `node scripts/operator-console.js`; inspect-only decision cockpit |
-| "preview route", "route preview", "dry run route", "what would /do do" | `node scripts/route-preview.js -- "<request>"`; route preflight without execution |
+| "deliver", "deliver intake", "intake to pr", "intake to PR" | `bun scripts/deliver.js --next` when no file is named, or `bun scripts/deliver.js --intake <file>` when a file is named, then `/do continue` |
+| "package delivery", "review package", "local handoff" | `bun scripts/package-delivery.js <campaign-slug>` after build and verification, or include `--pr <url>` when a PR exists |
+| "pr ready", "ready for review", "finalize pr", "approval ready" | `bun scripts/pr-ready.js --pr <pull-request-url> --run-verification` after the branch is pushed |
+| "next", "what should I do next", "repair harness", "fix harness state" | `bun scripts/operator-console.js --run`; auto-runs deterministic local repairs and stops at skill/human routes with a console report |
+| "operator", "operator console", "what's up", "what should happen next", "approval capsule" | `bun scripts/operator-console.js`; inspect-only decision cockpit |
+| "preview route", "route preview", "dry run route", "what would /do do" | `bun scripts/route-preview.js -- "<request>"`; route preflight without execution |
 | "operation control", "cost-constrained operation", "quality target", "model fallback", "tool boundary" | Use `citadel operation init` to create explicit request/catalog inputs, then run `citadel operation plan`; do not execute until the plan and independent verifier are concrete |
 
 If ONE skill matches with high confidence → invoke it directly. Done.

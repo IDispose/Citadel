@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const path = require('path');
@@ -29,8 +29,8 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/package-delivery.js <campaign-slug-or-path> [--pr <url>] [--note <text>]',
-    '  node scripts/package-delivery.js --campaign <campaign-slug-or-path>',
+    '  bun scripts/package-delivery.js <campaign-slug-or-path> [--pr <url>] [--note <text>]',
+    '  bun scripts/package-delivery.js --campaign <campaign-slug-or-path>',
     '',
     'Creates .planning/review-packages/<campaign>.md and records the package or PR in the campaign Exit Evidence table.',
   ].join('\n');

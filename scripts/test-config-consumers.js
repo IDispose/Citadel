@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -233,7 +233,9 @@ const malformedConsent = spawnSync(
   process.execPath,
   [
     '-e',
-    `require(${JSON.stringify(healthUtil)}).writeConsent('externalActions','always-ask');`,
+    // Wrap so an uncaught throw from the required module yields a non-zero exit:
+    // Bun 1.3.x exits 0 when an exception propagates out of a require()d module.
+    `try { require(${JSON.stringify(healthUtil)}).writeConsent('externalActions','always-ask'); } catch (error) { console.error(error && error.message); process.exit(1); }`,
   ],
   {
     cwd: malformedRoot,

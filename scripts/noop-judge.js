@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * noop-judge.js - Tier 2 of the no-op pipeline: the LLM judge.
@@ -14,10 +14,10 @@
  * Tier 3 ablation (scripts/noop-ablate.js), the empirical Pocock test.
  *
  * Usage:
- *   node scripts/noop-judge.js                 # judge all candidates (1 batched call)
- *   node scripts/noop-judge.js --skill research
- *   node scripts/noop-judge.js --dry-run       # print the prompt, make no call (zero cost)
- *   node scripts/noop-judge.js --json          # machine-readable verdicts
+ *   bun scripts/noop-judge.js                 # judge all candidates (1 batched call)
+ *   bun scripts/noop-judge.js --skill research
+ *   bun scripts/noop-judge.js --dry-run       # print the prompt, make no call (zero cost)
+ *   bun scripts/noop-judge.js --json          # machine-readable verdicts
  *
  * Output: writes verdicts to .planning/noop-audit/judge-verdicts-<ts>.json
  *
@@ -220,7 +220,7 @@ function main() {
   console.log('\n' + '='.repeat(44));
   console.log(`Verdicts: ${Object.entries(counts).map(([k, n]) => `${n} ${k}`).join(', ')}`);
   if (outFile) console.log(`Written: ${path.relative(PLUGIN_ROOT, outFile)}`);
-  console.log('Escalate any low-confidence delete/trim to: node scripts/noop-ablate.js --skill <name>\n');
+  console.log('Escalate any low-confidence delete/trim to: bun scripts/noop-ablate.js --skill <name>\n');
   process.exit(0);
 }
 

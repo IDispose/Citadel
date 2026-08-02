@@ -4,7 +4,7 @@
   "projectDir": "project",
   "task": "run the project tests",
   "expectedRoute": "direct-command",
-  "verificationCommand": "npm run test",
+  "verificationCommand": "bun run test",
   "campaignFile": "active-campaign.md",
   "expectedResumeCommand": "/archon continue"
 }

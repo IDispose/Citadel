@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const childProcess = require('child_process');
@@ -27,7 +27,7 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/stack-plan.js [--json] [--project-root <path>]',
+    '  bun scripts/stack-plan.js [--json] [--project-root <path>]',
     '',
     'Reads .planning/pr-readiness reports and writes an ordered stack landing plan.',
     'This command never marks PRs ready, merges PRs, or pushes branches.',
@@ -181,7 +181,7 @@ function buildNextAction(status, ordered) {
   if (status === 'no-stack') {
     return {
       label: 'No PR readiness reports found',
-      command: 'node scripts/pr-ready.js --pr <pull-request-url> --run-verification',
+      command: 'bun scripts/pr-ready.js --pr <pull-request-url> --run-verification',
       canRunNow: false,
       why: 'No stack can be planned until at least one PR readiness report exists.',
     };
@@ -189,7 +189,7 @@ function buildNextAction(status, ordered) {
   if (status === 'blocked') {
     return {
       label: 'Resolve blocked PR readiness report',
-      command: 'node scripts/pr-ready.js --pr <pull-request-url> --run-verification',
+      command: 'bun scripts/pr-ready.js --pr <pull-request-url> --run-verification',
       canRunNow: false,
       why: 'At least one PR readiness report is blocked or missing a passing gate.',
     };
@@ -208,7 +208,7 @@ function buildPostApprovalRunbook(status, ordered) {
       {
         step: 'Generate PR readiness reports',
         gate: 'At least one report exists in .planning/pr-readiness.',
-        action: 'Run node scripts/pr-ready.js --pr <pull-request-url> --run-verification for each PR.',
+        action: 'Run bun scripts/pr-ready.js --pr <pull-request-url> --run-verification for each PR.',
       },
     ];
   }
@@ -217,7 +217,7 @@ function buildPostApprovalRunbook(status, ordered) {
       {
         step: 'Refresh blocked readiness reports',
         gate: 'Every report status is ready and every readiness gate passes.',
-        action: 'Fix the blocked PRs, then rerun node scripts/pr-ready.js --pr <pull-request-url> --run-verification.',
+        action: 'Fix the blocked PRs, then rerun bun scripts/pr-ready.js --pr <pull-request-url> --run-verification.',
       },
     ];
   }

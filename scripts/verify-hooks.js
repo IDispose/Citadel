@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * verify-hooks.js — Hook install + runtime verification
@@ -8,9 +8,9 @@
  * needed — hooks are just scripts that receive JSON on stdin).
  *
  * Usage:
- *   node scripts/verify-hooks.js             # run all tests
- *   node scripts/verify-hooks.js --verbose   # show per-test output
- *   node scripts/verify-hooks.js --report    # write RESULTS.md
+ *   bun scripts/verify-hooks.js             # run all tests
+ *   bun scripts/verify-hooks.js --verbose   # show per-test output
+ *   bun scripts/verify-hooks.js --report    # write RESULTS.md
  *
  * Exit codes:
  *   0 = all tests pass
@@ -55,7 +55,7 @@ function fireHook(hookName, payload, sandboxDir, extraEnv = {}) {
   const script = path.join(HOOKS_SRC, hookName);
   const input  = typeof payload === 'string' ? payload : JSON.stringify(payload);
 
-  const result = spawnSync('node', [script], {
+  const result = spawnSync(process.execPath, [script], {
     input,
     cwd: sandboxDir,
     env: {
@@ -125,7 +125,7 @@ console.log('─'.repeat(40));
 let installDir = sandbox();
 
 test('install-hooks.js exits 0', () => {
-  const r = spawnSync('node', [path.join(CITADEL_ROOT, 'scripts', 'install-hooks.js'), installDir, '--hook-profile', 'latest'], {
+  const r = spawnSync(process.execPath, [path.join(CITADEL_ROOT, 'scripts', 'install-hooks.js'), installDir, '--hook-profile', 'latest'], {
     encoding: 'utf8', timeout: 10000,
   });
   if (r.status !== 0) return `exit ${r.status}: ${r.stderr.slice(0, 200)}`;
@@ -168,7 +168,7 @@ test('hook commands reference real files', () => {
       for (const hook of (entry.hooks || [])) {
         if (!hook.command) continue;
         // Extract script path from: node "path" or node path
-        const match = hook.command.match(/node\s+"?([^"\s]+\.js)"?/);
+        const match = hook.command.match(/(?:node|bun)\s+"?([^"\s]+\.js)"?/);
         if (match && !fs.existsSync(match[1])) {
           bad.push(`${event}: ${match[1]}`);
         }

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const path = require('path');
@@ -46,19 +46,19 @@ function printPlan(plan, flags) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/adopt.js plan [source] [--target <path>] [--allow-dirty-source] [--out <plan.json>] [--json]',
-    '  node scripts/adopt.js apply <plan.json> [--confirm <token>] [--json]',
-    '  node scripts/adopt.js doctor [--target <path>] [--json]',
-    '  node scripts/adopt.js update plan <source> --migration <file> [--target <path>] [--json]',
-    '  node scripts/adopt.js update apply <plan.json> [--confirm <token>] [--json]',
-    '  node scripts/adopt.js rollback plan [--target <path>] [--json]',
-    '  node scripts/adopt.js rollback apply <plan.json> [--confirm <token>] [--json]',
-    '  node scripts/adopt.js leave plan [--target <path>] [--out <plan.json>] [--json]',
-    '  node scripts/adopt.js leave apply <plan.json> [--confirm <token>] [--json]',
-    '  node scripts/adopt.js restore plan <archive.json> [--target <path>] [--json]',
-    '  node scripts/adopt.js restore apply <plan.json> [--confirm <token>] [--json]',
-    '  node scripts/adopt.js import plan [source] [--target <path>] [--json]',
-    '  node scripts/adopt.js import apply <plan.json> [--confirm <token>] [--json]',
+    '  bun scripts/adopt.js plan [source] [--target <path>] [--allow-dirty-source] [--out <plan.json>] [--json]',
+    '  bun scripts/adopt.js apply <plan.json> [--confirm <token>] [--json]',
+    '  bun scripts/adopt.js doctor [--target <path>] [--json]',
+    '  bun scripts/adopt.js update plan <source> --migration <file> [--target <path>] [--json]',
+    '  bun scripts/adopt.js update apply <plan.json> [--confirm <token>] [--json]',
+    '  bun scripts/adopt.js rollback plan [--target <path>] [--json]',
+    '  bun scripts/adopt.js rollback apply <plan.json> [--confirm <token>] [--json]',
+    '  bun scripts/adopt.js leave plan [--target <path>] [--out <plan.json>] [--json]',
+    '  bun scripts/adopt.js leave apply <plan.json> [--confirm <token>] [--json]',
+    '  bun scripts/adopt.js restore plan <archive.json> [--target <path>] [--json]',
+    '  bun scripts/adopt.js restore apply <plan.json> [--confirm <token>] [--json]',
+    '  bun scripts/adopt.js import plan [source] [--target <path>] [--json]',
+    '  bun scripts/adopt.js import apply <plan.json> [--confirm <token>] [--json]',
   ].join('\n');
 }
 

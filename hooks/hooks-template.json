@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/protect-files.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/protect-files.js",
             "timeout": 5
           }
         ]
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/protect-files.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/protect-files.js",
             "timeout": 5
           }
         ]
@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/external-action-gate.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/external-action-gate.js",
             "timeout": 5
           }
         ]
@@ -36,7 +36,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/governance.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/governance.js",
             "timeout": 3
           }
         ]
@@ -47,7 +47,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/post-edit.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/post-edit.js",
             "timeout": 30
           }
         ]
@@ -57,7 +57,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/organize-enforce.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/organize-enforce.js",
             "timeout": 5
           }
         ]
@@ -67,7 +67,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/complexity-check.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/complexity-check.js",
             "timeout": 5
           }
         ]
@@ -77,7 +77,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/circuit-breaker.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/circuit-breaker.js",
             "timeout": 5
           }
         ]
@@ -86,7 +86,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/cost-tracker.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/cost-tracker.js",
             "timeout": 5
           }
         ]
@@ -97,7 +97,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/post-tool-batch.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/post-tool-batch.js",
             "timeout": 10,
             "async": true,
             "asyncRewake": true
@@ -110,7 +110,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/circuit-breaker.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/circuit-breaker.js",
             "timeout": 5
           }
         ]
@@ -121,7 +121,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/pre-compact.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/pre-compact.js",
             "timeout": 15
           }
         ]
@@ -132,7 +132,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/post-compact.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/post-compact.js",
             "timeout": 10
           }
         ]
@@ -143,7 +143,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/quality-gate.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/quality-gate.js",
             "timeout": 10
           }
         ]
@@ -154,7 +154,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/stop-failure.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/stop-failure.js",
             "timeout": 5
           }
         ]
@@ -165,7 +165,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/init-project.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/init-project.js",
             "timeout": 10
           }
         ]
@@ -176,7 +176,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/user-prompt-submit.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/user-prompt-submit.js",
             "timeout": 5
           }
         ]
@@ -187,7 +187,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/user-prompt-expansion.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/user-prompt-expansion.js",
             "timeout": 5
           }
         ]
@@ -198,7 +198,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/init-project.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/init-project.js",
             "timeout": 10
           }
         ]
@@ -208,7 +208,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/restore-compact.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/restore-compact.js",
             "timeout": 5
           }
         ]
@@ -217,7 +217,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/intake-scanner.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/intake-scanner.js",
             "timeout": 5
           }
         ]
@@ -228,7 +228,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/session-end.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/session-end.js",
             "timeout": 10
           }
         ]
@@ -239,7 +239,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/subagent-start.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/subagent-start.js",
             "timeout": 5
           }
         ]
@@ -250,7 +250,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/subagent-stop.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/subagent-stop.js",
             "timeout": 5
           }
         ]
@@ -261,7 +261,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/teammate-idle.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/teammate-idle.js",
             "timeout": 5
           }
         ]
@@ -272,7 +272,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/permission-request.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/permission-request.js",
             "timeout": 3
           }
         ]
@@ -283,7 +283,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/permission-request.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/permission-request.js",
             "timeout": 3
           }
         ]
@@ -294,7 +294,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/instructions-loaded.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/instructions-loaded.js",
             "timeout": 5
           }
         ]
@@ -305,7 +305,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/file-changed.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/file-changed.js",
             "timeout": 5
           }
         ]
@@ -316,7 +316,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/cwd-changed.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/cwd-changed.js",
             "timeout": 5
           }
         ]
@@ -327,7 +327,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/config-change.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/config-change.js",
             "timeout": 5
           }
         ]
@@ -338,7 +338,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/elicitation.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/elicitation.js",
             "timeout": 5
           }
         ]
@@ -349,7 +349,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/elicitation.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/elicitation.js",
             "timeout": 5
           }
         ]
@@ -360,7 +360,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/notification.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/notification.js",
             "timeout": 5
           }
         ]
@@ -371,7 +371,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/task-events.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/task-events.js",
             "timeout": 5
           }
         ]
@@ -382,7 +382,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/task-events.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/task-events.js",
             "timeout": 5
           }
         ]
@@ -393,7 +393,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/worktree-setup.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/worktree-setup.js",
             "timeout": 120
           }
         ]
@@ -404,7 +404,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks_src/worktree-remove.js",
+            "command": "bun ${CLAUDE_PLUGIN_ROOT}/hooks_src/worktree-remove.js",
             "timeout": 10
           }
         ]

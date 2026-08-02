@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * protect-files.js — PreToolUse hook (Edit/Write/Read)

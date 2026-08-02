@@ -36,12 +36,12 @@ function buildMetadata(rootPath) {
       claude_code: {
         manifest: '.claude-plugin/plugin.json',
         marketplace: '.claude-plugin/marketplace.json',
-        install_command: 'node scripts/install.js --runtime claude --install --scope local',
+        install_command: 'bun scripts/install.js --runtime claude --install --scope local',
       },
       codex: {
         manifest: '.codex-plugin/plugin.json',
         marketplace: '.agents/plugins/marketplace.json',
-        install_command: 'node scripts/install.js --runtime codex --add-marketplace',
+        install_command: 'bun scripts/install.js --runtime codex --add-marketplace',
       },
     },
     skills: { path: 'skills/', count: countSkills(root) },
@@ -78,7 +78,7 @@ function validateMetadata(rootPath, metadata) {
   if (metadata.skills.count !== countSkills(root)) errors.push('skill count mismatch');
   if (metadata.runtime_support.node !== pkg.engines.node) errors.push('Node runtime support mismatch');
   for (const runtime of ['claude_code', 'codex']) {
-    if (!metadata.runtime_support[runtime].install_command.startsWith('node scripts/install.js')) {
+    if (!metadata.runtime_support[runtime].install_command.startsWith('bun scripts/install.js')) {
       errors.push(`${runtime} install command is not canonical`);
     }
   }

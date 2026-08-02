@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const childProcess = require('child_process');
@@ -35,7 +35,7 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/route-preview.js [--json] [--project-root <path>] -- <request>',
+    '  bun scripts/route-preview.js [--json] [--project-root <path>] -- <request>',
     '',
     'Shows the proportional /do route, alternatives, boundary, and verification before execution.',
   ].join('\n');
@@ -46,7 +46,7 @@ const TIER0 = [
     id: 'status',
     pattern: /\b(status|dashboard|what'?s happening|what'?s going on|show activity)\b/i,
     selected: '/dashboard',
-    command: 'node scripts/dashboard.js',
+    command: 'bun scripts/dashboard.js',
     reason: 'status language maps directly to the dashboard without orchestration.',
     verification: 'Confirm the dashboard renders the expected pending counts and next action.',
   },
@@ -54,7 +54,7 @@ const TIER0 = [
     id: 'next',
     pattern: /\b(next|what should i do next|fix harness state|repair harness)\b/i,
     selected: '/do next',
-    command: 'node scripts/operator-console.js --run',
+    command: 'bun scripts/operator-console.js --run',
     reason: 'operator language maps to the next-action cockpit and deterministic local repairs.',
     verification: 'Confirm the operator report reaches idle or an explicit approval boundary.',
   },
@@ -62,7 +62,7 @@ const TIER0 = [
     id: 'operator',
     pattern: /\b(operator|operator console|approval capsule|what'?s up|what should happen next)\b/i,
     selected: '/do operator',
-    command: 'node scripts/operator-console.js',
+    command: 'bun scripts/operator-console.js',
     reason: 'operator-inspection language asks for the cockpit without running repairs.',
     verification: 'Confirm the report names the next action, boundary, risk, and verification profile.',
   },
@@ -70,7 +70,7 @@ const TIER0 = [
     id: 'continue',
     pattern: /\b(continue|keep going)\b/i,
     selected: '/do continue',
-    command: 'node scripts/continue-action.js --run',
+    command: 'bun scripts/continue-action.js --run',
     reason: 'continuation language should resume active campaign or fleet state when present.',
     verification: 'Confirm the continuation report either resumes work or says no active work exists.',
   },
@@ -86,7 +86,7 @@ const TIER0 = [
     id: 'test',
     pattern: /\b(test|tests)\b/i,
     selected: 'direct-command',
-    command: 'npm run test',
+    command: 'bun run test',
     reason: 'test language maps to the project verification command.',
     verification: 'Confirm the command exits 0 or reports actionable failures.',
   },
@@ -94,7 +94,7 @@ const TIER0 = [
     id: 'build',
     pattern: /\b(build)\b/i,
     selected: 'direct-command',
-    command: 'npm run build',
+    command: 'bun run build',
     reason: 'build language maps to the project build command.',
     verification: 'Confirm the command exits 0 or reports actionable failures.',
   },
@@ -102,7 +102,7 @@ const TIER0 = [
     id: 'typecheck',
     pattern: /\b(typecheck|type check)\b/i,
     selected: 'direct-command',
-    command: 'npm run typecheck',
+    command: 'bun run typecheck',
     reason: 'typecheck language maps to the project type verification command.',
     verification: 'Confirm the command exits 0 or reports actionable type errors.',
   },

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const fs = require('fs');
@@ -23,7 +23,7 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/golden-path.js --runtime claude|codex --fixture <fixture.json> [--json] [--output <result.json>] [--keep-temp]',
+    '  bun scripts/golden-path.js --runtime claude|codex --fixture <fixture.json> [--json] [--output <result.json>] [--keep-temp]',
     '',
     'Runs deterministic fixture automation only. It does not register a plugin or execute an LLM task.',
   ].join('\n');

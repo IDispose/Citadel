@@ -49,5 +49,5 @@ This package should be smaller and more stable than the internal `core/contracts
 
 Cloud and external integrations should depend on this package, not on `core/*`.
 The checked-in `vendor/` modules are generated public contract artifacts. Run
-`node scripts/generate-public-contracts.js --check` at the Citadel root to prove
+`bun scripts/generate-public-contracts.js --check` at the Citadel root to prove
 they match the canonical contract sources.

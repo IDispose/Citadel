@@ -28,15 +28,15 @@ Direction: Transform Seth Gammon's GitHub profile and the Citadel public site in
 | 1 | file_exists | `.planning/research/citadel-profile-achievements.md` |
 | 1 | manual | Public GitHub profile visibly includes the profile README and verified social links |
 | 2 | file_exists | `docs/interactive-story-contract.md` |
-| 2 | command_passes | `node scripts/test-routing-sync.js` |
-| 3 | command_passes | `node scripts/test-citadel-site-story.js` |
+| 2 | command_passes | `bun scripts/test-routing-sync.js` |
+| 3 | command_passes | `bun scripts/test-citadel-site-story.js` |
 | 3 | visual_verify | desktop and mobile journey screenshots |
-| 4 | command_passes | `node scripts/test-citadel-site-story.js` |
+| 4 | command_passes | `bun scripts/test-citadel-site-story.js` |
 | 4 | visual_verify | fleet, unknown-state, and deploy replay screenshots |
-| 5 | command_passes | `node scripts/test-citadel-site-story.js` |
+| 5 | command_passes | `bun scripts/test-citadel-site-story.js` |
 | 5 | visual_verify | keyboard, mobile, and reduced-motion capture set |
-| 6 | command_passes | `node scripts/test-all.js --strict` |
-| 6 | command_passes | `node scripts/release-package.js --ref HEAD --dry-run --verify-reproducible` |
+| 6 | command_passes | `bun scripts/test-all.js --strict` |
+| 6 | command_passes | `bun scripts/release-package.js --ref HEAD --dry-run --verify-reproducible` |
 | 6 | manual | GitHub Pages serves the verified experience after protected merge |
 
 ## Quality bar

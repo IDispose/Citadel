@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -162,7 +162,7 @@ function parseArgs(argv) {
 function main(argv = process.argv.slice(2)) {
   const options = parseArgs(argv);
   if (options.help) {
-    console.log('Usage: node scripts/product-proof-cohort.js --input <records.jsonl> [--json] [--require-complete]');
+    console.log('Usage: bun scripts/product-proof-cohort.js --input <records.jsonl> [--json] [--require-complete]');
     return null;
   }
   if (!options.input) throw new Error('--input is required');

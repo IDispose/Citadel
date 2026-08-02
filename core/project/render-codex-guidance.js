@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -31,7 +31,7 @@ function renderCodexGuidance(spec) {
     '## Verification',
     '',
     '- Use the narrowest command that proves the changed behavior.',
-    '- Run `node scripts/test-all.js` after modifying hooks, skills, runtime adapters, or shared architecture code.',
+    '- Run `bun scripts/test-all.js` after modifying hooks, skills, runtime adapters, or shared architecture code.',
     '- Run targeted tests first when the change is scoped to one script, hook, or generator.',
     '',
     '## Review Guidelines',

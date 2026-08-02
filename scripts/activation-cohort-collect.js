@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -21,8 +21,8 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node scripts/activation-cohort-collect.js [--root path] [--dry-run] [--json]',
-    '       node scripts/activation-cohort-collect.js --fixture comments.json [--root path] [--dry-run] [--json]',
+    'Usage: bun scripts/activation-cohort-collect.js [--root path] [--dry-run] [--json]',
+    '       bun scripts/activation-cohort-collect.js --fixture comments.json [--root path] [--dry-run] [--json]',
   ].join('\n');
 }
 

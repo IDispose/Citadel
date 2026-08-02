@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * post-edit.js — PostToolUse hook (runs on every Edit/Write)

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -35,16 +35,6 @@ const DEFAULT_OUTPUT = path.join(
 );
 let activeScenario = null;
 
-function resolveNpmCli() {
-  const executableDirectory = path.dirname(process.execPath);
-  const candidates = [
-    process.env.npm_execpath,
-    path.join(executableDirectory, 'node_modules', 'npm', 'bin', 'npm-cli.js'),
-    path.join(executableDirectory, '..', 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js'),
-  ].filter(Boolean);
-  return candidates.find((candidate) => fs.existsSync(candidate)) || null;
-}
-
 function parseArgs(argv) {
   const options = { out: DEFAULT_OUTPUT, keepScratch: false };
   for (let index = 0; index < argv.length; index += 1) {
@@ -62,7 +52,7 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node scripts/test-governed-lifecycle-usecases.js [--out FILE] [--keep-scratch]',
+    'Usage: bun scripts/test-governed-lifecycle-usecases.js [--out FILE] [--keep-scratch]',
     '',
     'Runs isolated local-user journeys and writes a privacy-bounded proof record.',
     'It does not claim registry publication, independent repository ownership,',
@@ -377,7 +367,7 @@ function governanceScenario(suite) {
       FLEET_STEWARD, '--project-root', projectRoot,
       '--session', sessionFile, '--json',
     ],
-    display: 'node scripts/fleet-steward.js --project-root <project> --session <session> --json',
+    display: 'bun scripts/fleet-steward.js --project-root <project> --session <session> --json',
   }).json;
   assert.deepEqual(beforeMerge.analysis.mergeCandidates, []);
   assert.equal(beforeMerge.analysis.governanceBlocked.length, 1);
@@ -448,7 +438,7 @@ function governanceScenario(suite) {
       FLEET_STEWARD, '--project-root', projectRoot,
       '--session', sessionFile, '--json',
     ],
-    display: 'node scripts/fleet-steward.js --project-root <project> --session <session> --json',
+    display: 'bun scripts/fleet-steward.js --project-root <project> --session <session> --json',
   }).json;
   assert.deepEqual(afterMerge.analysis.mergeCandidates.map((item) => item.id), ['4']);
   assert.equal(afterMerge.analysis.governanceBlocked.length, 0);
@@ -867,27 +857,23 @@ function controlPlaneScenario(suite) {
     ],
     ['registry publication', 'independently owned repository conformance', 'stable 1.0 compatibility'],
   );
-  const npmCli = resolveNpmCli();
-  assert(npmCli, 'npm CLI is required for the package user journey');
+  const { packStep, installTarballStep } = require('../core/runtime/packager');
   const packDir = path.join(suite, 'contract-pack');
   const npmCache = path.join(suite, 'npm-cache');
   fs.mkdirSync(packDir, { recursive: true });
-  const packed = runStep(scenario, {
+  const pack = packStep({ packageDir: path.join(ROOT, 'packages', 'contracts'), destDir: packDir });
+  const packedStep = runStep(scenario, {
     id: 'contracts-pack',
-    command: process.execPath,
-    args: [
-      npmCli,
-      'pack', './packages/contracts',
-      '--json',
-      '--pack-destination', packDir,
-      '--cache', npmCache,
-    ],
-    display: 'npm pack ./packages/contracts --json --pack-destination <scratch>',
-    cwd: ROOT,
+    command: pack.command,
+    args: pack.args,
+    display: 'pack ./packages/contracts into <scratch>',
+    cwd: pack.cwd,
     timeout: 120_000,
-  }).json;
-  const tarball = path.join(packDir, packed[0].filename);
+    json: pack.json,
+  });
+  const tarball = pack.tarballFrom(packedStep.result.stdout);
   assert(fs.existsSync(tarball));
+  const packageInfo = require('../core/runtime/packager').describeTarball(tarball, path.join(ROOT, 'packages', 'contracts'));
 
   const external = path.join(suite, 'external-adapter');
   fs.mkdirSync(external, { recursive: true });
@@ -896,16 +882,12 @@ function controlPlaneScenario(suite) {
     version: '1.0.0',
     private: true,
   });
+  const install = installTarballStep({ tarball, cacheDir: npmCache });
   runStep(scenario, {
     id: 'contracts-install',
-    command: process.execPath,
-    args: [
-      npmCli,
-      'install', tarball,
-      '--ignore-scripts', '--no-audit', '--no-fund', '--offline',
-      '--cache', npmCache,
-    ],
-    display: 'npm install <citadel-contracts.tgz> --ignore-scripts --offline',
+    command: install.command,
+    args: install.args,
+    display: 'install <citadel-contracts.tgz> --ignore-scripts',
     cwd: external,
     timeout: 120_000,
     json: false,
@@ -1053,9 +1035,9 @@ function controlPlaneScenario(suite) {
   assert.equal(observed.includes('BEGIN PRIVATE KEY'), false);
   assert.equal(observed.includes('BEGIN PUBLIC KEY'), false);
   scenario.facts = {
-    package_version: packed[0].version,
-    package_entry_count: packed[0].entryCount,
-    package_integrity: packed[0].integrity,
+    package_version: packageInfo.version,
+    package_entry_count: packageInfo.entryCount,
+    package_integrity: packageInfo.integrity,
     replayed_events: replay.result.events.length,
     replay_cursor: replay.result.next_cursor,
     untrusted_authority_reason: untrusted.reason_code,

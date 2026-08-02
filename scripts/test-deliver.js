@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -56,7 +56,7 @@ withTempProject((projectRoot) => {
   assert.equal(intake.status, 'pending');
 
   const result = createDeliveryFromIntake(projectRoot, intakePath, {
-    verification: 'npm run test',
+    verification: 'bun run test',
   });
   assert.equal(result.slug, 'add-auth-flow');
   assert(fs.existsSync(result.campaignPath), 'campaign should be created');

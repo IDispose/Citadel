@@ -859,7 +859,7 @@ if (typeof document !== 'undefined') (() => {
         frag.appendChild(block);
       }
     }
-    if (!data.report && !cohort) frag.appendChild(emptyState(data.note || 'Activation evidence is unknown.', 'node scripts/activation-telemetry.js report'));
+    if (!data.report && !cohort) frag.appendChild(emptyState(data.note || 'Activation evidence is unknown.', 'bun scripts/activation-telemetry.js report'));
     return frag;
   }
 
@@ -915,7 +915,7 @@ if (typeof document !== 'undefined') (() => {
       const notice = sourceNotice(body.data);
       content.replaceChildren(notice || rendered);
     } catch (error) {
-      content.replaceChildren(emptyState(`Could not reach the dashboard server: ${error.message}`, 'node scripts/dashboard-server.js'));
+      content.replaceChildren(emptyState(`Could not reach the dashboard server: ${error.message}`, 'bun scripts/dashboard-server.js'));
     }
   }
 

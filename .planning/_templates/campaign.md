@@ -64,7 +64,7 @@ Direction: {The original user direction that created this campaign}
 
 ## Exit Evidence
 
-<!-- Optional evidence contract. Validate with: node scripts/evidence-validate.js --file {campaign-file} --target phase:1 -->
+<!-- Optional evidence contract. Validate with: bun scripts/evidence-validate.js --file {campaign-file} --target phase:1 -->
 <!-- Types: file_diff, command_result, test_result, screenshot, browser_route_check, doc_update, pr_link, review_thread_resolution, hook_status -->
 
 | Target | ID | Type | Required | Evidence | Status | Retries Remaining | Next Action |

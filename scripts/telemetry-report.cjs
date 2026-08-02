@@ -1,14 +1,14 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * telemetry-report.cjs — Generate human-readable telemetry summaries.
  *
  * Usage:
- *   node scripts/telemetry-report.cjs                  Full summary
- *   node scripts/telemetry-report.cjs --last 10        Last N runs
- *   node scripts/telemetry-report.cjs --hooks          Hook timing summary
- *   node scripts/telemetry-report.cjs --compression    Discovery compression stats
- *   node scripts/telemetry-report.cjs --tokens         Token economics section
+ *   bun scripts/telemetry-report.cjs                  Full summary
+ *   bun scripts/telemetry-report.cjs --last 10        Last N runs
+ *   bun scripts/telemetry-report.cjs --hooks          Hook timing summary
+ *   bun scripts/telemetry-report.cjs --compression    Discovery compression stats
+ *   bun scripts/telemetry-report.cjs --tokens         Token economics section
  */
 
 const {

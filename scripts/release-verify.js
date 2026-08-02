@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -121,7 +121,7 @@ function defaultArchive() {
 
 function main() {
   if (process.argv.includes('--help') || process.argv.includes('-h')) {
-    console.log('Usage: node scripts/release-verify.js [archive.tar.gz] [--ref v1.1.0] [--version 1.1.0]');
+    console.log('Usage: bun scripts/release-verify.js [archive.tar.gz] [--ref v1.1.0] [--version 1.1.0]');
     return;
   }
   const positional = process.argv.slice(2).find((value, index, values) => !value.startsWith('-') && (index === 0 || !values[index - 1].startsWith('--')));

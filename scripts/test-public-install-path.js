@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -15,13 +15,13 @@ const CLONES = Object.freeze([
 const COMMANDS = Object.freeze([
   {
     runtime: 'claude',
-    powershell: 'node "$env:USERPROFILE\\Citadel\\scripts\\install.js" --runtime claude --install --scope local',
-    shell: 'node "$HOME/Citadel/scripts/install.js" --runtime claude --install --scope local',
+    powershell: 'bun "$env:USERPROFILE\\Citadel\\scripts\\install.js" --runtime claude --install --scope local',
+    shell: 'bun "$HOME/Citadel/scripts/install.js" --runtime claude --install --scope local',
   },
   {
     runtime: 'codex',
-    powershell: 'node "$env:USERPROFILE\\Citadel\\scripts\\install.js" --runtime codex --add-marketplace',
-    shell: 'node "$HOME/Citadel/scripts/install.js" --runtime codex --add-marketplace',
+    powershell: 'bun "$env:USERPROFILE\\Citadel\\scripts\\install.js" --runtime codex --add-marketplace',
+    shell: 'bun "$HOME/Citadel/scripts/install.js" --runtime codex --add-marketplace',
   },
 ]);
 

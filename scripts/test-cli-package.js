@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -132,19 +132,15 @@ assert.equal(doctor.pass, false);
 assert.equal(cli.main(['pack', 'list', '--json'], { io: doctorCapture.io, cwd: ROOT }), cli.EXIT.OK);
 assert.equal(JSON.parse(doctorCapture.output.stdout).packs.length, 3);
 
-const packRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'citadel-npm-pack-'));
-const npmCli = path.join(path.dirname(process.execPath), 'node_modules', 'npm', 'bin', 'npm-cli.js');
+const packRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'citadel-pack-'));
+const { packStep } = require('../core/runtime/packager');
 const npmEnvironment = { ...process.env, npm_config_cache: path.join(packRoot, 'npm-cache') };
-const packed = fs.existsSync(npmCli)
-  ? spawnSync(process.execPath, [npmCli, 'pack', '--json', '--pack-destination', packRoot], {
-    cwd: ROOT, env: npmEnvironment, encoding: 'utf8', shell: false, stdio: ['ignore', 'pipe', 'pipe'],
-  })
-  : spawnSync('npm', ['pack', '--json', '--pack-destination', packRoot], {
-    cwd: ROOT, env: npmEnvironment, encoding: 'utf8', shell: false, stdio: ['ignore', 'pipe', 'pipe'],
-  });
+const pack = packStep({ packageDir: ROOT, destDir: packRoot });
+const packed = spawnSync(pack.command, pack.args, {
+  cwd: pack.cwd, env: npmEnvironment, encoding: 'utf8', shell: false, stdio: ['ignore', 'pipe', 'pipe'],
+});
 assert.equal(packed.status, 0, packed.stderr);
-const packedInfo = JSON.parse(packed.stdout);
-const archive = path.join(packRoot, packedInfo[0].filename);
+const archive = pack.tarballFrom(packed.stdout);
 const entries = tarEntries(zlib.gunzipSync(fs.readFileSync(archive)));
 const names = new Set(entries.map((entry) => entry.name));
 for (const required of [
@@ -172,13 +168,12 @@ const binEntry = entries.find((entry) => entry.name === 'package/bin/citadel.js'
 assert(binEntry.size > 0, 'npm tarball CLI entrypoint must contain executable code');
 
 const installedRoot = path.join(packRoot, 'installed');
-const installPacked = fs.existsSync(npmCli)
-  ? spawnSync(process.execPath, [npmCli, 'install', '--ignore-scripts', '--no-audit', '--no-fund', '--prefix', installedRoot, archive], {
-    cwd: packRoot, env: npmEnvironment, encoding: 'utf8', shell: false, stdio: ['ignore', 'pipe', 'pipe'],
-  })
-  : spawnSync('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', '--prefix', installedRoot, archive], {
-    cwd: packRoot, env: npmEnvironment, encoding: 'utf8', shell: false, stdio: ['ignore', 'pipe', 'pipe'],
-  });
+const { installTarballToPrefix } = require('../core/runtime/packager');
+const installStep = installTarballToPrefix({ tarball: archive, prefix: installedRoot, cacheDir: path.join(packRoot, 'npm-cache') });
+installStep.prepare();
+const installPacked = spawnSync(installStep.command, installStep.args, {
+  cwd: installStep.cwd, env: npmEnvironment, encoding: 'utf8', shell: false, stdio: ['ignore', 'pipe', 'pipe'],
+});
 assert.equal(installPacked.status, 0, installPacked.stderr);
 const installedBin = path.join(installedRoot, 'node_modules', 'citadel', 'bin', 'citadel.js');
 const shim = path.join(installedRoot, 'node_modules', '.bin', process.platform === 'win32' ? 'citadel.cmd' : 'citadel');

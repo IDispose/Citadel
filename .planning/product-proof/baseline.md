@@ -36,7 +36,7 @@ Captured 2026-07-10 in `C:\Users\gammo\Desktop\Citadel` for the **Operable, Obse
 
 **Verdict: partial (failed baseline).**
 
-- Command: `rtk node scripts/run-with-timeout.js 300 node scripts/test-all.js --strict`
+- Command: `rtk bun scripts/run-with-timeout.js 300 bun scripts/test-all.js --strict`
 - Wrapper exit status exposed by the shell tool: `1`; child exit code recorded by `run-with-timeout`: `524448`
 - Duration: `187.075s`
 - Timed out: `false`
@@ -51,7 +51,7 @@ Captured 2026-07-10 in `C:\Users\gammo\Desktop\Citadel` for the **Operable, Obse
 
 **Verdict: proven for focused installer tests; partial for release readiness.**
 
-- Command: `rtk node scripts/run-with-timeout.js 300 node scripts/test-installers.js`
+- Command: `rtk bun scripts/run-with-timeout.js 300 bun scripts/test-installers.js`
 - Exit status: `0`
 - Duration: `1.899s`
 - Evidence: `installer tests passed`.
@@ -61,7 +61,7 @@ Captured 2026-07-10 in `C:\Users\gammo\Desktop\Citadel` for the **Operable, Obse
 
 **Verdict: proven for the focused runtime contract.**
 
-- Command: `rtk node scripts/run-with-timeout.js 300 node scripts/test-codex-runtime.js`
+- Command: `rtk bun scripts/run-with-timeout.js 300 bun scripts/test-codex-runtime.js`
 - Exit status: `0`
 - Duration: `2.382s`
 - Evidence: `codex runtime tests passed`.
@@ -71,7 +71,7 @@ Captured 2026-07-10 in `C:\Users\gammo\Desktop\Citadel` for the **Operable, Obse
 
 **Verdict: proven for the focused integration contract.**
 
-- Command: `rtk node scripts/run-with-timeout.js 300 node scripts/test-codex-native-integrations.js`
+- Command: `rtk bun scripts/run-with-timeout.js 300 bun scripts/test-codex-native-integrations.js`
 - Exit status: `0`
 - Duration: `2.400s`
 - Evidence: `codex native integration tests passed`.
@@ -82,14 +82,14 @@ Captured 2026-07-10 in `C:\Users\gammo\Desktop\Citadel` for the **Operable, Obse
 
 Core dashboard:
 
-- Command: `rtk node scripts/run-with-timeout.js 300 node scripts/test-dashboard.js`
+- Command: `rtk bun scripts/run-with-timeout.js 300 bun scripts/test-dashboard.js`
 - Exit status: `0`
 - Duration: `17.453s`
 - Evidence: `dashboard tests passed`.
 
 Web dashboard:
 
-- Command: `rtk node scripts/run-with-timeout.js 300 node scripts/test-dashboard-web.js`
+- Command: `rtk bun scripts/run-with-timeout.js 300 bun scripts/test-dashboard-web.js`
 - Exit status: `0`
 - Duration: `4.404s`
 - Evidence: all web checks pass, including empty and corrupt project handling, invalidation, `/api/overview` schema, handoff serving, static shell/CSS, traversal protection, 404s, and write-method rejection.
@@ -133,7 +133,7 @@ Current product evidence:
 
 **Verdict: proven and reproducible.**
 
-- Command: `rtk node scripts/run-with-timeout.js 300 node scripts/test-codex-operational-improvements.js`
+- Command: `rtk bun scripts/run-with-timeout.js 300 bun scripts/test-codex-operational-improvements.js`
 - Exit status: `1`
 - Duration: `6.915s`
 - Timed out: `false`

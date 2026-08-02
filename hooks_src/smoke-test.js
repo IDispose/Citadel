@@ -1,9 +1,9 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * smoke-test.js — Validates all hooks load and execute without errors.
  *
- * Run manually: node hooks_src/smoke-test.js
+ * Run manually: bun hooks_src/smoke-test.js
  * Run via setup: automatically invoked during /setup
  *
  * Tests:
@@ -196,10 +196,10 @@ function main() {
   console.log('All hooks are healthy.');
   console.log('');
   console.log('Other test commands:');
-  console.log('  node scripts/skill-lint.js          lint all SKILL.md files');
-  console.log('  node scripts/skill-bench.js         validate benchmark scenarios');
-  console.log('  node scripts/skill-bench.js --execute  run scenarios against claude');
-  console.log('  node scripts/test-all.js            hooks + skills (fast, no claude)');
+  console.log('  bun scripts/skill-lint.js          lint all SKILL.md files');
+  console.log('  bun scripts/skill-bench.js         validate benchmark scenarios');
+  console.log('  bun scripts/skill-bench.js --execute  run scenarios against claude');
+  console.log('  bun scripts/test-all.js            hooks + skills (fast, no claude)');
   console.log('');
   process.exit(0);
 }

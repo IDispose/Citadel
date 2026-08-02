@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -16,7 +16,7 @@ assert.deepEqual(parseArgs(['--json', '--project-root', '.', '--', 'review', 'au
     now: '2026-06-05T12:00:00.000Z',
   });
   assert.equal(preview.selected, '/do next');
-  assert.equal(preview.command, 'node scripts/operator-console.js --run');
+  assert.equal(preview.command, 'bun scripts/operator-console.js --run');
   assert.equal(preview.tier, 0);
   assert.equal(preview.canRunNow, true);
 }

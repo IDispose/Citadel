@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * discovery-write.cjs — Write a structured agent discovery record to the persistent store.

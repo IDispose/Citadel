@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * integration-test.js — Full hook pipeline integration tests
@@ -13,9 +13,9 @@
  * No LLM needed.
  *
  * Usage:
- *   node scripts/integration-test.js             # run all sequences
- *   node scripts/integration-test.js --verbose   # show per-sequence output
- *   node scripts/integration-test.js --report    # write RESULTS.md
+ *   bun scripts/integration-test.js             # run all sequences
+ *   bun scripts/integration-test.js --verbose   # show per-sequence output
+ *   bun scripts/integration-test.js --report    # write RESULTS.md
  *
  * Exit codes:
  *   0 = all sequences pass
@@ -42,7 +42,7 @@ function makeSandbox() {
   fs.mkdirSync(path.join(dir, '.claude'), { recursive: true });
 
   // Install hooks into sandbox
-  const install = spawnSync('node', [path.join(CITADEL_ROOT, 'scripts', 'install-hooks.js'), dir], {
+  const install = spawnSync(process.execPath, [path.join(CITADEL_ROOT, 'scripts', 'install-hooks.js'), dir], {
     encoding: 'utf8', timeout: 10000,
   });
   if (install.status !== 0) throw new Error(`install-hooks failed: ${install.stderr}`);
@@ -62,7 +62,7 @@ function cleanup(dir) {
 function fireHookScript(scriptName, payload, sandbox, extraEnv = {}) {
   const scriptPath = path.join(HOOKS_SRC, scriptName);
   const input = JSON.stringify(payload);
-  const result = spawnSync('node', [scriptPath], {
+  const result = spawnSync(process.execPath, [scriptPath], {
     input,
     cwd: sandbox,
     env: {
@@ -94,7 +94,7 @@ function getHooksForEvent(sandbox, event, toolName) {
     }
     for (const hook of (entry.hooks || [])) {
       if (!hook.command) continue;
-      const m = hook.command.match(/node\s+"?([^"\s]+\.js)"?/);
+      const m = hook.command.match(/(?:node|bun)\s+"?([^"\s]+\.js)"?/);
       if (m) matched.push(m[1]);
     }
   }
@@ -109,7 +109,7 @@ function getHooksForEvent(sandbox, event, toolName) {
 function preToolUse(sandbox, toolName, toolInput) {
   const scripts = getHooksForEvent(sandbox, 'PreToolUse', toolName);
   for (const scriptPath of scripts) {
-    const r = spawnSync('node', [scriptPath], {
+    const r = spawnSync(process.execPath, [scriptPath], {
       input: JSON.stringify({ tool_name: toolName, tool_input: toolInput }),
       cwd: sandbox,
       env: { ...process.env, CLAUDE_PROJECT_DIR: sandbox, CLAUDE_PLUGIN_DATA: path.join(sandbox, '.claude') },
@@ -129,7 +129,7 @@ function preToolUse(sandbox, toolName, toolInput) {
 function postToolUse(sandbox, toolName, toolInput, toolResult) {
   const scripts = getHooksForEvent(sandbox, 'PostToolUse', toolName);
   for (const scriptPath of scripts) {
-    spawnSync('node', [scriptPath], {
+    spawnSync(process.execPath, [scriptPath], {
       input: JSON.stringify({ tool_name: toolName, tool_input: toolInput, tool_result: toolResult }),
       cwd: sandbox,
       env: { ...process.env, CLAUDE_PROJECT_DIR: sandbox, CLAUDE_PLUGIN_DATA: path.join(sandbox, '.claude') },
@@ -334,7 +334,7 @@ sequence('Edit out-of-scope file: warns but does not block', (sb) => {
 
   const filePath = path.join(sb, 'docs', 'README.md');
   // Fire protect-files directly to check stdout (preToolUse only returns blocked/not)
-  const r = spawnSync('node', [path.join(HOOKS_SRC, 'protect-files.js')], {
+  const r = spawnSync(process.execPath, [path.join(HOOKS_SRC, 'protect-files.js')], {
     input: JSON.stringify({ tool_name: 'Edit', tool_input: { file_path: filePath } }),
     cwd: sb,
     env: { ...process.env, CLAUDE_PROJECT_DIR: sb, CLAUDE_PLUGIN_DATA: path.join(sb, '.claude') },

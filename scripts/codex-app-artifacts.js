@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -45,6 +45,6 @@ if (mode === 'record') {
   console.log(JSON.stringify(report, null, 2));
   process.exit(report.pass ? 0 : 1);
 } else {
-  console.error('Usage: node scripts/codex-app-artifacts.js <record|list|verify> --path .planning/screenshots/example.png');
+  console.error('Usage: bun scripts/codex-app-artifacts.js <record|list|verify> --path .planning/screenshots/example.png');
   process.exit(1);
 }

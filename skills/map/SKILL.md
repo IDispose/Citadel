@@ -51,7 +51,7 @@ Do not use `/map` for:
 Run the index generator:
 
 ```bash
-node scripts/map-index.js --generate --root .
+bun scripts/map-index.js --generate --root .
 ```
 
 Add `--force` if the user requested a fresh rebuild or if the index is stale.
@@ -75,7 +75,7 @@ If `.planning/map/` does not exist, the generator creates it automatically.
 ### Step 2: QUERY (when user provides search terms)
 
 ```bash
-node scripts/map-index.js --query "<terms>"
+bun scripts/map-index.js --query "<terms>"
 ```
 
 The query engine scores files by:
@@ -90,7 +90,7 @@ Output is budget-capped at 8000 characters to stay injection-safe.
 ### Step 3: STATS (structural overview)
 
 ```bash
-node scripts/map-index.js --stats
+bun scripts/map-index.js --stats
 ```
 
 Outputs: file count, line count, export count, dependency edge count, route count,
@@ -101,7 +101,7 @@ breakdown by role.
 
 When another skill or orchestrator needs a map slice for agent injection:
 
-1. Run `node scripts/map-index.js --slice "<scope terms>" --max-files 15`
+1. Run `bun scripts/map-index.js --slice "<scope terms>" --max-files 15`
 2. Inject the generated compact block:
 
 ```
@@ -125,14 +125,14 @@ spend finding relevant files.
 Before injecting an existing map into a long-running campaign, run:
 
 ```bash
-node scripts/map-index.js --stale
+bun scripts/map-index.js --stale
 ```
 
 The command exits `0` when the map is current and `2` when indexed source files
 were added, changed, or removed. Refresh with:
 
 ```bash
-node scripts/map-index.js --generate --force --root .
+bun scripts/map-index.js --generate --force --root .
 ```
 
 ## Fleet Integration
@@ -174,7 +174,7 @@ Fleet agents receive map slices automatically when `/map` index exists:
 
 - **No source files found**: Generator writes an empty index (`fileCount: 0`). Query returns no results. Not an error.
 - **`.planning/` does not exist**: Generator creates `.planning/map/` automatically via `mkdirSync({ recursive: true })`.
-- **Index file missing when querying**: Error message: "Index not found. Run `node scripts/map-index.js --generate` first."
+- **Index file missing when querying**: Error message: "Index not found. Run `bun scripts/map-index.js --generate` first."
 - **Binary or unsupported files**: Silently skipped. Only files with recognized language extensions are indexed.
 - **Very large repos (10K+ files)**: The walker is iterative (stack-based), not recursive. No stack overflow risk. May take 5-10 seconds on first run.
 - **Windows paths**: All stored paths use forward slashes for cross-platform consistency.

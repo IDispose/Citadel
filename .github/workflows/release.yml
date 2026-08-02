@@ -10,24 +10,24 @@ permissions:
 
 jobs:
   verify:
-    name: verify node ${{ matrix.node }} on ${{ matrix.os }}
+    name: verify bun ${{ matrix.bun }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        node: [18, 20]
+        bun: [latest]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
-          node-version: ${{ matrix.node }}
+          bun-version: latest
       - name: Run strict verification suite
-        run: node scripts/test-all.js --strict
+        run: bun scripts/test-all.js --strict
       - name: Verify deterministic release packaging
-        run: node scripts/release-package.js --ref "${{ github.ref_name }}" --dry-run --verify-reproducible
+        run: bun scripts/release-package.js --ref "${{ github.ref_name }}" --dry-run --verify-reproducible
 
   package:
     name: package tagged release
@@ -39,13 +39,13 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
-          node-version: 20
+          bun-version: latest
       - name: Build tagged artifact
-        run: node scripts/release-package.js --ref "${{ github.ref_name }}" --output-dir dist/release --verify-reproducible
+        run: bun scripts/release-package.js --ref "${{ github.ref_name }}" --output-dir dist/release --verify-reproducible
       - name: Verify tagged artifact
-        run: node scripts/release-verify.js "dist/release/citadel-${{ github.ref_name }}.tar.gz" --ref "${{ github.ref_name }}"
+        run: bun scripts/release-verify.js "dist/release/citadel-${{ github.ref_name }}.tar.gz" --ref "${{ github.ref_name }}"
       - name: Publish verified GitHub release
         env:
           GH_TOKEN: ${{ github.token }}

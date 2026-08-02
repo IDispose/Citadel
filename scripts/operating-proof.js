@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const childProcess = require('child_process');
@@ -37,7 +37,7 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/operating-proof.js [--json] [--write] [--run-verification] [--project-root <path>]',
+    '  bun scripts/operating-proof.js [--json] [--write] [--run-verification] [--project-root <path>]',
     '',
     'Checks the inspectable Citadel operating loop: setup, orient, route, verify, and report.',
     '--write records .planning/operating-proof/latest.md.',
@@ -173,7 +173,7 @@ function checkRoute(projectRoot, routeRequest) {
 function checkVerify(projectRoot, options = {}) {
   const scripts = readPackageScripts(projectRoot);
   const profile = selectVerificationProfile(projectRoot);
-  const command = scripts.test ? 'npm run test' : profile.primaryCommand;
+  const command = scripts.test ? 'bun run test' : profile.primaryCommand;
   const hasCommand = Boolean(command);
   const result = options.runVerification && hasCommand ? runCommand(projectRoot, command) : null;
 

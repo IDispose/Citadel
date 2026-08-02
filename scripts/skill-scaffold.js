@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -38,7 +38,7 @@ function parseArgs(argv) {
 }
 
 function usage() {
-  return 'Usage: node scripts/skill-scaffold.js --name name --description "..." [--task-class utility] [--risk-level medium] [--with-benchmark] --write';
+  return 'Usage: bun scripts/skill-scaffold.js --name name --description "..." [--task-class utility] [--risk-level medium] [--with-benchmark] --write';
 }
 
 function skillMarkdown(args) {
@@ -52,7 +52,7 @@ last-updated: 2026-06-04
 task-class: ${args.taskClass}
 risk-level: ${args.riskLevel}
 expected-artifacts: [HANDOFF]
-verification-commands: [node scripts/skill-lint.js ${args.name}]
+verification-commands: [bun scripts/skill-lint.js ${args.name}]
 benchmark-status: ${args.withBenchmark ? 'present' : 'none'}
 neighbor-skills: []
 ---
@@ -82,8 +82,8 @@ Do not use when another named skill is more specific.
 
 ## Quality Gates
 
-- \`node scripts/skill-lint.js ${args.name}\` passes.
-- Any benchmark scaffold validates with \`node scripts/skill-bench.js --skill ${args.name}\`.
+- \`bun scripts/skill-lint.js ${args.name}\` passes.
+- Any benchmark scaffold validates with \`bun scripts/skill-bench.js --skill ${args.name}\`.
 
 ## Exit Protocol
 

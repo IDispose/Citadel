@@ -38,7 +38,7 @@ last-updated: 2026-03-24
 For Codex-visible PRs, decide whether to use native `@codex review`, local Citadel triage, or both:
 
 ```bash
-node scripts/codex-pr-review.js plan --repo <owner/repo> --pr <number> --risk <low|medium|high|local-only> --write
+bun scripts/codex-pr-review.js plan --repo <owner/repo> --pr <number> --risk <low|medium|high|local-only> --write
 ```
 
 Use native `@codex review` when the diff is GitHub-visible and the main need is a focused P0/P1 review. Use local Citadel triage when the answer depends on unpushed files, local generated artifacts, or hands-on edits. Use both for large or risky PRs.
@@ -46,7 +46,7 @@ Use native `@codex review` when the diff is GitHub-visible and the main need is 
 After Codex posts a GitHub review, fetch and ingest the review comments before deciding merge readiness:
 
 ```bash
-node scripts/codex-review-fetch.js --repo <owner/repo> --pr <number> --write
+bun scripts/codex-review-fetch.js --repo <owner/repo> --pr <number> --write
 ```
 
 Use `--file <review-comments.json>` with the same script when working from exported/offline review data.

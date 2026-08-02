@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -69,7 +69,7 @@ function report() {
   console.log(JSON.stringify(result, null, 2));
 
   if (!baseline) {
-    console.log('\nNo baseline found. Run `node scripts/codex-live-verify.js baseline` before the live probe.');
+    console.log('\nNo baseline found. Run `bun scripts/codex-live-verify.js baseline` before the live probe.');
     return;
   }
 
@@ -95,6 +95,6 @@ if (mode === 'baseline') {
 } else if (mode === 'report') {
   report();
 } else {
-  console.log('Usage: node scripts/codex-live-verify.js <baseline|report>');
+  console.log('Usage: bun scripts/codex-live-verify.js <baseline|report>');
   process.exit(1);
 }

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -36,7 +36,7 @@ function main() {
   for (const category of CATEGORIES) assert(scenarios.some((item) => item.category === category));
   for (const scenario of scenarios) {
     assert.match(scenario.pinned_ref, /^[0-9a-f]{40}$/);
-    if (scenario.verification_command[0] === 'node') {
+    if (['node', 'bun'].includes(scenario.verification_command[0])) {
       assert(fs.existsSync(path.join(ROOT, scenario.verification_command[1])), `${scenario.id} verifier must exist`);
     }
   }

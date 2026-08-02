@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * compress-discovery.cjs — Extract structured discovery briefs from agent outputs.

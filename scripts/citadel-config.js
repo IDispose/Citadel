@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const fs = require('fs');
@@ -47,15 +47,15 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/citadel-config.js show [--runtime ID] [--json]',
-    '  node scripts/citadel-config.js check <skill|route|hook> ID [--runtime ID] [--json]',
-    '  node scripts/citadel-config.js reconcile [--runtime ID] --apply [--json]',
-    '  node scripts/citadel-config.js initialize --input STACK.json [--apply] [--json]',
-    '  node scripts/citadel-config.js plan [--profile ID[@VERSION]] [--enable BUNDLE] [--disable BUNDLE]',
-    '  node scripts/citadel-config.js migrate [--apply]',
-    '  node scripts/citadel-config.js set-profile ID[@VERSION] [--apply]',
-    '  node scripts/citadel-config.js enable BUNDLE [--apply]',
-    '  node scripts/citadel-config.js disable BUNDLE [--apply]',
+    '  bun scripts/citadel-config.js show [--runtime ID] [--json]',
+    '  bun scripts/citadel-config.js check <skill|route|hook> ID [--runtime ID] [--json]',
+    '  bun scripts/citadel-config.js reconcile [--runtime ID] --apply [--json]',
+    '  bun scripts/citadel-config.js initialize --input STACK.json [--apply] [--json]',
+    '  bun scripts/citadel-config.js plan [--profile ID[@VERSION]] [--enable BUNDLE] [--disable BUNDLE]',
+    '  bun scripts/citadel-config.js migrate [--apply]',
+    '  bun scripts/citadel-config.js set-profile ID[@VERSION] [--apply]',
+    '  bun scripts/citadel-config.js enable BUNDLE [--apply]',
+    '  bun scripts/citadel-config.js disable BUNDLE [--apply]',
     '',
     'Planning is the default. No command writes harness.json unless --apply is explicit.',
   ].join('\n');

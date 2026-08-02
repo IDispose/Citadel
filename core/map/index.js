@@ -392,7 +392,7 @@ function readPackageMetadata(rootDir) {
   for (const [name, command] of Object.entries(scripts)) {
     packageScripts[name] = command;
     if (VERIFICATION_SCRIPT_PATTERN.test(name) || VERIFICATION_SCRIPT_PATTERN.test(command)) {
-      verificationCommands.push(`npm run ${name}`);
+      verificationCommands.push(`bun run ${name}`);
     }
   }
 

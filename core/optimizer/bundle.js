@@ -325,7 +325,7 @@ content-addressed manifest.
 Verify from a Citadel checkout:
 
 \`\`\`bash
-node scripts/optimizer-proof-bundle.js verify <bundle-directory>
+bun scripts/optimizer-proof-bundle.js verify <bundle-directory>
 \`\`\`
 
 Fixture simulations validate the evidence machinery only. They are not model

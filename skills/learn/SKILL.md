@@ -78,7 +78,7 @@ contradictions. A wiki is a compiler; a log is an interpreter.
 
 **If `/learn --doc-sync`:** Run:
 ```
-node hooks_src/doc-sync.js
+bun hooks_src/doc-sync.js
 ```
 Then review `.planning/doc-sync/latest.md`. Stop after reporting the queue count,
 files surfaced, skipped deleted files, and report path. Do not run campaign
@@ -201,7 +201,7 @@ Lint results are reported in the summary. Lint does not modify wiki pages.
 Run a safe deterministic memory compile pass:
 
 ```
-node scripts/memory-compile.js compile
+bun scripts/memory-compile.js compile
 ```
 
 This writes compact semantic blocks to `.planning/memory/blocks/` and updates
@@ -211,15 +211,15 @@ This writes compact semantic blocks to `.planning/memory/blocks/` and updates
 For lint-only memory checks, run:
 
 ```
-node scripts/memory-compile.js lint
+bun scripts/memory-compile.js lint
 ```
 
 For agent context loading, use scoped listing instead of rereading full
 histories:
 
 ```
-node scripts/memory-compile.js list --scope verification
-node scripts/memory-compile.js list --query "Fleet readiness"
+bun scripts/memory-compile.js list --scope verification
+bun scripts/memory-compile.js list --query "Fleet readiness"
 ```
 
 Memory block lint must pass before calling the compile successful. Missing

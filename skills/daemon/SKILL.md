@@ -58,7 +58,7 @@ Architecture, daemon.json field reference, and rationale: docs/DAEMON.md.
 
 ### Codex automation lane
 
-In Codex, prefer a Codex Automation for durable unattended daemon ticks when available: `node scripts/codex-automation.js plan --type daemon --command "/daemon tick" --cadence "<interval>" --target background-worktree --write`. Use the returned prompt in the Codex app automation surface. Each run must still read and update `.planning/daemon.json`; Codex owns the scheduling, Citadel owns the budget/status gates and run log.
+In Codex, prefer a Codex Automation for durable unattended daemon ticks when available: `bun scripts/codex-automation.js plan --type daemon --command "/daemon tick" --cadence "<interval>" --target background-worktree --write`. Use the returned prompt in the Codex app automation surface. Each run must still read and update `.planning/daemon.json`; Codex owns the scheduling, Citadel owns the budget/status gates and run log.
 
 ### Opt-in routine flow — `/daemon start --remote`
 
@@ -180,7 +180,7 @@ After `/do continue` returns (or the session is winding down):
 1. Read the campaign file again to get updated status and phase
 2. **No-work gate**: If the campaign status is `completed`, `failed`, `parked`, or the campaign file no longer exists -- stop the daemon immediately: update daemon.json (`status: "stopped"`, `stopReason: "no-active-work"`, `stoppedAt: "{ISO timestamp}"`), delete both triggers, log `daemon-stop` with reason `no-active-work`. Do NOT schedule the next tick. Exit after recording the session.
 3. Update daemon.json: increment `sessionCount`, add `costPerSession` to `estimatedSpend`, set `lastTickStatus: "completed"`, append a `log` entry with session, timestamp, status, phase, summary, and estimatedCost (JSON shape: docs/DAEMON.md#daemonjson-reference).
-4. Run a safe memory consolidation pass when the session produced planning changes: `node scripts/memory-compile.js compile`. If it fails, record the failure in daemon.json `log` and continue shutdown or scheduling; memory compile failures must not create overlapping daemon ticks.
+4. Run a safe memory consolidation pass when the session produced planning changes: `bun scripts/memory-compile.js compile`. If it fails, record the failure in daemon.json `log` and continue shutdown or scheduling; memory compile failures must not create overlapping daemon ticks.
 
 **Step 5: Schedule next tick**
 

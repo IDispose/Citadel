@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * run-all.js -- Codex compatibility test runner.
@@ -6,9 +6,9 @@
  * Runs all COMPAT-* tests and reports results.
  *
  * Usage:
- *   node scripts/compat-tests/run-all.js           # offline tests only
- *   node scripts/compat-tests/run-all.js --live     # include tests requiring live Codex session
- *   node scripts/compat-tests/run-all.js --json     # machine-readable output
+ *   bun scripts/compat-tests/run-all.js           # offline tests only
+ *   bun scripts/compat-tests/run-all.js --live     # include tests requiring live Codex session
+ *   bun scripts/compat-tests/run-all.js --json     # machine-readable output
  *
  * Exit codes:
  *   0 = all tests pass

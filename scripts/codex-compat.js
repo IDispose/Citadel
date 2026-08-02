@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * codex-compat.js -- Generates all Codex CLI artifacts from Citadel source.
@@ -14,9 +14,9 @@
  *   .agents/skills/{name}/agents/openai.yaml   UI metadata per skill
  *
  * Usage:
- *   node scripts/codex-compat.js                    # from project root
- *   node scripts/codex-compat.js /path/to/project   # explicit project path
- *   node scripts/codex-compat.js --dry-run           # show what would be generated
+ *   bun scripts/codex-compat.js                    # from project root
+ *   bun scripts/codex-compat.js /path/to/project   # explicit project path
+ *   bun scripts/codex-compat.js --dry-run           # show what would be generated
  *
  * Generated files include headers marking them as Citadel-managed.
  * Re-running is idempotent -- overwrites generated files, never touches hand-authored ones.
@@ -715,7 +715,7 @@ function syncProjectGuidance() {
       '## Verification',
       '',
       '- Use the narrowest command that proves the changed behavior.',
-      '- Run `node scripts/codex-readiness-check.js --write` after generating Codex artifacts when Citadel is available.',
+      '- Run `bun scripts/codex-readiness-check.js --write` after generating Codex artifacts when Citadel is available.',
       '',
     ].join('\n');
     writeFile(agentsMdPath, fallback);

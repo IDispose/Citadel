@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * local-schedule.js -- Quota-free replacement for /schedule add.
@@ -12,11 +12,11 @@
  *   claude --plugin-dir <project-root> --dangerously-skip-permissions -p "<command>"
  *
  * Usage:
- *   node scripts/local-schedule.js add "<cron-or-human>" "<claude-command>"
- *   node scripts/local-schedule.js add "every 30m" "/pr-watch"
- *   node scripts/local-schedule.js add "0 9 * * *" "/do continue"
- *   node scripts/local-schedule.js list
- *   node scripts/local-schedule.js remove <id>
+ *   bun scripts/local-schedule.js add "<cron-or-human>" "<claude-command>"
+ *   bun scripts/local-schedule.js add "every 30m" "/pr-watch"
+ *   bun scripts/local-schedule.js add "0 9 * * *" "/do continue"
+ *   bun scripts/local-schedule.js list
+ *   bun scripts/local-schedule.js remove <id>
  *
  * IDs are prefixed `citadel-` on both platforms so they're easy to find.
  */
@@ -90,7 +90,7 @@ function winAdd(cronExpr, claudeCommand) {
     }
     execFileSync('schtasks', schtasksArgs, { stdio: 'inherit' });
     console.log(`Scheduled. ID: ${id}`);
-    console.log(`Remove with: node scripts/local-schedule.js remove ${id}`);
+    console.log(`Remove with: bun scripts/local-schedule.js remove ${id}`);
 }
 
 function winList() {
@@ -133,7 +133,7 @@ function unixAdd(cronExpr, claudeCommand) {
     }
     writeCrontab(updated);
     console.log(`Scheduled. ID: ${id}`);
-    console.log(`Remove with: node scripts/local-schedule.js remove ${id}`);
+    console.log(`Remove with: bun scripts/local-schedule.js remove ${id}`);
 }
 
 function unixList() {

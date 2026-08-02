@@ -27,7 +27,7 @@ last-updated: 2026-03-26
 ## Default execution path (READ FIRST)
 
 **`/schedule add` does NOT call `CronCreate` by default.** It shells out to
-`node scripts/local-schedule.js` which installs a native OS entry (Windows
+`bun scripts/local-schedule.js` which installs a native OS entry (Windows
 Task Scheduler or Unix cron). Only pass `--remote` to use Anthropic's routine
 system, and only after explicit user confirmation.
 
@@ -38,7 +38,7 @@ cap; every fire of the scheduled task counts. See
 ### Default flow — `/schedule add "<expr>" "<command>"` (no `--remote`)
 Run:
 ```bash
-node scripts/local-schedule.js add "<expr>" "<command>"
+bun scripts/local-schedule.js add "<expr>" "<command>"
 ```
 Then report the returned ID and the removal command. This survives session
 end, machine reboot, and consumes zero routine quota. Use
@@ -50,7 +50,7 @@ end, machine reboot, and consumes zero routine quota. Use
 When running in Codex and the user wants the schedule to survive the current terminal session, create a Codex Automation plan instead of a local OS entry:
 
 ```bash
-node scripts/codex-automation.js plan --type schedule --cadence "<expr>" --command "<command>" --write
+bun scripts/codex-automation.js plan --type schedule --cadence "<expr>" --command "<command>" --write
 ```
 
 Give the returned `prompt` to the Codex app automation surface and keep the generated `.planning/codex-automations/{id}.json` as the durable Citadel record.

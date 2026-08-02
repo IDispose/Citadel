@@ -21,9 +21,11 @@ function writeJson(filePath, data) {
 }
 
 function quoteNodeCommand(command) {
-  return command.replace(/^node\s+(.+)$/, (_match, script) => {
-    if (script.includes(' ') && !script.startsWith('"')) return `node "${script}"`;
-    return `node ${script}`;
+  // Accepts either runtime prefix (node or bun) and preserves it, quoting the
+  // script path when it contains spaces. Citadel now emits `bun` commands.
+  return command.replace(/^(node|bun)\s+(.+)$/, (_match, runtime, script) => {
+    if (script.includes(' ') && !script.startsWith('"')) return `${runtime} "${script}"`;
+    return `${runtime} ${script}`;
   });
 }
 

@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "node verify.js"
+    "test": "bun verify.js"
   }
 }

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -26,7 +26,7 @@ function hasFlag(name) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/loop-runner.js --action "<shell command>" --verify "<shell command>" [--max-attempts 3] [--write]',
+    '  bun scripts/loop-runner.js --action "<shell command>" --verify "<shell command>" [--max-attempts 3] [--write]',
     '',
     'Runs an explicit bounded foreground loop. The verifier controls success.',
   ].join('\n');

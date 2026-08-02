@@ -131,8 +131,35 @@ function loadBuiltinSqlite() {
   }
 }
 
+function loadBunSqlite() {
+  // Bun ships an embedded SQLite as `bun:sqlite`. Its `Database` class matches
+  // the subset of the node:sqlite `DatabaseSync` API this module uses:
+  // prepare()/exec()/close() on the connection and run()/get()/all() with
+  // positional binding on statements. BLOBs come back as Uint8Array, which the
+  // consumers already wrap via `Buffer.from(...)`.
+  const { Database } = require('bun:sqlite');
+  return { DatabaseSync: Database };
+}
+
+function isBunRuntime(options = {}) {
+  if (typeof options.bun === 'boolean') return options.bun;
+  return Boolean(process.versions && process.versions.bun);
+}
+
 function sqliteCapability(options = {}) {
   if (options.DatabaseSync) return { available: true, DatabaseSync: options.DatabaseSync };
+  if (isBunRuntime(options)) {
+    try {
+      const { DatabaseSync } = loadBunSqlite();
+      return { available: true, DatabaseSync };
+    } catch (error) {
+      return {
+        available: false,
+        code: 'CITADEL_SQLITE_UNAVAILABLE',
+        reason: `The bun:sqlite module is unavailable: ${error.message}`,
+      };
+    }
+  }
   const [major, minor] = String(options.nodeVersion || process.versions.node).split('.').map(Number);
   if (!Number.isInteger(major) || !Number.isInteger(minor)
     || major < MIN_SQLITE_NODE_MAJOR

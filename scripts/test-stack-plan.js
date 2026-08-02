@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -45,7 +45,7 @@ function readinessReport({ branch, head, pr, status = 'ready', verification = 'p
     `| Pull request URL | ${pr ? 'pass' : 'fail'} | ${pr || 'missing'} |`,
     '| Git worktree | pass | clean |',
     '| Dashboard repairs | pass | no queued repairs |',
-    `| Verification | ${verification} | npm run test exited ${verification === 'pass' ? 0 : 1} |`,
+    `| Verification | ${verification} | bun run test exited ${verification === 'pass' ? 0 : 1} |`,
     '',
     '---HANDOFF---',
     `- PR: ${pr}`,
@@ -161,7 +161,7 @@ assert.deepEqual(buildPostApprovalRunbook('no-stack', []), [
   {
     step: 'Generate PR readiness reports',
     gate: 'At least one report exists in .planning/pr-readiness.',
-    action: 'Run node scripts/pr-ready.js --pr <pull-request-url> --run-verification for each PR.',
+    action: 'Run bun scripts/pr-ready.js --pr <pull-request-url> --run-verification for each PR.',
   },
 ]);
 
@@ -193,7 +193,7 @@ withTempProject((projectRoot) => {
 
   const payload = JSON.parse(output);
   assert.equal(payload.status, 'no-stack');
-  assert.equal(payload.nextAction.command, 'node scripts/pr-ready.js --pr <pull-request-url> --run-verification');
+  assert.equal(payload.nextAction.command, 'bun scripts/pr-ready.js --pr <pull-request-url> --run-verification');
   assert(fs.existsSync(path.join(projectRoot, payload.reportPath)));
 });
 

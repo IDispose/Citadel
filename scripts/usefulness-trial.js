@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const fs = require('fs');
@@ -34,7 +34,7 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/usefulness-trial.js [--json] [--write] [--run-verification] [--task <request>] [--project-root <path>]',
+    '  bun scripts/usefulness-trial.js [--json] [--write] [--run-verification] [--task <request>] [--project-root <path>]',
     '',
     'Runs a first-use readiness inspection against a real project.',
     'It checks setup, routing, verification selection, and durable evidence; it does not compare Citadel with a bare agent.',
@@ -120,7 +120,7 @@ function decideTrial(proof, criteria) {
   if (proof.summary.setup === 'partial') {
     return {
       status: 'setup-needed',
-      nextAction: 'Run /do setup --express, then rerun node scripts/usefulness-trial.js --write --run-verification.',
+      nextAction: 'Run /do setup --express, then rerun bun scripts/usefulness-trial.js --write --run-verification.',
     };
   }
   if (criteria.some((item) => item.status === 'partial')) {

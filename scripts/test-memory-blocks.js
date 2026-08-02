@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -43,7 +43,7 @@ withTempProject((projectRoot) => {
   write(path.join(projectRoot, 'docs', 'SKILLS.md'), 'Skill contracts.\n');
   write(path.join(projectRoot, 'scripts', 'test-all.js'), 'console.log("tests");\n');
   write(path.join(projectRoot, 'scripts', 'verify-telemetry-integrity.js'), 'console.log("verify");\n');
-  write(path.join(projectRoot, 'package.json'), JSON.stringify({ scripts: { test: 'node scripts/test-all.js' } }, null, 2));
+  write(path.join(projectRoot, 'package.json'), JSON.stringify({ scripts: { test: 'bun scripts/test-all.js' } }, null, 2));
   write(path.join(projectRoot, '.planning', 'research', 'patterns.md'), [
     '**What it is:** HANDOFF blocks need typed fields.',
     '- Hung agents need timeout behavior.',

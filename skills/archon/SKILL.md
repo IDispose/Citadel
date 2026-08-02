@@ -83,9 +83,9 @@ For each phase:
 2. **Log delegation start**: `node .citadel/scripts/telemetry-log.cjs --event agent-start --agent {delegate-name} --session {campaign-slug}`
 3. **Delegate**: Spawn a sub-agent with full context injection:
    - CLAUDE.md content and `.claude/agent-context/rules-summary.md`
-   - **Map slice** (if `.planning/map/index.json` exists): run `node scripts/map-index.js --slice "<phase scope keywords>" --max-files 15` and inject results
+   - **Map slice** (if `.planning/map/index.json` exists): run `bun scripts/map-index.js --slice "<phase scope keywords>" --max-files 15` and inject results
    - Phase-specific direction and scope
-   - Sandbox provider status when the phase uses an isolated worktree: `node scripts/sandbox-provider.js status --provider worktree --worktree {path}`
+   - Sandbox provider status when the phase uses an isolated worktree: `bun scripts/sandbox-provider.js status --provider worktree --worktree {path}`
    - Relevant decisions from the campaign's Decision Log
 4. **Verify end conditions** before marking a phase complete:
    - `file_exists`: check file exists on disk
@@ -96,11 +96,11 @@ For each phase:
    - advisory `manual`: log to the Review Queue without adding it to required coverage
    - If ANY required condition is failed, blocked, or unknown: phase is NOT complete. Fix or resolve what's non-passing.
    - Log which conditions passed/failed in the Feature Ledger
-4.25. **Validate required exit evidence**: run `node scripts/evidence-validate.js --file .planning/campaigns/{slug}.md --target phase:{N}`.
+4.25. **Validate required exit evidence**: run `bun scripts/evidence-validate.js --file .planning/campaigns/{slug}.md --target phase:{N}`.
    - Only current, subject-bound `passed` evidence with complete required coverage satisfies this gate.
    - Failed evidence with repair budget remaining: run again with `--write-repair`, keep the phase active, perform the repair task, and create a new attempt without rewriting the prior result.
    - Missing, stale, malformed, or incomplete evidence is `unknown`; exhausted repair budget holds advancement and joins the campaign's single human escalation.
-   - For package/review phases, run `node scripts/package-delivery.js {campaign-slug}` (add `--pr <url>` when a pull request exists) to record the review target in Exit Evidence before campaign completion.
+   - For package/review phases, run `bun scripts/package-delivery.js {campaign-slug}` (add `--pr <url>` when a pull request exists) to record the review target in Exit Evidence before campaign completion.
 4.5. **Validate handoff** — spawn a Phase Validator (subagent_type `citadel:phase-validator`, Haiku, read-only, effort: low) with the campaign slug, phase number and title, the exit conditions from the Phase End Conditions table, and the sub-agent's full HANDOFF (invocation template: docs/CAMPAIGNS.md#phase-validation). Parse the validator's JSON response:
    - **`verdict: "pass"`**: proceed to step 5.
    - **`verdict: "fail"`**: check `validator_retries_remaining` in the campaign file's phase row (default 3 if not set):
@@ -135,7 +135,7 @@ For each phase:
 
 #### Regression Guard (every build phase)
 
-1. Run typecheck via `node scripts/run-with-timeout.js 300`
+1. Run typecheck via `bun scripts/run-with-timeout.js 300`
 2. Compare error count to campaign baseline
 3. Escalation: 1-2 new errors — fix before continuing; 3-4 — log warning, attempt fixes, continue if resolved; 5+ — PARK the campaign
 4. If test suite exists: run it. New failures trigger the same escalation.
@@ -146,7 +146,7 @@ Scan modified files for: `transition-all` (name specific properties); `confirm()
 
 ### Step 5: VERIFY (after build phases)
 
-1. Run typecheck via `node scripts/run-with-timeout.js 300 <typecheck-cmd>`
+1. Run typecheck via `bun scripts/run-with-timeout.js 300 <typecheck-cmd>`
 2. Run test suite if configured (use timeout wrapper)
 3. If verification fails: record the failure, then decide:
    - **Fix if:** 1-2 failures and each has an isolated root cause
@@ -162,7 +162,7 @@ Scan modified files for: `transition-all` (name specific properties); `confirm()
 
 ### Step 7: COMPLETION
 
-1. Run final verification via `node scripts/run-with-timeout.js 300`
+1. Run final verification via `bun scripts/run-with-timeout.js 300`
 2. Confirm every required phase gate is current, subject-bound, `passed`, and complete, with no unresolved required checkpoint, human gate, dependency, or Arbiter block. Otherwise keep the campaign active or record a non-success terminal outcome such as `blocked-decision`; do not mark it completed.
 3. Update campaign status to `completed`
 3.5. **Propagate knowledge**: `npm run propagate -- --campaign {slug}`. If unavailable: add `<!-- TODO: run npm run propagate -- --campaign {slug} -->` to LEARNINGS.md.

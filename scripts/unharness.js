@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * unharness.js — Exports valuable Citadel state then removes the harness from a project.

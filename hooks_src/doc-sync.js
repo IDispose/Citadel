@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * doc-sync.js - Standalone doc staleness processor
@@ -11,9 +11,9 @@
  * small review report under .planning/doc-sync/.
  *
  * Usage:
- *   node hooks_src/doc-sync.js                      # process full queue
- *   node hooks_src/doc-sync.js --dry-run            # show queue without marking
- *   node hooks_src/doc-sync.js --project-root path  # process another project
+ *   bun hooks_src/doc-sync.js                      # process full queue
+ *   bun hooks_src/doc-sync.js --dry-run            # show queue without marking
+ *   bun hooks_src/doc-sync.js --project-root path  # process another project
  */
 
 'use strict';
@@ -50,7 +50,7 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node hooks_src/doc-sync.js [--dry-run] [--project-root path]',
+    'Usage: bun hooks_src/doc-sync.js [--dry-run] [--project-root path]',
     '',
     'Processes .planning/telemetry/doc-sync-queue.jsonl and writes',
     '.planning/doc-sync/latest.md without changing documentation files.',

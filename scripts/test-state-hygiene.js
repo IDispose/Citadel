@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * test-state-hygiene.js -- Tests for scripts/state-hygiene.js
@@ -16,7 +16,7 @@
  *   3. a removal failure mid-sweep does not abort the sweep
  *   4. the CLI entry point works against the fixture via env overrides
  *
- * Run: node scripts/test-state-hygiene.js
+ * Run: bun scripts/test-state-hygiene.js
  * Exit codes: 0 = all pass, 1 = failures
  */
 

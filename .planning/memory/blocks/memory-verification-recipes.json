@@ -29,5 +29,5 @@
       "reason": "telemetry integrity verifier"
     }
   ],
-  "body": "- After hook or skill changes, run the narrow check first, then `npm run test` before shipping.\n- Use `node scripts/skill-lint.js <skill>` after skill edits and `node scripts/test-all.js` for the full harness gate.\n- Use `npm run telemetry:verify` or `node scripts/verify-telemetry-integrity.js` to confirm hashed logs are clean and legacy records are only legacy.\n- `npm run test` is the canonical full regression command for this repository."
+  "body": "- After hook or skill changes, run the narrow check first, then `npm run test` before shipping.\n- Use `bun scripts/skill-lint.js <skill>` after skill edits and `bun scripts/test-all.js` for the full harness gate.\n- Use `npm run telemetry:verify` or `bun scripts/verify-telemetry-integrity.js` to confirm hashed logs are clean and legacy records are only legacy.\n- `npm run test` is the canonical full regression command for this repository."
 }

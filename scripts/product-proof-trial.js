@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const fs = require('fs');
@@ -44,7 +44,7 @@ function readJson(file, label) {
 
 function usage() {
   return [
-    'Usage: node scripts/product-proof-trial.js <command> [options]',
+    'Usage: bun scripts/product-proof-trial.js <command> [options]',
     '',
     'Commands:',
     '  validate [--spec FILE] [--root PATH]',

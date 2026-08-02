@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * test-watch-dedup.js -- Offline tests for watch.js intake dedup and locking.
@@ -12,7 +12,7 @@
  *
  * Stdlib only. No network, no LLM.
  *
- * Usage: node scripts/test-watch-dedup.js
+ * Usage: bun scripts/test-watch-dedup.js
  */
 
 'use strict';

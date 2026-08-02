@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * watch.js -- Poll-based file change scanner for the Citadel harness.
@@ -7,11 +7,11 @@
  * comments, outputting actionable results. Engine behind the /watch skill.
  *
  * Usage:
- *   node scripts/watch.js --scan              # Run a single scan
- *   node scripts/watch.js --scan --json       # Output as JSON
- *   node scripts/watch.js --scan --intake     # Also generate intake items
- *   node scripts/watch.js --status            # Show current watch state
- *   node scripts/watch.js --reset             # Reset watch state
+ *   bun scripts/watch.js --scan              # Run a single scan
+ *   bun scripts/watch.js --scan --json       # Output as JSON
+ *   bun scripts/watch.js --scan --intake     # Also generate intake items
+ *   bun scripts/watch.js --status            # Show current watch state
+ *   bun scripts/watch.js --reset             # Reset watch state
  */
 
 'use strict';
@@ -66,7 +66,7 @@ function parseArgs(argv) {
   }
 
   if (!opts.mode) {
-    console.error('Usage: node scripts/watch.js [--scan|--status|--reset] [--json] [--intake]');
+    console.error('Usage: bun scripts/watch.js [--scan|--status|--reset] [--json] [--intake]');
     process.exit(1);
   }
 

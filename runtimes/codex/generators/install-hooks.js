@@ -53,7 +53,7 @@ function translateCodexHooks(hooksTemplate, adapterScriptPath, options = {}) {
   const installed = [];
   const skipped = [];
   const adapterPath = adapterScriptPath.replace(/\\/g, '/');
-  const adapterCmd = quoteNodeCommand(`node ${adapterPath}`);
+  const adapterCmd = quoteNodeCommand(`bun ${adapterPath}`);
   const commandForHook = options.commandForHook || ((hookName) => `${adapterCmd} ${hookName}`);
   const commandWindowsForHook = options.commandWindowsForHook || null;
 
@@ -108,8 +108,8 @@ function translateCodexHooks(hooksTemplate, adapterScriptPath, options = {}) {
 
 function translateCodexPluginHooks(hooksTemplate) {
   return translateCodexHooks(hooksTemplate, '${PLUGIN_ROOT}/hooks_src/codex-adapter.js', {
-    commandForHook: (hookName) => `node "\${PLUGIN_ROOT}/hooks_src/codex-adapter.js" ${hookName}`,
-    commandWindowsForHook: (hookName) => `node "%PLUGIN_ROOT%\\hooks_src\\codex-adapter.js" ${hookName}`,
+    commandForHook: (hookName) => `bun "\${PLUGIN_ROOT}/hooks_src/codex-adapter.js" ${hookName}`,
+    commandWindowsForHook: (hookName) => `bun "%PLUGIN_ROOT%\\hooks_src\\codex-adapter.js" ${hookName}`,
   });
 }
 

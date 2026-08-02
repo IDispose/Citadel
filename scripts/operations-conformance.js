@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -7,7 +7,7 @@ const path = require('path');
 const { runConformance } = require('../core/operations');
 
 function usage() {
-  process.stdout.write('Usage: node scripts/operations-conformance.js <fixture.json> [--adapter <id>]\n');
+  process.stdout.write('Usage: bun scripts/operations-conformance.js <fixture.json> [--adapter <id>]\n');
 }
 
 function main(argv = process.argv.slice(2)) {

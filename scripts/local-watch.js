@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * local-watch.js -- Quota-free replacement for /watch start.
@@ -11,11 +11,11 @@
  * Unlike CronCreate, this does not consume Anthropic routine quota.
  *
  * Usage:
- *   node scripts/local-watch.js              # Watch with default 2s debounce
- *   node scripts/local-watch.js --debounce 5 # 5s debounce between scans
- *   node scripts/local-watch.js --poll 30    # Force polling mode, 30s interval
- *   node scripts/local-watch.js --intake     # Generate intake items on scan
- *   node scripts/local-watch.js --once       # Run one scan and exit
+ *   bun scripts/local-watch.js              # Watch with default 2s debounce
+ *   bun scripts/local-watch.js --debounce 5 # 5s debounce between scans
+ *   bun scripts/local-watch.js --poll 30    # Force polling mode, 30s interval
+ *   bun scripts/local-watch.js --intake     # Generate intake items on scan
+ *   bun scripts/local-watch.js --once       # Run one scan and exit
  */
 
 'use strict';

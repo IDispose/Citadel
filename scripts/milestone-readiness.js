@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -7,7 +7,7 @@ const path = require('path');
 const { evaluatePortfolio } = require('../core/milestones/external-gates');
 
 function usage() {
-  return 'Usage: node scripts/milestone-readiness.js [--evidence FILE] [--json]';
+  return 'Usage: bun scripts/milestone-readiness.js [--evidence FILE] [--json]';
 }
 
 function parseArgs(argv) {

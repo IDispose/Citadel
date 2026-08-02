@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * momentum-watch-start.cjs — Idempotent launcher for the discovery watcher.

@@ -10,12 +10,12 @@
     "claude_code": {
       "manifest": ".claude-plugin/plugin.json",
       "marketplace": ".claude-plugin/marketplace.json",
-      "install_command": "node scripts/install.js --runtime claude --install --scope local"
+      "install_command": "bun scripts/install.js --runtime claude --install --scope local"
     },
     "codex": {
       "manifest": ".codex-plugin/plugin.json",
       "marketplace": ".agents/plugins/marketplace.json",
-      "install_command": "node scripts/install.js --runtime codex --add-marketplace"
+      "install_command": "bun scripts/install.js --runtime codex --add-marketplace"
     }
   },
   "skills": {

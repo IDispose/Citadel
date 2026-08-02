@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -39,6 +39,6 @@ if (mode === 'plan') {
     evidence: arg('--evidence', '').split(',').filter(Boolean),
   }));
 } else {
-  console.error('Usage: node scripts/codex-automation.js <plan|record> [--write] [--type schedule|daemon|pr-watch] [--command "..."]');
+  console.error('Usage: bun scripts/codex-automation.js <plan|record> [--write] [--type schedule|daemon|pr-watch] [--command "..."]');
   process.exit(1);
 }

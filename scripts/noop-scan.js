@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * noop-scan.js - Tier 1 no-op scanner for all SKILL.md files.
@@ -14,10 +14,10 @@
  * pre-release gate once you trust the signal).
  *
  * Usage:
- *   node scripts/noop-scan.js                 # scan all skills, advisory
- *   node scripts/noop-scan.js do              # scan one skill by name
- *   node scripts/noop-scan.js --json          # machine-readable (feeds the judge)
- *   node scripts/noop-scan.js --strict        # exit 1 if any candidate found
+ *   bun scripts/noop-scan.js                 # scan all skills, advisory
+ *   bun scripts/noop-scan.js do              # scan one skill by name
+ *   bun scripts/noop-scan.js --json          # machine-readable (feeds the judge)
+ *   bun scripts/noop-scan.js --strict        # exit 1 if any candidate found
  *
  * Exit codes:
  *   0 = scan completed (candidates may exist; advisory mode)
@@ -107,8 +107,8 @@ function main() {
   console.log('\n' + '='.repeat(44));
   console.log(`Scanned ${skills.length} skill(s) - ${totalCandidates} candidate(s) in ${withCandidates.length} skill(s).`);
   console.log('Candidates are SUSPECTS, not confirmed no-ops. Adjudicate with:');
-  console.log('  node scripts/noop-judge.js            (Tier 2: LLM judge - trim vs delete vs keep)');
-  console.log('  node scripts/noop-ablate.js --skill X (Tier 3: ablation - the empirical Pocock test)\n');
+  console.log('  bun scripts/noop-judge.js            (Tier 2: LLM judge - trim vs delete vs keep)');
+  console.log('  bun scripts/noop-ablate.js --skill X (Tier 3: ablation - the empirical Pocock test)\n');
 
   process.exit(STRICT && totalCandidates > 0 ? 1 : 0);
 }

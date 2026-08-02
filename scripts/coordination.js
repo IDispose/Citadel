@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * coordination.js — Multi-instance coordination CLI
@@ -7,7 +7,7 @@
  * Prevents scope collisions when parallel agents edit the same files.
  *
  * Usage:
- *   node scripts/coordination.js <command> [options]
+ *   bun scripts/coordination.js <command> [options]
  *
  * Commands:
  *   generate-id                          Generate a unique instance ID
@@ -143,7 +143,7 @@ switch (args.command) {
   case 'sweep': sweep(); break;
   case 'status': status(); break;
   default:
-    console.log('Usage: node scripts/coordination.js <command> [options]');
+    console.log('Usage: bun scripts/coordination.js <command> [options]');
     console.log('Commands: generate-id, register, unregister, heartbeat, claim, release, check-overlap, sweep, status');
     process.exit(1);
 }

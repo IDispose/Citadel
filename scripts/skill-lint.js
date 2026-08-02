@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * skill-lint.js — Static structure checker for all SKILL.md files
@@ -17,10 +17,10 @@
  *   1 = one or more skills have FAIL-level issues
  *
  * Usage:
- *   node scripts/skill-lint.js               # check all skills
- *   node scripts/skill-lint.js dashboard     # check one skill by name
- *   node scripts/skill-lint.js --json        # machine-readable JSON output
- *   node scripts/skill-lint.js --warn-as-fail  # treat WARNs as FAILs (strict CI mode)
+ *   bun scripts/skill-lint.js               # check all skills
+ *   bun scripts/skill-lint.js dashboard     # check one skill by name
+ *   bun scripts/skill-lint.js --json        # machine-readable JSON output
+ *   bun scripts/skill-lint.js --warn-as-fail  # treat WARNs as FAILs (strict CI mode)
  */
 
 'use strict';

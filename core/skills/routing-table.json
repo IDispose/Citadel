@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generated": "Derived from trigger_keywords frontmatter in skills/*/SKILL.md. Do not edit by hand; run node scripts/generate-routing.js.",
+  "generated": "Derived from trigger_keywords frontmatter in skills/*/SKILL.md. Do not edit by hand; run bun scripts/generate-routing.js.",
   "skills": [
     {
       "name": "architect",

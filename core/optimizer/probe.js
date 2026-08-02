@@ -86,7 +86,7 @@ function packageTestCommands(file, remainingBytes) {
     const scripts = parsed && parsed.scripts && typeof parsed.scripts === 'object' ? parsed.scripts : {};
     return Object.keys(scripts)
       .filter((name) => /^(test|check|lint|verify)(:|$)/.test(name))
-      .map((name) => `npm run ${name}`)
+      .map((name) => `bun run ${name}`)
       .slice(0, 20);
   } catch {
     return [];

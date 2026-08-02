@@ -9,7 +9,7 @@ Captured: 2026-07-13
 Command:
 
 ```text
-rtk node scripts/run-with-timeout.js 300 node scripts/test-all.js
+rtk bun scripts/run-with-timeout.js 300 bun scripts/test-all.js
 ```
 
 Observed result:
@@ -29,7 +29,7 @@ The passing summary included hooks, security, runtime contracts and registry, sk
 The exact failing check was rerun with permission to create and remove its temporary fixture:
 
 ```text
-rtk node scripts/test-codex-runtime.js
+rtk bun scripts/test-codex-runtime.js
 ```
 
 Observed result:

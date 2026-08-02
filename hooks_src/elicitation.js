@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * elicitation.js — Elicitation + ElicitationResult hook

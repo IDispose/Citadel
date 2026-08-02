@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const path = require('path');
@@ -32,7 +32,7 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/next-action.js [--json] [--run] [--max-steps <n>] [--project-root <path>]',
+    '  bun scripts/next-action.js [--json] [--run] [--max-steps <n>] [--project-root <path>]',
     '',
     'Reads the Citadel dashboard and resolves the next useful action.',
     '--run executes only deterministic local repairs, then re-checks dashboard state.',
@@ -53,7 +53,7 @@ function localRepairFor(action) {
     };
   }
 
-  const packageMatch = command.match(/^node\s+scripts\/package-delivery\.js\s+(.+)$/);
+  const packageMatch = command.match(/^(?:node|bun)\s+scripts\/package-delivery\.js\s+(.+)$/);
   if (packageMatch) {
     return {
       kind: 'local-repair',
@@ -63,7 +63,7 @@ function localRepairFor(action) {
     };
   }
 
-  const completeMatch = command.match(/^node\s+scripts\/campaign\.js\s+complete\s+([^\s]+)\s+--archive$/);
+  const completeMatch = command.match(/^(?:node|bun)\s+scripts\/campaign\.js\s+complete\s+([^\s]+)\s+--archive$/);
   if (completeMatch) {
     return {
       kind: 'local-repair',
@@ -157,14 +157,14 @@ function verificationPlanFor(action) {
   if (command === '/autopilot') {
     return [
       'Inspect the generated campaign or brief before implementation starts.',
-      'Run `node scripts/dashboard.js --json` and confirm intake count changed as expected.',
+      'Run `bun scripts/dashboard.js --json` and confirm intake count changed as expected.',
       'Confirm the resulting campaign has claimed scope, phases, and exit evidence.',
     ];
   }
   if (command === '/do continue') {
     return [
       'Run the verification command selected by the campaign or changed subsystem.',
-      'Run `node scripts/dashboard.js --json` and confirm the campaign advanced or produced a new repair.',
+      'Run `bun scripts/dashboard.js --json` and confirm the campaign advanced or produced a new repair.',
       'Record the changed files, evidence, and remaining next action in the campaign file.',
     ];
   }
@@ -177,15 +177,15 @@ function verificationPlanFor(action) {
   }
   if (isSetupCommand(command)) {
     return [
-      'Run `node scripts/dashboard.js --json` and confirm `.planning/` exists.',
+      'Run `bun scripts/dashboard.js --json` and confirm `.planning/` exists.',
       'Confirm generated project guidance paths point at the current project root.',
-      'Run `node scripts/test-all.js` if setup changed harness files.',
+      'Run `bun scripts/test-all.js` if setup changed harness files.',
     ];
   }
   if (command === '/telemetry') {
     return [
       'Inspect the actionable hook problems and classify each as fixed, stale, or still blocked.',
-      'Run `node scripts/dashboard.js --json` and confirm actionable problem count is understood.',
+      'Run `bun scripts/dashboard.js --json` and confirm actionable problem count is understood.',
     ];
   }
   if (command.startsWith('git status')) {
@@ -197,7 +197,7 @@ function verificationPlanFor(action) {
   }
   return [
     'Run the command only after confirming scope and expected side effects.',
-    'Run `node scripts/dashboard.js --json` after the action and inspect the next action.',
+    'Run `bun scripts/dashboard.js --json` after the action and inspect the next action.',
     'Record the result in the relevant campaign, review package, or handoff.',
   ];
 }

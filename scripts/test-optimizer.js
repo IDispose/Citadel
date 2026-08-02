@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -648,7 +648,7 @@ function main() {
     const probed = probeWorkspace(probeRoot, pLimitShort, { observedAt: '2026-01-02T00:00:00.000Z' });
     assert.strictEqual(probed.status, 'complete');
     assert.strictEqual(probed.facts.has_tests, true);
-    assert(probed.facts.test_commands.includes('npm run test'));
+    assert(probed.facts.test_commands.includes('bun run test'));
     assert.strictEqual(probed.signals.scope, 'localized');
 
     const expectedProfile = executors.find((profile) => profile.profile_id === shortAdaptive.selected_profile_id);

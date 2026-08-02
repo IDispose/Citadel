@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const path = require('path');
@@ -61,10 +61,10 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/deploy-steward.js --scan',
-    '  node scripts/deploy-steward.js --run',
-    '  node scripts/deploy-steward.js --scan --run --deploy-command "npm run deploy"',
-    '  node scripts/deploy-steward.js --enqueue-pr https://github.com/OWNER/REPO/pull/123 --run',
+    '  bun scripts/deploy-steward.js --scan',
+    '  bun scripts/deploy-steward.js --run',
+    '  bun scripts/deploy-steward.js --scan --run --deploy-command "npm run deploy"',
+    '  bun scripts/deploy-steward.js --enqueue-pr https://github.com/OWNER/REPO/pull/123 --run',
     '',
     'Consumes .planning/pr-readiness reports or explicit PRs, owns a deploy-steward lease,',
     'updates stale branches, waits for CI, merges one candidate at a time, runs an optional',

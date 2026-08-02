@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -30,8 +30,8 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node scripts/verify-telemetry-integrity.js [--project-root path] [--json] [--strict-legacy]',
-    '       node scripts/verify-telemetry-integrity.js --file .planning/telemetry/agent-runs.jsonl',
+    'Usage: bun scripts/verify-telemetry-integrity.js [--project-root path] [--json] [--strict-legacy]',
+    '       bun scripts/verify-telemetry-integrity.js --file .planning/telemetry/agent-runs.jsonl',
     '',
     'Verifies hashed telemetry and artifact JSONL records. Legacy records are reported,',
     'but allowed unless --strict-legacy is set.',

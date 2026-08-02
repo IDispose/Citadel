@@ -6,7 +6,7 @@ Worktree: `C:\tmp\citadel-12-month-unlocks`
 
 ## Baseline verification
 
-`node scripts/test-all.js` completed every aggregate check. All checks passed except the Codex runtime test, which could not create a temporary fixture inside the restricted sandbox. The exact failing test was rerun outside that filesystem restriction with `node scripts/test-codex-runtime.js` and passed. This establishes a clean behavioral baseline with one documented environment-only aggregate failure.
+`bun scripts/test-all.js` completed every aggregate check. All checks passed except the Codex runtime test, which could not create a temporary fixture inside the restricted sandbox. The exact failing test was rerun outside that filesystem restriction with `bun scripts/test-codex-runtime.js` and passed. This establishes a clean behavioral baseline with one documented environment-only aggregate failure.
 
 ## Requirement-by-requirement verdict
 

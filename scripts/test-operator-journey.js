@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -25,15 +25,15 @@ function completeBuildAndVerify(campaignPath) {
   let campaign = fs.readFileSync(campaignPath, 'utf8');
   campaign = campaign
     .replace('| 2 | pending | build | Implement requested change | Required files are changed and implementation diff is available |', '| 2 | complete | build | Implement requested change | Required files are changed and implementation diff is available |')
-    .replace('| 3 | pending | verify | Run verification | npm run test passes |', '| 3 | complete | verify | Run verification | npm run test passes |')
+    .replace('| 3 | pending | verify | Run verification | bun run test passes |', '| 3 | complete | verify | Run verification | bun run test passes |')
     .replace('| phase:2 | implementation-diff | file_diff | yes | git diff --stat | pending | 2 | implement requested change |', '| phase:2 | implementation-diff | file_diff | yes | git diff --stat | resolved | 2 | implement requested change |')
-    .replace('| phase:3 | verification-command | test_result | yes | npm run test | pending | 2 | fix verification failures |', '| phase:3 | verification-command | test_result | yes | npm run test | pass | 2 | fix verification failures |');
+    .replace('| phase:3 | verification-command | test_result | yes | bun run test | pending | 2 | fix verification failures |', '| phase:3 | verification-command | test_result | yes | bun run test | pass | 2 | fix verification failures |');
   fs.writeFileSync(campaignPath, campaign, 'utf8');
 }
 
 withTempProject((projectRoot) => {
   write(path.join(projectRoot, 'package.json'), JSON.stringify({
-    scripts: { test: 'node test.js' },
+    scripts: { test: 'bun test.js' },
   }, null, 2));
   write(path.join(projectRoot, 'test.js'), 'process.exit(0);\n');
   write(path.join(projectRoot, 'src', 'feature.js'), 'module.exports = true;\n');

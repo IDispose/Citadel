@@ -63,7 +63,7 @@ function scenarios() {
     ids.add(scenario.id);
     if (!['low', 'moderate', 'high'].includes(scenario.risk)) throw new Error(`${scenario.id} risk invalid`);
     if (!Array.isArray(scenario.input_files) || !scenario.input_files.length || !Array.isArray(scenario.allowed_files) || !scenario.allowed_files.length) throw new Error(`${scenario.id} file contract invalid`);
-    if (!Array.isArray(scenario.verifier) || scenario.verifier[0] !== 'node') throw new Error(`${scenario.id} verifier contract invalid`);
+    if (!Array.isArray(scenario.verifier) || !['node', 'bun'].includes(scenario.verifier[0])) throw new Error(`${scenario.id} verifier contract invalid`);
     for (const relative of [...scenario.input_files, ...scenario.allowed_files, scenario.verifier[1]]) {
       if (path.isAbsolute(relative) || relative.split(/[\\/]/).includes('..')) throw new Error(`${scenario.id} contains unsafe path ${relative}`);
       if (!fs.existsSync(path.join(FIXTURES, scenario.fixture, relative))) throw new Error(`${scenario.id} missing fixture file ${relative}`);
@@ -134,7 +134,11 @@ function normalizeChangedFiles(files) {
 }
 
 function runVerifier(workspace, scenario) {
-  const result = childProcess.spawnSync(scenario.verifier[0], scenario.verifier.slice(1), { cwd: workspace, encoding: 'utf8', shell: false, windowsHide: true, timeout: 30000, maxBuffer: 1024 * 1024 });
+  // `node`/`bun` in verifier[0] denote "the current JS runtime"; spawn the
+  // executable actually running this process so verifiers work under either.
+  const [runtime, ...verifierArgs] = scenario.verifier;
+  const executable = runtime === 'node' || runtime === 'bun' ? process.execPath : runtime;
+  const result = childProcess.spawnSync(executable, verifierArgs, { cwd: workspace, encoding: 'utf8', shell: false, windowsHide: true, timeout: 30000, maxBuffer: 1024 * 1024 });
   return Object.freeze({ command: scenario.verifier.join(' '), status: result.status, signal: result.signal || null, stdout: bounded(result.stdout), stderr: bounded(result.stderr), error: result.error ? result.error.message : null });
 }
 

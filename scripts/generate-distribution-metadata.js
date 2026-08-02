@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -22,7 +22,7 @@ const rendered = stableJson(metadata);
 if (check) {
   const current = fs.existsSync(target) ? fs.readFileSync(target, 'utf8').replace(/\r\n/g, '\n') : '';
   if (current !== rendered) {
-    process.stderr.write('citadel-metadata.json is stale; run node scripts/generate-distribution-metadata.js\n');
+    process.stderr.write('citadel-metadata.json is stale; run bun scripts/generate-distribution-metadata.js\n');
     process.exit(1);
   }
   process.stdout.write('distribution metadata is canonical and in sync\n');

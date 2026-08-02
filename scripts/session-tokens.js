@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * session-tokens.js -- Read real token usage from Claude Code session JSONL files.

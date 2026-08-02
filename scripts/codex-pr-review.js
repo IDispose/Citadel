@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -53,6 +53,6 @@ if (mode === 'plan') {
     write: process.argv.includes('--write'),
   }));
 } else {
-  console.error('Usage: node scripts/codex-pr-review.js <plan|record|ingest> --repo owner/name --pr N');
+  console.error('Usage: bun scripts/codex-pr-review.js <plan|record|ingest> --repo owner/name --pr N');
   process.exit(1);
 }

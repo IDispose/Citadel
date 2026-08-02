@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const fs = require('fs');
@@ -42,7 +42,7 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/operator-console.js [--json|--summary] [--run] [--max-steps <n>] [--project-root <path>]',
+    '  bun scripts/operator-console.js [--json|--summary] [--run] [--max-steps <n>] [--project-root <path>]',
     '',
     'Renders the decision-first Citadel operator cockpit.',
     '--summary prints a compact JSON contract for scripts and agents.',
@@ -130,7 +130,7 @@ function boundaryForDecision(decision) {
       risk: 'low',
       request: `Run deterministic repair: ${repair.command}`,
       verification: [
-        'Re-run `node scripts/operator-console.js` and confirm status becomes idle or a human boundary is explicit.',
+        'Re-run `bun scripts/operator-console.js` and confirm status becomes idle or a human boundary is explicit.',
         'Run the selected verification profile if source files changed.',
       ],
     };
@@ -140,7 +140,7 @@ function boundaryForDecision(decision) {
     risk: 'low',
     request: 'No approval required.',
     verification: [
-      'Run `node scripts/dashboard.js --json` if the idle state looks surprising.',
+      'Run `bun scripts/dashboard.js --json` if the idle state looks surprising.',
     ],
   };
 }
@@ -153,7 +153,7 @@ function boundaryForStack(stack) {
       request: 'Resolve blocked PR readiness reports before requesting stack approval.',
       verification: [
         'Run `npm run stack:plan` and confirm blocked PR readiness reports are identified.',
-        'Rerun `node scripts/pr-ready.js --pr <pull-request-url> --run-verification` for each blocked PR.',
+        'Rerun `bun scripts/pr-ready.js --pr <pull-request-url> --run-verification` for each blocked PR.',
       ],
     };
   }

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * quality-gate.js — Stop hook (Verification Dispatch: cold path)

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -55,14 +55,14 @@ withTempProject((projectRoot) => {
   const readiness = assessReadiness(projectRoot, {
     pr: 'https://github.com/acme/repo/pull/12',
     runVerification: true,
-    verification: 'npm run test',
+    verification: 'bun run test',
     changedFiles: ['hooks_src/protect-files.js'],
     now: '2026-06-05T00:00:00.000Z',
   });
 
   assert.equal(readiness.ready, true);
   assert.equal(readiness.verificationProfile.id, 'hook-runtime');
-  assert(readiness.verificationProfile.commands.includes('node scripts/verify-hooks.js'));
+  assert(readiness.verificationProfile.commands.includes('bun scripts/verify-hooks.js'));
   assert.equal(readiness.gates.prUrl.pass, true);
   assert.equal(readiness.gates.git.pass, true);
   assert.equal(readiness.gates.dashboard.pass, true);
@@ -72,7 +72,7 @@ withTempProject((projectRoot) => {
   assert(report.includes('Status: ready'));
   assert(report.includes('## Verification Plan'));
   assert(report.includes('Profile: hook-runtime'));
-  assert(report.includes('| node scripts/verify-hooks.js | recommended |'));
+  assert(report.includes('| bun scripts/verify-hooks.js | recommended |'));
   assert(report.includes('---HANDOFF---'));
 });
 
@@ -89,7 +89,7 @@ withTempProject((projectRoot) => {
   const readiness = assessReadiness(projectRoot, {
     pr: 'https://github.com/acme/repo/pull/12',
     runVerification: true,
-    verification: 'npm run test',
+    verification: 'bun run test',
     branch: 'codex/explicit-pr-branch',
   });
 
@@ -112,7 +112,7 @@ withTempProject((projectRoot) => {
   const readiness = assessReadiness(projectRoot, {
     pr: 'https://github.com/acme/repo/pull/12',
     runVerification: false,
-    verification: 'npm run test',
+    verification: 'bun run test',
     now: '2026-06-05T00:00:00.000Z',
   });
 
@@ -168,7 +168,7 @@ withTempProject((projectRoot) => {
     'codex/cli-pr-branch',
     '--run-verification',
     '--verification',
-    'npm run test',
+    'bun run test',
     '--json',
   ], { encoding: 'utf8' });
 
@@ -192,7 +192,7 @@ withTempProject((projectRoot) => {
   const readiness = assessReadiness(projectRoot, {
     pr: 'https://github.com/acme/repo/pull/12',
     runVerification: true,
-    verification: 'npm run test',
+    verification: 'bun run test',
   });
 
   assert.equal(readiness.ready, false);
@@ -215,7 +215,7 @@ withTempProject((projectRoot) => {
   const readiness = assessReadiness(projectRoot, {
     pr: 'https://github.com/acme/repo/pull/12',
     runVerification: true,
-    verification: 'node verify.js',
+    verification: 'bun verify.js',
   });
 
   assert.equal(readiness.ready, false);

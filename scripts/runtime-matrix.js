@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -17,7 +17,7 @@ function parseArgs(argv) {
 }
 
 function usage() {
-  return 'Usage: node scripts/runtime-matrix.js [--runtime codex] [--json]';
+  return 'Usage: bun scripts/runtime-matrix.js [--runtime codex] [--json]';
 }
 
 function render(matrix) {

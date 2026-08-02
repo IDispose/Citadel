@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -128,7 +128,7 @@ function tmpRoot() {
     ], { encoding: 'utf8' });
     const parsed = JSON.parse(output);
     assert.equal(parsed.template, 'demo-proof-refresh');
-    assert.equal(parsed.verifier.command, 'node scripts/operating-proof.js --write');
+    assert.equal(parsed.verifier.command, 'bun scripts/operating-proof.js --write');
     assert.equal(parsed.budget.maxAttempts, 1);
     assert(fs.existsSync(path.join(root, '.planning', 'loops', `${parsed.id}.json`)));
 

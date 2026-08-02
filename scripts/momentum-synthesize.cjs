@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * momentum-synthesize.cjs — Synthesize cross-session discoveries into momentum.json.

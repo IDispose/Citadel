@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -24,7 +24,7 @@ function readStdin() {
 const file = arg('--file', null);
 const input = file ? fs.readFileSync(file, 'utf8') : readStdin();
 if (!input.trim()) {
-  console.error('Usage: node scripts/codex-review-ingest.js --repo owner/name --pr N --file review-comments.json [--write]');
+  console.error('Usage: bun scripts/codex-review-ingest.js --repo owner/name --pr N --file review-comments.json [--write]');
   process.exit(1);
 }
 

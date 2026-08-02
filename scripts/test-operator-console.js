@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -40,7 +40,7 @@ function readinessReport({ branch, head, pr, generated }) {
     `| Pull request URL | pass | ${pr} |`,
     '| Git worktree | pass | clean |',
     '| Dashboard repairs | pass | no queued repairs |',
-    '| Verification | pass | npm run test exited 0 |',
+    '| Verification | pass | bun run test exited 0 |',
   ].join('\n');
 }
 
@@ -186,7 +186,7 @@ withTempProject((projectRoot) => {
     reportPath: '.planning/stack-readiness/latest.md',
     nextAction: {
       label: 'Resolve blocked PR readiness report',
-      command: 'node scripts/pr-ready.js --pr <pull-request-url> --run-verification',
+      command: 'bun scripts/pr-ready.js --pr <pull-request-url> --run-verification',
       canRunNow: false,
       why: 'At least one PR readiness report is blocked or missing a passing gate.',
     },

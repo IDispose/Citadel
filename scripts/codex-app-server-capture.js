@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -59,10 +59,10 @@ function sandboxPolicyFor(value, projectRoot) {
 }
 
 if (process.argv.includes('--help')) {
-  console.log('Usage: node scripts/codex-app-server-capture.js [--project-root PATH] [--out PATH] [--handshake-only] [--turn "prompt"]');
+  console.log('Usage: bun scripts/codex-app-server-capture.js [--project-root PATH] [--out PATH] [--handshake-only] [--turn "prompt"]');
   console.log('       [--turn-file PATH] [--turn-approval-policy on-request|untrusted|granular|never] [--turn-sandbox readOnly|workspaceWrite]');
   console.log('       [--expect-approval] [--approval-decision decline|cancel|accept|acceptForSession]');
-  console.log('       node scripts/codex-app-server-capture.js --dry-run');
+  console.log('       bun scripts/codex-app-server-capture.js --dry-run');
   process.exit(0);
 }
 

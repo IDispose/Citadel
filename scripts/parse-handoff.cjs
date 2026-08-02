@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * parse-handoff.cjs — Extract HANDOFF blocks from agent output.
@@ -8,8 +8,8 @@
  * campaign ledgers and fleet session files.
  *
  * Usage:
- *   node scripts/parse-handoff.cjs --input agent-output.md
- *   echo "agent output..." | node scripts/parse-handoff.cjs
+ *   bun scripts/parse-handoff.cjs --input agent-output.md
+ *   echo "agent output..." | bun scripts/parse-handoff.cjs
  *
  * Output: JSON with { items: string[], raw: string }
  */

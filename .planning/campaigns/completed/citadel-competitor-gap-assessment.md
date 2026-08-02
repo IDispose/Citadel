@@ -10,15 +10,15 @@ Citadel; produce implementation plans ready for approval.
 | # | Status | Type | Phase | Done When |
 |---|--------|------|-------|-----------|
 | 1 | complete | build | Local Citadel Control Plane | `npm run dashboard` renders a read-only operator snapshot and `npm run test` passes |
-| 2 | complete | build | Fleet DAG and Merge Steward | `node scripts/fleet-steward.js` reports ready/blocked/mergeable Fleet work and `npm run test` passes |
-| 3 | complete | build | Worktree Environment Readiness Profiles | `node scripts/worktree-readiness.js` records worktree readiness and Fleet/dashboard expose blockers |
-| 4 | complete | build | Signed Telemetry and Artifact Lineage | `node scripts/verify-telemetry-integrity.js` verifies hashed telemetry/artifact records and detects tampering |
+| 2 | complete | build | Fleet DAG and Merge Steward | `bun scripts/fleet-steward.js` reports ready/blocked/mergeable Fleet work and `npm run test` passes |
+| 3 | complete | build | Worktree Environment Readiness Profiles | `bun scripts/worktree-readiness.js` records worktree readiness and Fleet/dashboard expose blockers |
+| 4 | complete | build | Signed Telemetry and Artifact Lineage | `bun scripts/verify-telemetry-integrity.js` verifies hashed telemetry/artifact records and detects tampering |
 | 5 | complete | build | Memory Compiler and Semantic Blocks | `npm run memory:compile` writes five source-backed memory block types and `npm run memory:lint` passes |
-| 6 | complete | build | Phase Exit Evidence Contracts | `node scripts/evidence-validate.js --file .planning/campaigns/citadel-competitor-gap-assessment.md --target phase:6` passes and missing evidence creates repair tasks |
-| 7 | complete | build | Sandbox Provider Contract | `npm run sandbox:matrix` reports provider capabilities and `node scripts/test-sandbox-provider.js` passes |
-| 8 | complete | build | Skill and Workflow Packaging Upgrade | `node scripts/test-skill-packaging.js` passes and `node scripts/skill-catalog.js --task-class quality` shows skills by task class/risk |
-| 9 | complete | docs | Thin Runtime Adapter Matrix | `npm run runtime:matrix` reports adapter levels/tradeoffs and `node scripts/test-runtime-matrix.js` passes |
-| 10 | complete | build | Shared Repo Map Substrate | `node scripts/test-map-substrate.js` passes and `node scripts/map-index.js --slice "runtime adapter"` emits a scoped map slice |
+| 6 | complete | build | Phase Exit Evidence Contracts | `bun scripts/evidence-validate.js --file .planning/campaigns/citadel-competitor-gap-assessment.md --target phase:6` passes and missing evidence creates repair tasks |
+| 7 | complete | build | Sandbox Provider Contract | `npm run sandbox:matrix` reports provider capabilities and `bun scripts/test-sandbox-provider.js` passes |
+| 8 | complete | build | Skill and Workflow Packaging Upgrade | `bun scripts/test-skill-packaging.js` passes and `bun scripts/skill-catalog.js --task-class quality` shows skills by task class/risk |
+| 9 | complete | docs | Thin Runtime Adapter Matrix | `npm run runtime:matrix` reports adapter levels/tradeoffs and `bun scripts/test-runtime-matrix.js` passes |
+| 10 | complete | build | Shared Repo Map Substrate | `bun scripts/test-map-substrate.js` passes and `bun scripts/map-index.js --slice "runtime adapter"` emits a scoped map slice |
 
 ## Research Package
 
@@ -105,25 +105,25 @@ Recommended approval order:
 - Plan 9 added explicit runtime adapter levels so Citadel can describe what each runtime guarantees instead of implying hook parity everywhere.
 - Runtime matrix output is available as both human-readable CLI text and JSON for automation, and docs now list each runtime's tradeoffs.
 - Plan 10 moved `/map` behavior into a shared `core/map` module with hashes, routes, package scripts, verification commands, scoped slices, and stale detection.
-- Archon and Fleet now request generated map slices through `node scripts/map-index.js --slice`, keeping agent-injected orientation consistent.
+- Archon and Fleet now request generated map slices through `bun scripts/map-index.js --slice`, keeping agent-injected orientation consistent.
 
 ## Exit Evidence
 
 | Target | ID | Type | Required | Evidence | Status | Retries Remaining | Next Action |
 |---|---|---|---|---|---|---|---|
 | phase:4 | telemetry-integrity-live | command_result | yes | npm run telemetry:verify | pass | 2 | rerun telemetry verifier |
-| phase:4 | telemetry-integrity-tests | test_result | yes | node scripts/test-telemetry-integrity.js | pass | 2 | fix telemetry integrity tests |
+| phase:4 | telemetry-integrity-tests | test_result | yes | bun scripts/test-telemetry-integrity.js | pass | 2 | fix telemetry integrity tests |
 | phase:5 | memory-compile-live | command_result | yes | npm run memory:compile | pass | 2 | rerun memory compiler |
-| phase:5 | memory-scoped-load | command_result | yes | node scripts/memory-compile.js list --scope verification | pass | 2 | fix scoped memory block loading |
-| phase:6 | evidence-contract-tests | test_result | yes | node scripts/test-evidence-contracts.js | pass | 2 | fix evidence contract tests |
+| phase:5 | memory-scoped-load | command_result | yes | bun scripts/memory-compile.js list --scope verification | pass | 2 | fix scoped memory block loading |
+| phase:6 | evidence-contract-tests | test_result | yes | bun scripts/test-evidence-contracts.js | pass | 2 | fix evidence contract tests |
 | phase:7 | sandbox-provider-matrix | command_result | yes | npm run sandbox:matrix | pass | 2 | fix sandbox provider matrix |
-| phase:7 | sandbox-provider-tests | test_result | yes | node scripts/test-sandbox-provider.js | pass | 2 | fix sandbox provider tests |
-| phase:8 | skill-packaging-tests | test_result | yes | node scripts/test-skill-packaging.js | pass | 2 | fix skill packaging tests |
-| phase:8 | skill-catalog-filter | command_result | yes | node scripts/skill-catalog.js --task-class quality | pass | 2 | fix skill catalog filters |
+| phase:7 | sandbox-provider-tests | test_result | yes | bun scripts/test-sandbox-provider.js | pass | 2 | fix sandbox provider tests |
+| phase:8 | skill-packaging-tests | test_result | yes | bun scripts/test-skill-packaging.js | pass | 2 | fix skill packaging tests |
+| phase:8 | skill-catalog-filter | command_result | yes | bun scripts/skill-catalog.js --task-class quality | pass | 2 | fix skill catalog filters |
 | phase:9 | runtime-matrix-cli | command_result | yes | npm run runtime:matrix | pass | 2 | fix runtime matrix CLI |
-| phase:9 | runtime-matrix-tests | test_result | yes | node scripts/test-runtime-matrix.js | pass | 2 | fix runtime matrix tests |
-| phase:10 | map-substrate-tests | test_result | yes | node scripts/test-map-substrate.js | pass | 2 | fix map substrate tests |
-| phase:10 | map-slice-live | command_result | yes | node scripts/map-index.js --slice "runtime adapter" --max-files 10 | pass | 2 | fix map slice output |
+| phase:9 | runtime-matrix-tests | test_result | yes | bun scripts/test-runtime-matrix.js | pass | 2 | fix runtime matrix tests |
+| phase:10 | map-substrate-tests | test_result | yes | bun scripts/test-map-substrate.js | pass | 2 | fix map substrate tests |
+| phase:10 | map-slice-live | command_result | yes | bun scripts/map-index.js --slice "runtime adapter" --max-files 10 | pass | 2 | fix map slice output |
 | phase:10 | map-stale-live | command_result | yes | npm run map:stale | pass | 2 | fix map stale check |
 
 ## Continuation State

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const assert = require('assert');
@@ -38,8 +38,8 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/live-github-steward-proof.js',
-    '  node scripts/live-github-steward-proof.js --repo-name citadel-berman-proof --ci-sleep-seconds 12',
+    '  bun scripts/live-github-steward-proof.js',
+    '  bun scripts/live-github-steward-proof.js --repo-name citadel-berman-proof --ci-sleep-seconds 12',
     '',
     'Creates a disposable GitHub repo, opens 15 real PRs, and runs the standalone',
     'AGENTS.md deploy steward against live GitHub PR state.',
@@ -102,7 +102,7 @@ function setupInitialRepo(workDir, args) {
     name: 'citadel-berman-steward-proof',
     private: true,
     scripts: {
-      test: 'node scripts/check.js',
+      test: 'bun scripts/check.js',
       deploy: 'node .agent-steward/fake-deploy.cjs',
     },
   }, null, 2)}\n`);

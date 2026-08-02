@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * test-secrets-lens.js - Regression tests for the quality-gate secrets lens
@@ -21,7 +21,7 @@
  * All fixture secrets are assembled from string fragments at runtime so this
  * test file itself never contains a contiguous credential-shaped literal.
  *
- * Run manually: node scripts/test-secrets-lens.js
+ * Run manually: bun scripts/test-secrets-lens.js
  *
  * Exit codes:
  *   0 = all tests pass

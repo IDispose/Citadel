@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * test-backward-compat.js - Backward compatibility tests
@@ -342,7 +342,7 @@ Summary: A test project for compatibility testing.
 
 ## Workflows
 
-- Run node scripts/test-all.js after changes
+- Run bun scripts/test-all.js after changes
 
 ## Constraints
 

@@ -61,8 +61,11 @@ function safeEnvironment(extra = {}) {
 }
 
 function execute(argv, cwd, timeoutMs, env = safeEnvironment()) {
+  // `node`/`bun` denote "the current JS runtime" in scenario command arrays;
+  // resolve to the executable running this process so verifiers work under either.
+  const command = argv[0] === 'node' || argv[0] === 'bun' ? process.execPath : argv[0];
   const invocation = platformInvocation({
-    command: argv[0],
+    command,
     args: argv.slice(1),
   }, { env });
   const result = spawnSync(invocation.command, invocation.args, {

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * noop-ablate.js - Tier 3 of the no-op pipeline: empirical ablation.
@@ -21,10 +21,10 @@
  *     a single greedy run per config is a valid diff.
  *
  * Usage:
- *   node scripts/noop-ablate.js --skill systematic-debugging
- *   node scripts/noop-ablate.js --skill research --scenario external-library
- *   node scripts/noop-ablate.js --skill systematic-debugging --dry-run   # plan + run-count math, no calls
- *   node scripts/noop-ablate.js --skill systematic-debugging --action delete
+ *   bun scripts/noop-ablate.js --skill systematic-debugging
+ *   bun scripts/noop-ablate.js --skill research --scenario external-library
+ *   bun scripts/noop-ablate.js --skill systematic-debugging --dry-run   # plan + run-count math, no calls
+ *   bun scripts/noop-ablate.js --skill systematic-debugging --action delete
  *
  * Exit codes: 0 = ran (or dry-run / nothing to do); 1 = setup/CLI error.
  */
@@ -150,7 +150,7 @@ function matchesBaseline(baseline, current) {
 
 function main() {
   if (!skillFilter) {
-    console.error('Usage: node scripts/noop-ablate.js --skill <name> [--scenario <filter>] [--dry-run]');
+    console.error('Usage: bun scripts/noop-ablate.js --skill <name> [--scenario <filter>] [--dry-run]');
     process.exit(1);
   }
 
@@ -267,7 +267,7 @@ function main() {
     console.log(`  LOAD-BEARING      L${e.lineNo} (${e.action})  ${e.text.slice(0, 60)}  - keep`);
   }
   console.log('\nThe skill file was restored to its original state (ablation is non-destructive).');
-  console.log('Apply confirmed removals with Phase 4 (node scripts/noop-apply.js) once you are satisfied.\n');
+  console.log('Apply confirmed removals with Phase 4 (bun scripts/noop-apply.js) once you are satisfied.\n');
 
   if (JSON_MODE) console.log(JSON.stringify({ skill: skillFilter, confirmed, loadBearing }, null, 2));
   process.exit(0);

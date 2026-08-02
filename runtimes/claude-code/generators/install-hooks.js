@@ -19,7 +19,7 @@ function resolveClaudeHooks(citadelRoot, hooksTemplatePath) {
   const raw = fs.readFileSync(hooksTemplatePath, 'utf8');
   const citadelPath = citadelRoot.replace(/\\/g, '/');
   const resolved = raw.replace(/\$\{CLAUDE_PLUGIN_ROOT\}/g, citadelPath);
-  const cleaned = resolved.replace(/node\s+'([^']+)'/g, 'node "$1"');
+  const cleaned = resolved.replace(/(node|bun)\s+'([^']+)'/g, '$1 "$2"');
   const hooks = JSON.parse(cleaned);
 
   for (const entries of Object.values(hooks.hooks || {})) {

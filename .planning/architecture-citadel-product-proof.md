@@ -284,7 +284,7 @@ Only new (`+`) and modified (`~`) files are shown.
 - **Files:** `.planning/product-proof/baseline.md` (campaign artifact only)
 - **Dependencies:** none
 - **End Conditions:**
-  - [ ] `git status --short`, `node scripts/test-all.js --strict`, installer/runtime
+  - [ ] `git status --short`, `bun scripts/test-all.js --strict`, installer/runtime
     suites, dashboard tests, and current golden-path timing are recorded with exact outputs.
   - [ ] The managed-checkout `EPERM` failure is reproduced and attributed to the exact
     source-refresh writes.
@@ -299,12 +299,12 @@ Only new (`+`) and modified (`~`) files are shown.
   test-all/operational/installer tests, CI workflow, changelog
 - **Dependencies:** Phase 0
 - **End Conditions:**
-  - [ ] `node scripts/test-all.js --strict` passes from both a writable checkout and a
+  - [ ] `bun scripts/test-all.js --strict` passes from both a writable checkout and a
     read-only source copy; tests mutate only temporary targets.
   - [ ] Linux, macOS, and Windows CI pass Node 18 and 20 installer/runtime matrices.
   - [ ] Two consecutive dry-run release builds from the same commit produce identical
     artifact hashes.
-  - [ ] `node scripts/release-verify.js <artifact>` validates manifest and checksums.
+  - [ ] `bun scripts/release-verify.js <artifact>` validates manifest and checksums.
   - [ ] Update and rollback fixtures pass for the previous package version.
   - [ ] No new syntax/type-contract errors; all existing tests pass.
 
@@ -323,7 +323,7 @@ Only new (`+`) and modified (`~`) files are shown.
     requests.
   - [ ] A fixture journey produces install → setup → route → handoff → resume stages and a
     redacted aggregate report.
-  - [ ] `node scripts/github-traffic-snapshot.js --repo SethGammon/Citadel` writes a valid
+  - [ ] `bun scripts/github-traffic-snapshot.js --repo SethGammon/Citadel` writes a valid
     dated snapshot and preserves repeated-day history without overwrite.
   - [ ] No new syntax/type-contract errors; all existing tests pass.
 
@@ -334,7 +334,7 @@ Only new (`+`) and modified (`~`) files are shown.
   install/demo/runtime guides
 - **Dependencies:** Phases 1 and 2
 - **End Conditions:**
-  - [ ] `node scripts/golden-path.js --runtime claude|codex --fixture <path>` reaches a
+  - [ ] `bun scripts/golden-path.js --runtime claude|codex --fixture <path>` reaches a
     verified handoff and a successful fresh-session resume in automated fixtures.
   - [ ] A 30-run matrix (2 runtimes × 3 operating systems × 5 repetitions) has >95% install
     and setup success without manual repair.
@@ -389,7 +389,7 @@ Only new (`+`) and modified (`~`) files are shown.
 - **End Conditions:**
   - [ ] The external skill fixture installs, routes, runs, verifies, emits telemetry, and
     produces a Citadel handoff without modifying the fixture's source skill.
-  - [ ] `node scripts/generate-distribution-metadata.js --check` proves README, plugin
+  - [ ] `bun scripts/generate-distribution-metadata.js --check` proves README, plugin
     manifests, runtime support, install command, version, skill count, and proof links agree.
   - [ ] ClaudePluginHub indexes the release with verified publisher identity, current version,
     canonical install path, and current runtime support; captured profile evidence is stored in

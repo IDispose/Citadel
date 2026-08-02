@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 /**
@@ -11,7 +11,7 @@
  *   4. marker pairs are balanced in all three docs
  *   5. running the generator changes nothing (idempotence, byte-compared)
  *
- * Usage: node scripts/test-doc-surfaces.js
+ * Usage: bun scripts/test-doc-surfaces.js
  */
 
 const fs = require('fs');

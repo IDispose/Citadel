@@ -27,7 +27,7 @@ jobs:
           upload_sarif: true
       - name: Summarize scanner finding coordinates
         if: failure()
-        run: node scripts/sarif-coordinates.js plugin-scanner.sarif
+        run: bun scripts/sarif-coordinates.js plugin-scanner.sarif
       - name: Upload failed scanner report
         if: failure()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a

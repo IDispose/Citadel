@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * install-hooks.js — Resolves Citadel hook paths into a project's .claude/settings.json

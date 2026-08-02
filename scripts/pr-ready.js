@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 const fs = require('fs');
@@ -39,9 +39,9 @@ function parseArgs(argv) {
 function usage() {
   return [
     'Usage:',
-    '  node scripts/pr-ready.js --pr <pull-request-url> --run-verification',
-    '  node scripts/pr-ready.js --pr <pull-request-url> --verification "npm run test"',
-    '  node scripts/pr-ready.js --pr <pull-request-url> --branch <branch-name> --run-verification',
+    '  bun scripts/pr-ready.js --pr <pull-request-url> --run-verification',
+    '  bun scripts/pr-ready.js --pr <pull-request-url> --verification "npm run test"',
+    '  bun scripts/pr-ready.js --pr <pull-request-url> --branch <branch-name> --run-verification',
     '',
     'Writes .planning/pr-readiness/<branch>.md and exits 0 only when local readiness gates pass.',
     'When --verification is omitted, Citadel selects a verification profile from changed paths.',

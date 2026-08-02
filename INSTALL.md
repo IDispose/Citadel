@@ -270,8 +270,8 @@ stand in for an independently owned integration or a human cohort.
 To verify the complete deterministic first-use seam for both runtime preparations:
 
 ```bash
-node scripts/golden-path.js --runtime claude --fixture scripts/fixtures/golden-path/minimal-node.json
-node scripts/golden-path.js --runtime codex --fixture scripts/fixtures/golden-path/minimal-node.json
+bun scripts/golden-path.js --runtime claude --fixture scripts/fixtures/golden-path/minimal-node.json
+bun scripts/golden-path.js --runtime codex --fixture scripts/fixtures/golden-path/minimal-node.json
 ```
 
 These are isolated fixture runs, not proof of plugin registration or real-user timing. See

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -20,7 +20,7 @@ function parseArgs(argv) {
 }
 
 function usage() {
-  return 'Usage: node scripts/reliability-analyze.js --input <local.jsonl> [--output report.json] [--require-sufficient]\n';
+  return 'Usage: bun scripts/reliability-analyze.js --input <local.jsonl> [--output report.json] [--require-sufficient]\n';
 }
 
 function run(argv = process.argv.slice(2)) {

@@ -47,7 +47,7 @@ Direction: Turn Operation Fork from a dual-runtime primitive into a reproducible
 | 4 | visual_verify | Real browser verifies model identity, unknown telemetry, selection, and responsive states | pending |
 | 5 | command_passes | Explicit Claude and Codex model profiles complete a second real operation and export a redacted replay | pending |
 | 5 | metric_threshold | Public proof reports exact denominators and zero leaked prompts, source, local paths, or signer material | pending |
-| 6 | command_passes | `node scripts/test-all.js --strict` passes | pending |
+| 6 | command_passes | `bun scripts/test-all.js --strict` passes | pending |
 | 6 | command_passes | Final PR head passes every protected hosted check and merges to `main` | pending |
 
 ## Decision Log
@@ -79,7 +79,7 @@ Direction: Turn Operation Fork from a dual-runtime primitive into a reproducible
 - Phase 1 complete: acceptance test parses and exits only with `EXECUTOR_PROFILES_NOT_IMPLEMENTED` until production support exists.
 - Phase 1 validator: pass with both non-manual end conditions satisfied.
 - Phase 2 recovery: implementation candidate preserved from failed fork as commit `cdf2558`, then independently hardened against signer substitution, receipt and telemetry tampering, stale comparison, Windows npm shim execution, public replay leakage, and worktree escape.
-- Full strict repository verification passes from the hardened candidate: every suite in `node scripts/test-all.js --strict` passed in 110.8 seconds.
+- Full strict repository verification passes from the hardened candidate: every suite in `bun scripts/test-all.js --strict` passed in 110.8 seconds.
 - Phase 2 live-proof acceptance is frozen in `scripts/test-operation-fork-proof.js` and registered in the strict suite. It currently exits only with `OPERATION_FORK_PROOF_NOT_IMPLEMENTED`.
 - Local recovery implementation: `fork proof` now produces a deterministic redacted report with exact branch, comparable, verified-receipt, and model-proof denominators. The frozen acceptance test passes.
 - Evidence hardening: operation digest, run ID, receipt status, telemetry, and the complete branch result are rechecked against signed bindings before comparison or display. Adversarial receipt, telemetry, signer, and manifest edits fail closed.
@@ -88,7 +88,7 @@ Direction: Turn Operation Fork from a dual-runtime primitive into a reproducible
 - Live proof preparation: the deleted campaign worktree was reconstructed from verified commit `add8b1f`; branch identity and cleanliness were rechecked before execution.
 - Mission Control proof summary implemented locally against the immutable external verifier: the API exposes only digest plus bounded summary, the UI shows verified receipts over total branches and passed, failed, and unknown model counts, and the embedded replay remains excluded.
 - Visual verification passed locally in Microsoft Edge. The registered artifact is `.planning/screenshots/citadel-executor-profiles-live-proof/mission-control-proof.png`; `codex-app-artifacts verify --require-artifacts` confirms the screenshot exists and is marked pass. Generated artifact ledgers are now ignored with the rest of ephemeral `.planning` runtime evidence.
-- Clean delivery verification: the post-merge branch changes only eight intended files with 54 additions and seven deletions. Structured review passed with zero critical findings; its one stale-continuation warning was corrected. `node scripts/test-all.js --strict` passed on this exact working tree in 173.7 seconds.
+- Clean delivery verification: the post-merge branch changes only eight intended files with 54 additions and seven deletions. Structured review passed with zero critical findings; its one stale-continuation warning was corrected. `bun scripts/test-all.js --strict` passed on this exact working tree in 173.7 seconds.
 
 ## Exit Evidence
 

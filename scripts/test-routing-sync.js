@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 'use strict';
 
 /**
@@ -11,7 +11,7 @@
  *   (d) keywords are non-empty arrays of non-empty strings
  *   (e) the checker's pure comparison detects a tampered in-memory copy
  *
- * Run: node scripts/test-routing-sync.js
+ * Run: bun scripts/test-routing-sync.js
  */
 
 const assert = require('assert');

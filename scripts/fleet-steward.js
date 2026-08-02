@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -46,8 +46,8 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node scripts/fleet-steward.js [--session path] [--json]',
-    '       node scripts/fleet-steward.js --session path --mark-failed 2 --reason "why" --write',
+    'Usage: bun scripts/fleet-steward.js [--session path] [--json]',
+    '       bun scripts/fleet-steward.js --session path --mark-failed 2 --reason "why" --write',
     '',
     'Reads a Fleet session markdown work queue and reports runnable tasks,',
     'blocked tasks, readiness blockers, merge candidates, and same-wave scope conflicts.',
@@ -214,8 +214,8 @@ function renderReport(snapshot) {
 
   lines.push('');
   lines.push('QUICK COMMANDS');
-  lines.push('  node scripts/fleet-steward.js --session <file> --json');
-  lines.push('  node scripts/fleet-steward.js --session <file> --mark-failed <id> --reason "<why>" --write');
+  lines.push('  bun scripts/fleet-steward.js --session <file> --json');
+  lines.push('  bun scripts/fleet-steward.js --session <file> --mark-failed <id> --reason "<why>" --write');
 
   return lines.join('\n');
 }

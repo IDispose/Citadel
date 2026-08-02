@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * noop-apply.js - Phase 4 of the no-op pipeline: apply confirmed removals.
@@ -13,10 +13,10 @@
  * you have confirmed (judge high-confidence and/or Tier 3 ablation).
  *
  * Usage:
- *   node scripts/noop-apply.js --dry-run               # preview every edit
- *   node scripts/noop-apply.js --skill systematic-debugging --dry-run
- *   node scripts/noop-apply.js --skill systematic-debugging   # apply
- *   node scripts/noop-apply.js --verdicts <path.json>  # use a specific verdict file
+ *   bun scripts/noop-apply.js --dry-run               # preview every edit
+ *   bun scripts/noop-apply.js --skill systematic-debugging --dry-run
+ *   bun scripts/noop-apply.js --skill systematic-debugging   # apply
+ *   bun scripts/noop-apply.js --verdicts <path.json>  # use a specific verdict file
  *
  * Exit codes: 0 = applied / previewed; 1 = no verdicts or a write error.
  */
@@ -71,7 +71,7 @@ function bumpLastUpdated(content) {
 function main() {
   const loaded = loadVerdicts();
   if (!loaded) {
-    console.error('No judge verdicts found. Run: node scripts/noop-judge.js');
+    console.error('No judge verdicts found. Run: bun scripts/noop-judge.js');
     process.exit(1);
   }
 
@@ -135,9 +135,9 @@ function main() {
   } else {
     console.log(`Applied. ${editedFiles} file(s) edited.`);
     console.log('Now verify no regression:');
-    console.log('  node scripts/test-noop-detect.js     (calibration still green)');
-    console.log('  node scripts/noop-scan.js            (candidate should be gone)');
-    console.log('  node scripts/skill-lint.js           (structure intact)\n');
+    console.log('  bun scripts/test-noop-detect.js     (calibration still green)');
+    console.log('  bun scripts/noop-scan.js            (candidate should be gone)');
+    console.log('  bun scripts/skill-lint.js           (structure intact)\n');
   }
   process.exit(0);
 }

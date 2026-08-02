@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -78,7 +78,7 @@ const LOOP_TEMPLATES = Object.freeze({
     type: 'verification',
     triggerKind: 'manual',
     goal: 'Refresh operating-loop proof artifacts and verify public demo claims.',
-    verifierCommand: 'node scripts/operating-proof.js --write',
+    verifierCommand: 'bun scripts/operating-proof.js --write',
     verifierProfile: 'operating-proof',
     maxAttempts: 1,
     stopConditions: ['verifier-passed', 'verifier-failed', 'blocked'],

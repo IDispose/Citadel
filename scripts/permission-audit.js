@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 /**
  * permission-audit.js — Permission audit report from hook telemetry.
@@ -14,7 +14,7 @@
  *   - anomaly flag (denial rate > 20% or one tool > 80% of requests)
  *
  * Usage:
- *   node scripts/permission-audit.js [--root <projectRoot>]
+ *   bun scripts/permission-audit.js [--root <projectRoot>]
  *
  * Zero dependencies. Read-only. Always exits 0 unless given a bad --root.
  */

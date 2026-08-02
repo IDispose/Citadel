@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 'use strict';
 
@@ -33,11 +33,11 @@ function parseArgs(argv) {
 
 function usage() {
   return [
-    'Usage: node scripts/sandbox-provider.js matrix [--json]',
-    '       node scripts/sandbox-provider.js status --provider worktree [--worktree path] [--json]',
-    '       node scripts/sandbox-provider.js attach --provider worktree --worktree path',
-    '       node scripts/sandbox-provider.js snapshot --provider worktree --worktree path',
-    '       node scripts/sandbox-provider.js readiness --provider worktree [--worktree path] [--write]',
+    'Usage: bun scripts/sandbox-provider.js matrix [--json]',
+    '       bun scripts/sandbox-provider.js status --provider worktree [--worktree path] [--json]',
+    '       bun scripts/sandbox-provider.js attach --provider worktree --worktree path',
+    '       bun scripts/sandbox-provider.js snapshot --provider worktree --worktree path',
+    '       bun scripts/sandbox-provider.js readiness --provider worktree [--worktree path] [--write]',
   ].join('\n');
 }
 
